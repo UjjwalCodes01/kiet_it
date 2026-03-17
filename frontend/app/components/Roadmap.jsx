@@ -4,59 +4,51 @@ import { useState } from "react";
 
 const roadmap = [
   {
-    label: "Applied Science",
-    image: "/cse-ai-assets/Roadmap/Applied Science.png",
-    slideImage: "/cse-ai-assets/Subject Slide/Applied Science.png",
-  },
-  {
-    label: "Aptitude & Reasoning",
-    image: "/cse-ai-assets/Roadmap/Aptitude & REASONING.png",
-    slideImage: "/cse-ai-assets/Subject Slide/Aptitude & REASONING.png",
-  },
-  {
-    label: "Core Skills",
-    image: "/cse-ai-assets/Roadmap/Core Skills.png",
-    slideImage: "/cse-ai-assets/Subject Slide/Core Skills.png",
-  },
-  {
-    label: "Problem Solving",
-    image: "/cse-ai-assets/Roadmap/Problem Solving.png",
-    slideImage: "/cse-ai-assets/Subject Slide/Problem Solving.png",
-  },
-  {
-    label: "Soft Skills",
-    image: "/cse-ai-assets/Roadmap/Soft Skills.png",
-    slideImage: "/cse-ai-assets/Subject Slide/Soft Skills.png",
-  },
-  {
-    label: "Web Development",
-    image: "/cse-ai-assets/Roadmap/Web DEVELOPMENT.png",
-    slideImage: "/cse-ai-assets/Subject Slide/Web DEVELOPMENT.png",
-  },
-  {
-    label: "Data Engineering",
-    image: "/cse-ai-assets/Roadmap/Data Engineering.png",
-    slideImage: "/cse-ai-assets/Subject Slide/Data Engineering.png",
+    label: "Artificial Intelligence",
+    image: "/emerging-technology/image.png",
+    slideImage: "/emerging-technology/image.png",
   },
   {
     label: "Machine Learning",
-    image: "/cse-ai-assets/Roadmap/Machine Learning.png",
-    slideImage: "/cse-ai-assets/Subject Slide/Machine Learning.png",
+    image: "/emerging-technology/image copy.png",
+    slideImage: "/emerging-technology/image copy.png",
   },
   {
-    label: "Cloud & Network Security",
-    image: "/cse-ai-assets/Roadmap/Cloud and Network Security.png",
-    slideImage: "/cse-ai-assets/Subject Slide/Cloud and Network Security.png",
+    label: "Data Science & Analytics",
+    image: "/emerging-technology/image copy 2.png",
+    slideImage: "/emerging-technology/image copy 2.png",
   },
   {
-    label: "Industry Certification",
-    image: "/cse-ai-assets/Roadmap/Industry-Integrated.png",
-    slideImage: "/cse-ai-assets/Subject Slide/Industry Alligned.png",
+    label: "Cloud Computing",
+    image: "/emerging-technology/image copy 3.png",
+    slideImage: "/emerging-technology/image copy 3.png",
+  },
+  {
+    label: "Cybersecurity",
+    image: "/emerging-technology/image copy 4.png",
+    slideImage: "/emerging-technology/image copy 4.png",
+  },
+  {
+    label: "Internet of Things",
+    image: "/emerging-technology/image copy 5.png",
+    slideImage: "/emerging-technology/image copy 5.png",
   },
 ];
 
+const CIRCLE_SIZE = 620;
+const NODE_SIZE = 96;
+const RADIUS = (CIRCLE_SIZE - NODE_SIZE) / 2;
+
+function getNodePosition(index, total, radius) {
+  const angle = (2 * Math.PI * index) / total - Math.PI / 2;
+  return {
+    x: radius * Math.cos(angle),
+    y: radius * Math.sin(angle),
+  };
+}
+
 export default function Roadmap() {
-  const [activeStep, setActiveStep] = useState(null);
+  const [activeStep, setActiveStep] = useState(0);
 
   return (
     <section
@@ -65,7 +57,7 @@ export default function Roadmap() {
       style={{ padding: "4rem 0", position: "relative", zIndex: 1 }}
     >
       <div className="p-3 p-md-4 p-lg-5">
-        <div className="mb-5">
+        <div className="mb-4">
           <h2
             className="fw-bold mb-3 fs-1"
             style={{
@@ -75,134 +67,26 @@ export default function Roadmap() {
               display: "inline-block",
             }}
           >
-            Learning Roadmap
+            Emerging Technology Pathways
           </h2>
           <div>
-            <span className="fs-3 fst-italic kiet-text-secondary" style={{ fontWeight: 500 }}>
-              Click a step to view details
+            <span className="fs-3 fst-italic" style={{ fontWeight: 500, color: "#666" }}>
+              Click a pathway to explore details
             </span>
           </div>
         </div>
 
-        {/* Desktop: Horizontal stepper */}
+        {/* Desktop: Circular layout */}
         <div className="d-none d-lg-block">
-          <div style={{ position: "relative", padding: "0 1rem" }}>
-            {/* Connector line */}
+          <div className="d-flex align-items-center justify-content-center gap-5">
+            {/* Detail panel on the left */}
             <div
               style={{
-                position: "absolute",
-                top: "40px",
-                left: "calc(5% + 10px)",
-                right: "calc(5% + 10px)",
-                height: "3px",
-                backgroundColor: "#e0e0e0",
-                zIndex: 0,
-              }}
-            />
-            {/* Progress fill */}
-            {activeStep !== null && (
-              <div
-                style={{
-                  position: "absolute",
-                  top: "40px",
-                  left: "calc(5% + 10px)",
-                  width: `${(activeStep / (roadmap.length - 1)) * 90}%`,
-                  height: "3px",
-                  backgroundColor: "#f26520",
-                  zIndex: 0,
-                  transition: "width 0.4s ease",
-                }}
-              />
-            )}
-
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                position: "relative",
-                zIndex: 1,
+                flex: "0 0 600px",
+                maxWidth: "600px",
+                transition: "opacity 0.4s ease",
               }}
             >
-              {roadmap.map((item, idx) => {
-                const isActive = activeStep === idx;
-                const isCompleted = activeStep !== null && idx < activeStep;
-                return (
-                  <div
-                    key={item.label}
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      width: `${100 / roadmap.length}%`,
-                      cursor: "pointer",
-                    }}
-                    onClick={() => setActiveStep(isActive ? null : idx)}
-                  >
-                    {/* Circle */}
-                    <div
-                      style={{
-                        width: "80px",
-                        height: "80px",
-                        borderRadius: "50%",
-                        overflow: "hidden",
-                        border: isActive
-                          ? "4px solid #f26520"
-                          : isCompleted
-                            ? "3px solid #002855"
-                            : "3px solid #ccc",
-                        backgroundColor: "#fff",
-                        boxShadow: isActive
-                          ? "0 0 0 4px rgba(242, 101, 32, 0.2), 0 6px 20px rgba(0, 0, 0, 0.15)"
-                          : "0 4px 12px rgba(0, 0, 0, 0.1)",
-                        transition: "all 0.3s ease",
-                        transform: isActive ? "scale(1.15)" : "scale(1)",
-                        flexShrink: 0,
-                      }}
-                    >
-                      <img
-                        src={item.image}
-                        alt={item.label}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                          borderRadius: "50%",
-                        }}
-                      />
-                    </div>
-                    {/* Label */}
-                    <p
-                      style={{
-                        marginTop: "0.75rem",
-                        fontSize: "0.75rem",
-                        fontWeight: 800,
-                        color: isActive ? "#f26520" : "#002855",
-                        textTransform: "uppercase",
-                        textAlign: "center",
-                        lineHeight: 1.2,
-                        transition: "color 0.3s ease",
-                        maxWidth: "100px",
-                      }}
-                    >
-                      {item.label}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Expanded detail panel */}
-          <div
-            style={{
-              overflow: "hidden",
-              maxHeight: activeStep !== null ? "600px" : "0",
-              opacity: activeStep !== null ? 1 : 0,
-              transition: "max-height 0.5s ease, opacity 0.4s ease, margin 0.4s ease",
-              marginTop: activeStep !== null ? "2rem" : "0",
-            }}
-          >
-            {activeStep !== null && (
               <div
                 style={{
                   backgroundColor: "#fff",
@@ -210,38 +94,12 @@ export default function Roadmap() {
                   border: "3px solid #f26520",
                   boxShadow: "0 12px 40px rgba(0, 0, 0, 0.12)",
                   padding: "1.5rem",
-                  position: "relative",
+                  width: "100%",
                 }}
               >
-                <div className="d-flex justify-content-between align-items-start mb-3">
-                  <h3 className="fw-bold fs-2 mb-0" style={{ color: "#002855" }}>
-                    {roadmap[activeStep].label}
-                  </h3>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setActiveStep(null);
-                    }}
-                    style={{
-                      width: "36px",
-                      height: "36px",
-                      borderRadius: "50%",
-                      backgroundColor: "#f26520",
-                      border: "none",
-                      color: "#fff",
-                      fontSize: "1.1rem",
-                      fontWeight: "bold",
-                      cursor: "pointer",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
-                      flexShrink: 0,
-                    }}
-                  >
-                    &times;
-                  </button>
-                </div>
+                <h3 className="fw-bold fs-2 mb-3" style={{ color: "#002855" }}>
+                  {roadmap[activeStep].label}
+                </h3>
                 <img
                   src={roadmap[activeStep].slideImage}
                   alt={`${roadmap[activeStep].label} Slide`}
@@ -253,101 +111,126 @@ export default function Roadmap() {
                   }}
                 />
               </div>
-            )}
-          </div>
-        </div>
+            </div>
 
-        {/* Mobile: Horizontal scrollable stepper */}
-        <div className="d-lg-none">
-          <div
-            style={{
-              overflowX: "auto",
-              paddingBottom: "1rem",
-              WebkitOverflowScrolling: "touch",
-              scrollbarWidth: "none",
-              msOverflowStyle: "none",
-            }}
-          >
+            {/* Circle on the right */}
             <div
               style={{
-                display: "flex",
-                alignItems: "flex-start",
+                width: `${CIRCLE_SIZE}px`,
+                height: `${CIRCLE_SIZE}px`,
                 position: "relative",
-                minWidth: `${roadmap.length * 100}px`,
-                padding: "0 1rem",
+                flexShrink: 0,
               }}
             >
+              {/* SVG ring connector */}
+              <svg
+                width={CIRCLE_SIZE}
+                height={CIRCLE_SIZE}
+                style={{ position: "absolute", top: 0, left: 0 }}
+              >
+                <circle
+                  cx={CIRCLE_SIZE / 2}
+                  cy={CIRCLE_SIZE / 2}
+                  r={RADIUS}
+                  fill="none"
+                  stroke="#e0e0e0"
+                  strokeWidth="2"
+                  strokeDasharray="6 4"
+                />
+              </svg>
+
+              {/* Center content */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: `${RADIUS * 1.2}px`,
+                  textAlign: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <div
+                  style={{
+                    width: "110px",
+                    height: "110px",
+                    borderRadius: "50%",
+                    overflow: "hidden",
+                    border: "3px solid #f26520",
+                    marginBottom: "10px",
+                    flexShrink: 0,
+                  }}
+                >
+                  <img
+                    src={roadmap[activeStep].image}
+                    alt={roadmap[activeStep].label}
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  />
+                </div>
+                <p className="fw-bold fs-3 mb-0" style={{ color: "#f26520", lineHeight: 1.2 }}>
+                  {roadmap[activeStep].label}
+                </p>
+                <p className="fs-5 text-muted mb-0 mt-1">
+                  Pathway {activeStep + 1} of {roadmap.length}
+                </p>
+              </div>
+
+              {/* Nodes around the circle */}
               {roadmap.map((item, idx) => {
+                const { x, y } = getNodePosition(idx, roadmap.length, RADIUS);
                 const isActive = activeStep === idx;
                 return (
                   <div
                     key={item.label}
                     style={{
+                      position: "absolute",
+                      left: `${CIRCLE_SIZE / 2 + x - NODE_SIZE / 2}px`,
+                      top: `${CIRCLE_SIZE / 2 + y - NODE_SIZE / 2}px`,
+                      width: `${NODE_SIZE}px`,
                       display: "flex",
                       flexDirection: "column",
                       alignItems: "center",
-                      minWidth: "90px",
-                      flex: "1 0 auto",
                       cursor: "pointer",
-                      position: "relative",
+                      zIndex: isActive ? 5 : 2,
                     }}
-                    onClick={() => setActiveStep(isActive ? null : idx)}
+                    onClick={() => setActiveStep(idx)}
                   >
-                    {/* Connector line (not on first) */}
-                    {idx > 0 && (
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "30px",
-                          right: "50%",
-                          width: "100%",
-                          height: "2px",
-                          backgroundColor:
-                            activeStep !== null && idx <= activeStep ? "#f26520" : "#e0e0e0",
-                          zIndex: 0,
-                          transition: "background-color 0.3s ease",
-                        }}
-                      />
-                    )}
                     <div
                       style={{
-                        width: "60px",
-                        height: "60px",
+                        width: `${NODE_SIZE}px`,
+                        height: `${NODE_SIZE}px`,
                         borderRadius: "50%",
                         overflow: "hidden",
-                        border: isActive ? "3px solid #f26520" : "2px solid #ccc",
+                        border: isActive ? "4px solid #f26520" : "3px solid #ccc",
                         backgroundColor: "#fff",
                         boxShadow: isActive
-                          ? "0 0 0 3px rgba(242, 101, 32, 0.2)"
-                          : "0 2px 8px rgba(0, 0, 0, 0.1)",
+                          ? "0 0 0 5px rgba(242, 101, 32, 0.25), 0 6px 20px rgba(0, 0, 0, 0.2)"
+                          : "0 4px 12px rgba(0, 0, 0, 0.1)",
                         transition: "all 0.3s ease",
-                        transform: isActive ? "scale(1.1)" : "scale(1)",
-                        position: "relative",
-                        zIndex: 1,
-                        flexShrink: 0,
+                        transform: isActive ? "scale(1.2)" : "scale(1)",
                       }}
                     >
                       <img
                         src={item.image}
                         alt={item.label}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                          borderRadius: "50%",
-                        }}
+                        style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "50%" }}
                       />
                     </div>
                     <p
                       style={{
-                        marginTop: "0.5rem",
+                        marginTop: "6px",
                         fontSize: "0.65rem",
-                        fontWeight: 700,
+                        fontWeight: 800,
                         color: isActive ? "#f26520" : "#002855",
                         textTransform: "uppercase",
                         textAlign: "center",
-                        lineHeight: 1.2,
-                        maxWidth: "80px",
+                        lineHeight: 1.15,
+                        maxWidth: "110px",
+                        transition: "color 0.3s ease",
                       }}
                     >
                       {item.label}
@@ -357,61 +240,86 @@ export default function Roadmap() {
               })}
             </div>
           </div>
+        </div>
 
-          {/* Mobile expanded panel */}
-          {activeStep !== null && (
-            <div
-              style={{
-                marginTop: "1rem",
-                backgroundColor: "#fff",
-                borderRadius: "12px",
-                border: "2px solid #f26520",
-                boxShadow: "0 8px 24px rgba(0, 0, 0, 0.1)",
-                padding: "1rem",
-                position: "relative",
-              }}
-            >
-              <div className="d-flex justify-content-between align-items-center mb-2">
-                <h4 className="fw-bold fs-3 mb-0" style={{ color: "#002855" }}>
-                  {roadmap[activeStep].label}
-                </h4>
-                <button
-                  onClick={() => setActiveStep(null)}
-                  style={{
-                    width: "32px",
-                    height: "32px",
-                    borderRadius: "50%",
-                    backgroundColor: "#f26520",
-                    border: "none",
-                    color: "#fff",
-                    fontSize: "1rem",
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  &times;
-                </button>
-              </div>
-              <img
-                src={roadmap[activeStep].slideImage}
-                alt={`${roadmap[activeStep].label} Slide`}
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  borderRadius: "8px",
-                  display: "block",
-                }}
-              />
-            </div>
-          )}
+        {/* Mobile: vertical list with tap-to-expand */}
+        <div className="d-lg-none">
+          <div className="d-flex flex-column gap-3">
+            {roadmap.map((item, idx) => {
+              const isActive = activeStep === idx;
+              return (
+                <div key={item.label}>
+                  <button
+                    className="w-100 d-flex align-items-center gap-3 border-0 bg-white rounded-3 p-3"
+                    style={{
+                      boxShadow: isActive
+                        ? "0 4px 16px rgba(242, 101, 32, 0.2)"
+                        : "0 2px 8px rgba(0, 0, 0, 0.06)",
+                      border: isActive ? "2px solid #f26520" : "2px solid transparent",
+                      cursor: "pointer",
+                      transition: "all 0.3s ease",
+                    }}
+                    onClick={() => setActiveStep(idx)}
+                  >
+                    <div
+                      style={{
+                        width: "50px",
+                        height: "50px",
+                        borderRadius: "50%",
+                        overflow: "hidden",
+                        border: isActive ? "3px solid #f26520" : "2px solid #ccc",
+                        flexShrink: 0,
+                      }}
+                    >
+                      <img
+                        src={item.image}
+                        alt={item.label}
+                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                      />
+                    </div>
+                    <span
+                      className="fw-bold fs-3 text-start flex-grow-1"
+                      style={{ color: isActive ? "#f26520" : "#002855" }}
+                    >
+                      {item.label}
+                    </span>
+                    <span
+                      style={{
+                        fontSize: "0.8rem",
+                        color: isActive ? "#f26520" : "#999",
+                        transform: isActive ? "rotate(180deg)" : "rotate(0)",
+                        transition: "transform 0.3s ease",
+                      }}
+                    >
+                      ▼
+                    </span>
+                  </button>
+                  {isActive && (
+                    <div
+                      className="mt-2 p-3 bg-white rounded-3"
+                      style={{
+                        border: "2px solid #f26520",
+                        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
+                      }}
+                    >
+                      <img
+                        src={item.slideImage}
+                        alt={`${item.label} Slide`}
+                        style={{
+                          width: "100%",
+                          height: "auto",
+                          borderRadius: "8px",
+                          display: "block",
+                        }}
+                      />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
-
-      <style>{`
-        .d-lg-none::-webkit-scrollbar { display: none; }
-      `}</style>
     </section>
   );
 }

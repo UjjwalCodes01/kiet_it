@@ -56,7 +56,7 @@ function ProgramSectionNav() {
     { label: "Overview", href: "#overview" },
     { label: "Highlights", href: "#infrastructure" },
     { label: "Placement", href: "#placement" },
-    { label: "Roadmap", href: "#roadmap" },
+    { label: "Emerging Technology Pathways", href: "#roadmap" },
     { label: "COE", href: "#coe" },
     { label: "Clubs", href: "#clubs" },
     { label: "Dean's Message", href: "#dean-message" },

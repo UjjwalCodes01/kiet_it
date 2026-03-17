@@ -298,7 +298,7 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                 ["/cse-ai-assets/images/key4.jpeg", "Structured Placement Preparation Ecosystem", "The department provides focused preparation through DSA training, coding contests on iamneo/CodeTantra/HackerRank/CodeChef, AMCAT assessments, resume and LinkedIn optimization support, technical bootcamps, and personalized mentoring."],
               ].map((item) => (
                 <div key={item[1]} className="col-12 col-lg-6">
-                  <div className="d-none d-md-flex bg-white rounded-3 overflow-hidden h-100" style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)", transition: "all 0.3s ease", cursor: "pointer" }}>
+                  <div className="d-none d-md-flex bg-white rounded-3 overflow-hidden h-100 highlight-card" style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)", transition: "transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease", cursor: "pointer", borderLeft: "4px solid transparent" }}>
                     <div style={{ flex: "0 0 160px", position: "relative" }}>
                       <img src={item[0]} alt={item[1]} className="w-100 h-100" style={{ objectFit: "cover", position: "absolute", top: 0, left: 0 }} />
                     </div>
@@ -326,22 +326,24 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
       <div id="placement">
         <section className="mx-2 mx-md-4 mx-lg-5 px-0 px-md-3 px-lg-5 py-3 py-md-4">
           <div className="p-3 p-md-4 p-lg-5">
-            <h2 className="fw-bold mb-4 fs-1" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", color: "#002855", borderBottom: "3px solid #f26520", paddingBottom: "10px", display: "inline-block" }}>
+            <h2 className="fw-bold mb-2 fs-1" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", color: "#002855", borderBottom: "3px solid #f26520", paddingBottom: "10px", display: "inline-block" }}>
               Placement Overview
             </h2>
-            <div className="row g-3">
+            <p className="fs-3 text-muted mb-4">Our students are placed across top-tier companies with exceptional packages</p>
+            <div className="row g-4">
               {[
-                [placementHighest, " LPA", "Highest Package", "#f26520"],
-                [placementTop10, " LPA", "Top 10% Placement", "#002855"],
-                [placementAverage, " LPA", "Average Package", "#f26520"],
-                [placementCompanies, "+", "Total Companies", "#002855"],
+                [placementHighest, "60", " LPA", "Highest Package", "orange", "Highest offer in the department"],
+                [placementTop10, "17", " LPA", "Top 10% Placement", "navy", "Average of top 10% placed students"],
+                [placementAverage, "6.5", " LPA", "Average Package", "orange", "Overall average placement package"],
+                [placementCompanies, "300", "+", "Total Companies", "navy", "Recruiting partners across industries"],
               ].map((item) => (
-                <div key={item[2]} className="col-12 col-md-6 col-lg-3">
-                  <div ref={item[0].ref} className="card fs-1 h-100 border-0 text-white d-flex flex-column justify-content-center align-items-center text-center p-4" style={{ backgroundColor: item[3], borderRadius: "12px", minHeight: "140px" }}>
-                    <h3 className="fw-bold mb-2 fs-1" style={{ color: "#fff", lineHeight: 1.1 }}>
-                      {item[0].value}{item[1]}
-                    </h3>
-                    <p className="mb-0 fs-2 text-white">{item[2]}</p>
+                <div key={item[3]} className="col-6 col-lg-3">
+                  <div ref={item[0].ref} className={`placement-stat-card ${item[4]} h-100`} style={{ boxShadow: "0 8px 24px rgba(0, 0, 0, 0.07)" }}>
+                    <div className="mb-2" style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 800, lineHeight: 1, color: item[4] === "orange" ? "#f26520" : "#002855" }}>
+                      {item[0].value}{item[2]}
+                    </div>
+                    <p className="fw-bold mb-1 fs-3" style={{ color: "#1a1a2e" }}>{item[3]}</p>
+                    <p className="mb-0 fs-5 text-muted d-none d-md-block">{item[5]}</p>
                   </div>
                 </div>
               ))}
@@ -454,23 +456,26 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                 </h2>
               </div>
             </div>
-            <div className="row g-4">
+            <div className="clubs-stack">
               {[
-                ["NextGen Supercomputing Club", "/cse-ai-assets/images/nextgen-logo.png", "https://nextgen-supercomputing.in", "NextGen Club is a community of passionate learners aspiring to become production-ready ML and AI engineers through hands-on projects and collaborative learning."],
-                ["DevUp Club", "/cse-ai-assets/images/devup-logo.png", "https://devup.co.in/", "DevUp Club is a vibrant technical community committed to empowering students across CP/DSA, Web Development, Android, UI/UX, and Data Science through workshops and projects."],
+                ["NextGen Supercomputing Club", "/cse-ai-assets/images/nextgen-logo.png", "https://nextgen-supercomputing.in", "NextGen Club is a community of passionate learners aspiring to become production-ready ML and AI engineers through hands-on projects and collaborative learning.", "#002855"],
+                ["DevUp Club", "/cse-ai-assets/images/devup-logo.png", "https://devup.co.in/", "DevUp Club is a vibrant technical community committed to empowering students across CP/DSA, Web Development, Android, UI/UX, and Data Science through workshops and projects.", "#00304c"],
               ].map((club) => (
-                <div key={club[0]} className="col-12 col-lg-6 mb-4">
-                  <div className="card bg-white h-100 border-0 shadow-sm" style={{ borderRadius: "16px", overflow: "hidden", transition: "transform 0.3s ease, box-shadow 0.3s ease", cursor: "default", minHeight: "260px" }}>
-                    <div className="card-body p-3 p-md-4 d-flex flex-column flex-md-row h-100 py-4 py-md-5">
-                      <div className="flex-shrink-0 mb-3 mb-md-0 me-md-4 align-self-center" style={{ width: "100px", height: "100px", borderRadius: "50%", overflow: "hidden", position: "relative", border: "2px solid #f0f0f0", backgroundColor: "#fff" }}>
-                        <img alt={club[0]} src={club[1]} style={{ position: "absolute", height: "100%", width: "100%", left: 0, top: 0, right: 0, bottom: 0, objectFit: "cover", color: "transparent" }} />
+                <div key={club[0]} className="club-card-outer">
+                  <div className="club-card-inner bg-white h-100 border-0" style={{ borderRadius: "20px", overflow: "hidden", boxShadow: "0 8px 24px rgba(0, 0, 0, 0.1)", minHeight: "280px" }}>
+                    <div style={{ height: "6px", background: `linear-gradient(90deg, #f26520 0%, ${club[4]} 100%)` }} />
+                    <div className="p-4 p-md-5 d-flex flex-column flex-md-row h-100">
+                      <div className="flex-shrink-0 mb-3 mb-md-0 me-md-4 align-self-center">
+                        <div style={{ width: "110px", height: "110px", borderRadius: "50%", overflow: "hidden", position: "relative", border: "3px solid #f0f0f0", backgroundColor: "#fff", boxShadow: "0 4px 16px rgba(0, 0, 0, 0.1)" }}>
+                          <img alt={club[0]} src={club[1]} style={{ position: "absolute", height: "100%", width: "100%", left: 0, top: 0, right: 0, bottom: 0, objectFit: "cover", color: "transparent" }} />
+                        </div>
                       </div>
-                      <div className="flex-grow-1 text-center text-md-start d-flex flex-column">
-                        <h3 className="fw-bold mb-2" style={{ color: "#002855" }}>{club[0]}</h3>
-                        <p className="text-muted fs-3 mb-3 flex-grow-1" style={{ lineHeight: 1.6, textAlign: "justify" }}>{club[3]}</p>
+                      <div className="flex-grow-1 text-center text-md-start d-flex flex-column justify-content-center">
+                        <h3 className="fw-bold mb-2 fs-1" style={{ color: club[4] }}>{club[0]}</h3>
+                        <p className="text-muted fs-3 mb-4" style={{ lineHeight: 1.7, textAlign: "justify" }}>{club[3]}</p>
                         <div>
-                          <a href={club[2]} target="_blank" rel="noopener noreferrer" className="btn px-5 py-2 fw-semibold fs-3 text-white" style={{ backgroundColor: "#ff5722", borderRadius: "8px", border: "none" }}>
-                            Website
+                          <a href={club[2]} target="_blank" rel="noopener noreferrer" className="btn px-5 py-2 fw-semibold fs-3 text-white" style={{ backgroundColor: "#f26520", borderRadius: "8px", border: "none", boxShadow: "0 4px 12px rgba(242, 101, 32, 0.3)" }}>
+                            Visit Website
                           </a>
                         </div>
                       </div>
@@ -740,84 +745,75 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
           </div>
 
           <div id="syllabus" className="mt-5">
+            <h2 className="fw-bold mb-4" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", color: "#002855", borderBottom: "3px solid #f26520", paddingBottom: "10px", display: "inline-block" }}>
+              Academics &amp; Outcomes
+            </h2>
             <div className="d-flex flex-column gap-3">
-              <div className="accordion-item border-0">
-                <button
-                  className="w-100 d-flex justify-content-between align-items-center p-3 border-0 text-start"
-                  style={{ backgroundColor: "#00304c", color: "#ffffff", borderRadius: "5px", cursor: "pointer", transition: "background-color 0.3s ease" }}
-                  onClick={() => setOpenSection(openSection === "vision" ? "" : "vision")}
-                >
-                  <span className="fw-semibold fs-2">Vision</span>
-                  <span className="fs-3" style={{ transform: openSection === "vision" ? "rotate(180deg)" : "rotate(0deg)", color: openSection === "vision" ? "#f26520" : "#fff", transition: "transform 0.3s ease, color 0.3s ease", fontSize: "0.8rem" }}>▼</span>
-                </button>
-                <div className="overflow-hidden bg-white" style={{ maxHeight: openSection === "vision" ? "none" : 0, transition: "max-height 0.5s ease-in-out", opacity: openSection === "vision" ? 1 : 0, boxShadow: openSection === "vision" ? "0 4px 6px rgba(0, 0, 0, 0.05)" : "none", border: openSection === "vision" ? "1px solid #dee2e6" : "none", borderRadius: "0 0 5px 5px" }}>
-                  <div className="p-3 p-md-4 fs-2" style={{ color: "#444", lineHeight: 1.6 }}>
+              {[
+                {
+                  key: "vision",
+                  icon: (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                      <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                    </svg>
+                  ),
+                  title: "Vision",
+                  content: (
                     <p className="mb-0" style={{ textAlign: "justify" }}>
                       To emerge as a globally competent leader by fostering industry-linked, innovative learning and impactful research in Computational Intelligence.
                     </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="accordion-item border-0">
-                <button
-                  className="w-100 d-flex justify-content-between align-items-center p-3 border-0 text-start"
-                  style={{ backgroundColor: "#00304c", color: "#ffffff", borderRadius: "5px", cursor: "pointer", transition: "background-color 0.3s ease" }}
-                  onClick={() => setOpenSection(openSection === "mission" ? "" : "mission")}
-                >
-                  <span className="fw-semibold fs-2">Mission</span>
-                  <span className="fs-3" style={{ transform: openSection === "mission" ? "rotate(180deg)" : "rotate(0deg)", color: openSection === "mission" ? "#f26520" : "#fff", transition: "transform 0.3s ease, color 0.3s ease", fontSize: "0.8rem" }}>▼</span>
-                </button>
-                <div className="overflow-hidden bg-white" style={{ maxHeight: openSection === "mission" ? "none" : 0, transition: "max-height 0.5s ease-in-out", opacity: openSection === "mission" ? 1 : 0, boxShadow: openSection === "mission" ? "0 4px 6px rgba(0, 0, 0, 0.05)" : "none", border: openSection === "mission" ? "1px solid #dee2e6" : "none", borderRadius: "0 0 5px 5px" }}>
-                  <div className="p-3 p-md-4 fs-2" style={{ color: "#444", lineHeight: 1.6 }}>
+                  ),
+                },
+                {
+                  key: "mission",
+                  icon: (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M8 0a.5.5 0 0 1 .5.5v.382a4.5 4.5 0 0 1 3.618 3.618H12.5a.5.5 0 0 1 0 1h-.382a4.5 4.5 0 0 1-3.618 3.618V9.5a.5.5 0 0 1-1 0v-.382A4.5 4.5 0 0 1 3.882 5.5H3.5a.5.5 0 0 1 0-1h.382A4.5 4.5 0 0 1 7.5.882V.5A.5.5 0 0 1 8 0zM5 5a3 3 0 1 0 6 0 3 3 0 0 0-6 0z"/>
+                    </svg>
+                  ),
+                  title: "Mission",
+                  content: (
                     <ul className="mb-0 ps-3">
                       <li className="mb-2">To develop students with strong foundation of computer science with focus on Artificial Intelligence and other emerging technologies through outcome-based teaching learning process.</li>
                       <li className="mb-2">To collaborate with industry for skill enhancement of teaching professionals and students emphasizing on project-based learning.</li>
                       <li className="mb-0">To prepare ethically strong students with powerful leadership skills.</li>
                     </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div className="accordion-item border-0">
-                <button
-                  className="w-100 d-flex justify-content-between align-items-center p-3 border-0 text-start"
-                  style={{ backgroundColor: "#00304c", color: "#ffffff", borderRadius: "5px", cursor: "pointer", transition: "background-color 0.3s ease" }}
-                  onClick={() => setOpenSection(openSection === "program-outcomes" ? "" : "program-outcomes")}
-                >
-                  <span className="fw-semibold fs-2">Program Outcomes</span>
-                  <span className="fs-3" style={{ transform: openSection === "program-outcomes" ? "rotate(180deg)" : "rotate(0deg)", color: openSection === "program-outcomes" ? "#f26520" : "#fff", transition: "transform 0.3s ease, color 0.3s ease", fontSize: "0.8rem" }}>▼</span>
-                </button>
-                <div className="overflow-hidden bg-white" style={{ maxHeight: openSection === "program-outcomes" ? "none" : 0, transition: "max-height 0.5s ease-in-out", opacity: openSection === "program-outcomes" ? 1 : 0, boxShadow: openSection === "program-outcomes" ? "0 4px 6px rgba(0, 0, 0, 0.05)" : "none", border: openSection === "program-outcomes" ? "1px solid #dee2e6" : "none", borderRadius: "0 0 5px 5px" }}>
-                  <div className="p-3 p-md-4 fs-2" style={{ color: "#444", lineHeight: 1.6 }}>
+                  ),
+                },
+                {
+                  key: "program-outcomes",
+                  icon: (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zM6.854 5.146a.5.5 0 1 0-.708.708L7.293 7 6.146 8.146a.5.5 0 1 0 .708.708L8 7.707l1.146 1.147a.5.5 0 1 0 .708-.708L8.707 7l1.147-1.146a.5.5 0 0 0-.708-.708L8 6.293 6.854 5.146z"/>
+                    </svg>
+                  ),
+                  title: "Program Outcomes",
+                  content: (
                     <ul className="mb-0 ps-3">
                       <li className="mb-2"><strong>PO1: Engineering Knowledge:</strong> Apply knowledge of mathematics, natural science, computing, engineering fundamentals and an engineering specialization as specified in WK1 to WK4 respectively to develop to the solution of complex engineering problems.</li>
                       <li className="mb-2"><strong>PO2: Problem Analysis:</strong> Identify, formulate, review research literature and analyze complex engineering problems reaching substantiated conclusions with consideration for sustainable development. (WK1 to WK4)</li>
                       <li className="mb-2"><strong>PO3: Design/Development of Solutions:</strong> Design creative solutions for complex engineering problems and design/develop systems/components/processes to meet identified needs with consideration for the public health and safety, whole-life cost, net zero carbon, culture, society and environment as required. (WK5)</li>
-                      <li className="mb-2"><strong>PO4: Conduct Investigations of Complex Problems:</strong> Conduct investigations of complex engineering problems using research-based knowledge including design of experiments, modelling, analysis & interpretation of data to provide valid conclusions. (WK8)</li>
-                      <li className="mb-2"><strong>PO5: Engineering Tool Usage:</strong> Create, select and apply appropriate techniques, resources and modern engineering & IT tools, including prediction and modelling recognizing their limitations to solve complex engineering problems. (WK2 and WK6)</li>
+                      <li className="mb-2"><strong>PO4: Conduct Investigations of Complex Problems:</strong> Conduct investigations of complex engineering problems using research-based knowledge including design of experiments, modelling, analysis &amp; interpretation of data to provide valid conclusions. (WK8)</li>
+                      <li className="mb-2"><strong>PO5: Engineering Tool Usage:</strong> Create, select and apply appropriate techniques, resources and modern engineering &amp; IT tools, including prediction and modelling recognizing their limitations to solve complex engineering problems. (WK2 and WK6)</li>
                       <li className="mb-2"><strong>PO6: The Engineer and The World:</strong> Analyze and evaluate societal and environmental aspects while solving complex engineering problems for its impact on sustainability with reference to economy, health, safety, legal framework, culture and environment. (WK1, WK5, and WK7)</li>
-                      <li className="mb-2"><strong>PO7: Ethics:</strong> Apply ethical principles and commit to professional ethics, human values, diversity and inclusion; adhere to national & international laws. (WK9)</li>
+                      <li className="mb-2"><strong>PO7: Ethics:</strong> Apply ethical principles and commit to professional ethics, human values, diversity and inclusion; adhere to national &amp; international laws. (WK9)</li>
                       <li className="mb-2"><strong>PO8: Individual and Collaborative Team work:</strong> Function effectively as an individual, and as a member or leader in diverse/multi-disciplinary teams.</li>
                       <li className="mb-2"><strong>PO9: Communication:</strong> Communicate effectively and inclusively within the engineering community and society at large, such as being able to comprehend and write effective reports and design documentation, make effective presentations considering cultural, language, and learning differences.</li>
                       <li className="mb-2"><strong>PO10: Project Management and Finance:</strong> Apply knowledge and understanding of engineering management principles and economic decision-making and apply these to one&apos;s own work, as a member and leader in a team, and to manage projects and in multidisciplinary environments.</li>
                       <li className="mb-0"><strong>PO11: Life-Long Learning:</strong> Recognize the need for, and have the preparation and ability for (i) Independent and life-long learning (ii) Adaptability to new and emerging technologies and (iii) Critical thinking in the broadest context of technological change. (WK8)</li>
                     </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div className="accordion-item border-0">
-                <button
-                  className="w-100 d-flex justify-content-between align-items-center p-3 border-0 text-start"
-                  style={{ backgroundColor: "#00304c", color: "#ffffff", borderRadius: "5px", cursor: "pointer", transition: "background-color 0.3s ease" }}
-                  onClick={() => setOpenSection(openSection === "syllabus" ? "" : "syllabus")}
-                >
-                  <span className="fw-semibold fs-2">Syllabus</span>
-                  <span className="fs-3" style={{ transform: openSection === "syllabus" ? "rotate(180deg)" : "rotate(0deg)", color: openSection === "syllabus" ? "#f26520" : "#fff", transition: "transform 0.3s ease, color 0.3s ease", fontSize: "0.8rem" }}>▼</span>
-                </button>
-                <div className="overflow-hidden bg-white" style={{ maxHeight: openSection === "syllabus" ? "none" : 0, transition: "max-height 0.5s ease-in-out", opacity: openSection === "syllabus" ? 1 : 0, boxShadow: openSection === "syllabus" ? "0 4px 6px rgba(0, 0, 0, 0.05)" : "none", border: openSection === "syllabus" ? "1px solid #dee2e6" : "none", borderRadius: "0 0 5px 5px" }}>
-                  <div className="p-3 p-md-4 fs-2" style={{ color: "#444", lineHeight: 1.6 }}>
+                  ),
+                },
+                {
+                  key: "syllabus",
+                  icon: (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+                    </svg>
+                  ),
+                  title: "Syllabus",
+                  content: (
                     <div className="d-flex flex-column gap-3 w-100">
                       <a href="https://kiet.edu/cse-ai-assets/B.Tech_1st%20Year%20Course%20Booklet%202025-26.pdf" target="_blank" rel="noreferrer" className="d-flex align-items-center justify-content-between text-decoration-none bg-white rounded shadow-sm" style={{ padding: "14px 18px", width: "100%", border: "1px solid #e9ecef", transition: "all 0.25s ease" }}>
                         <div className="d-flex align-items-center">
@@ -829,9 +825,8 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                           </span>
                           <span className="fw-semibold fs-4" style={{ color: "#00304c" }}>I YEAR</span>
                         </div>
-                        <span style={{ fontSize: "1.2rem", color: "#f26520" }}>→</span>
+                        <span style={{ fontSize: "1.2rem", color: "#f26520" }}>&rarr;</span>
                       </a>
-
                       <a href="https://kiet.edu/cse-ai-assets/V1_CSE(AI)_CSE(AIML)_Final%20computing_B.Tech%202nd%20Year%20Course%20Booklet_2025-26.pdf" target="_blank" rel="noreferrer" className="d-flex align-items-center justify-content-between text-decoration-none bg-white rounded shadow-sm" style={{ padding: "14px 18px", width: "100%", border: "1px solid #e9ecef", transition: "all 0.25s ease" }}>
                         <div className="d-flex align-items-center">
                           <span className="me-3 d-flex align-items-center justify-content-center rounded-circle" style={{ width: "42px", height: "42px", backgroundColor: "#fff3ec", flexShrink: 0 }}>
@@ -842,12 +837,35 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                           </span>
                           <span className="fw-semibold fs-4" style={{ color: "#00304c" }}>II YEAR</span>
                         </div>
-                        <span style={{ fontSize: "1.2rem", color: "#f26520" }}>→</span>
+                        <span style={{ fontSize: "1.2rem", color: "#f26520" }}>&rarr;</span>
                       </a>
                     </div>
+                  ),
+                },
+              ].map((section) => {
+                const isOpen = openSection === section.key;
+                return (
+                  <div key={section.key}>
+                    <button
+                      className={`vm-accordion-btn${isOpen ? " active" : ""}`}
+                      onClick={() => setOpenSection(isOpen ? "" : section.key)}
+                    >
+                      <div className="d-flex align-items-center gap-3">
+                        <span className="d-flex align-items-center justify-content-center rounded-circle" style={{ width: "40px", height: "40px", backgroundColor: isOpen ? "#fff3ec" : "#f0f4f8", color: isOpen ? "#f26520" : "#002855", flexShrink: 0, transition: "all 0.3s ease" }}>
+                          {section.icon}
+                        </span>
+                        <span className="fw-semibold fs-2" style={{ color: isOpen ? "#f26520" : "#002855", transition: "color 0.3s ease" }}>{section.title}</span>
+                      </div>
+                      <span style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)", color: isOpen ? "#f26520" : "#999", transition: "transform 0.3s ease, color 0.3s ease", fontSize: "0.85rem" }}>&#9660;</span>
+                    </button>
+                    <div className={`vm-accordion-panel${isOpen ? " open" : ""}`} style={{ maxHeight: isOpen ? "2000px" : "0", opacity: isOpen ? 1 : 0, padding: isOpen ? "1.25rem 1.5rem" : "0 1.5rem" }}>
+                      <div className="fs-2" style={{ color: "#444", lineHeight: 1.6 }}>
+                        {section.content}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
+                );
+              })}
             </div>
           </div>
 
@@ -865,6 +883,59 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
             }
 
             /* Faculty auto-scroll marquee */
+
+            /* Department Highlights hover lift */
+            .highlight-card:hover {
+              transform: translateY(-6px);
+              box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14) !important;
+              border-left-color: #f26520 !important;
+            }
+
+            /* Clubs overlapping hover */
+            .clubs-stack {
+              display: flex;
+              justify-content: center;
+              align-items: stretch;
+              gap: 0;
+              position: relative;
+            }
+            .club-card-outer {
+              transition: transform 0.4s ease, z-index 0s, box-shadow 0.4s ease;
+              z-index: 1;
+              flex: 0 0 55%;
+              max-width: 55%;
+            }
+            .club-card-outer:nth-child(2) {
+              margin-left: -8%;
+            }
+            .club-card-outer:hover {
+              transform: scale(1.06) translateY(-8px);
+              z-index: 10;
+            }
+            .club-card-outer:hover .club-card-inner {
+              box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+            }
+            .club-card-inner {
+              transition: box-shadow 0.4s ease;
+            }
+            @media (max-width: 991px) {
+              .clubs-stack {
+                flex-direction: column;
+                gap: 1.5rem;
+                align-items: center;
+              }
+              .club-card-outer {
+                flex: 0 0 100%;
+                max-width: 100%;
+              }
+              .club-card-outer:nth-child(2) {
+                margin-left: 0;
+              }
+              .club-card-outer:hover {
+                transform: none;
+              }
+            }
+
             @keyframes faculty-scroll {
               0% { transform: translateX(0); }
               100% { transform: translateX(-50%); }
@@ -881,6 +952,96 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
             }
             .faculty-marquee-wrapper:hover .faculty-marquee-track {
               animation-play-state: paused;
+            }
+
+            /* Testimonial hover pop-out */
+            .testimonial-card-wrapper > div {
+              transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1) !important;
+            }
+            .testimonial-card-wrapper:hover > div {
+              transform: translateY(-14px) scale(1.04);
+              box-shadow: 0 28px 56px rgba(242, 101, 32, 0.22), 0 0 0 2px rgba(242, 101, 32, 0.15) !important;
+              z-index: 10;
+            }
+
+            /* Placement stat cards */
+            .placement-stat-card {
+              position: relative;
+              overflow: hidden;
+              border-radius: 16px;
+              background: #fff;
+              border: none;
+              padding: 2rem 1.5rem;
+              text-align: center;
+              transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+            }
+            .placement-stat-card::before {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              height: 5px;
+            }
+            .placement-stat-card::after {
+              content: "";
+              position: absolute;
+              bottom: -40px;
+              right: -40px;
+              width: 120px;
+              height: 120px;
+              border-radius: 50%;
+              opacity: 0.06;
+              transition: transform 0.4s ease;
+            }
+            .placement-stat-card:hover {
+              transform: translateY(-8px);
+              box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            }
+            .placement-stat-card:hover::after {
+              transform: scale(1.6);
+            }
+            .placement-stat-card.orange::before { background: linear-gradient(90deg, #f26520, #ff8a50); }
+            .placement-stat-card.orange::after { background: #f26520; }
+            .placement-stat-card.navy::before { background: linear-gradient(90deg, #002855, #1a5276); }
+            .placement-stat-card.navy::after { background: #002855; }
+
+            /* Accordion redesign */
+            .vm-accordion-btn {
+              width: 100%;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 1.1rem 1.5rem;
+              border: 2px solid #e2e8f0;
+              border-left: 5px solid #002855;
+              background: #fff;
+              border-radius: 12px;
+              cursor: pointer;
+              transition: all 0.3s ease;
+            }
+            .vm-accordion-btn:hover {
+              border-left-color: #f26520;
+              box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            }
+            .vm-accordion-btn.active {
+              border-left-color: #f26520;
+              background: linear-gradient(135deg, #fff8f5 0%, #fff 100%);
+              box-shadow: 0 6px 20px rgba(242, 101, 32, 0.1);
+            }
+            .vm-accordion-panel {
+              overflow: hidden;
+              transition: max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease, padding 0.35s ease;
+              border-radius: 0 0 12px 12px;
+              margin-top: -8px;
+              border: 2px solid transparent;
+              border-top: none;
+            }
+            .vm-accordion-panel.open {
+              border-color: #e2e8f0;
+              border-left: 5px solid #f26520;
+              background: #fff;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
             }
 
             /* Publications 3D card flip */
