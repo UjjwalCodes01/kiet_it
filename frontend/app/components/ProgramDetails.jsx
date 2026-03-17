@@ -216,66 +216,73 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
     <>
       <div id="overview">
         <section className="mx-2 mx-md-4 mx-lg-5 px-0 px-md-3 px-lg-4 py-3 py-md-4">
-          <div className="p-4 p-md-5" style={{ boxShadow: "0 0 20px rgba(0, 0, 0, 0.05)", borderRadius: "16px", backgroundColor: "#fff" }}>
-            <div className="row align-items-center justify-content-between g-4 g-lg-5">
-              <div className="col-12 col-lg-5 py-3 px-3 px-md-4 px-lg-5">
-                <h2 className="fw-bold mb-4" style={{ color: "#000" }}>
-                  CSE (AI / AI&ML) Department&apos;s <span style={{ color: "#f26520" }}>Overview</span>
-                </h2>
-                <p className="text-muted mb-4 fs-3" style={{ lineHeight: 1.6, textAlign: "justify" }}>
-                  The CSE (AI/AI&ML) programs craft future-ready innovators by blending strong computing fundamentals with advanced domains like Machine Learning, Deep Learning, Computer Vision, NLP, Robotics and Agentic AI. Through hands-on projects, industry exposure, leadership training, and ethical grounding, students graduate confident, career-ready, and prepared to lead in the AI-driven global technology era.
-                </p>
-                <a
-                  href="https://admission.kiet.edu/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn px-5 py-3 text-white fw-semibold fs-3"
-                  style={{ backgroundColor: "#f26520", borderRadius: "6px", border: "none", textDecoration: "none", display: "inline-block" }}
-                >
-                  Apply Now
-                </a>
-              </div>
-              <div className="col-12 col-lg-6">
-                <div className="d-none d-md-block">
-                  <div className="row g-4 text-center text-lg-start">
-                    <div className="col-sm-6">
-                      <h2 className="fw-bold mb-1 text-center" style={{ color: "#f26520" }}>₹7 Cr</h2>
-                      <p className="small fw-bold mb-0 fs-3 text-dark text-center">Funding Raised by Alumni</p>
-                      <p className="small text-muted fs-3 text-center">Through Startup : 2025 Batch</p>
+          <div style={{ borderRadius: "20px", overflow: "hidden", position: "relative" }}>
+            {/* Dark background with diagonal accent */}
+            <div style={{ background: "linear-gradient(135deg, #001a3a 0%, #002855 60%, #003d7a 100%)", position: "relative" }}>
+              {/* Decorative diagonal stripe */}
+              <div className="d-none d-lg-block" style={{ position: "absolute", top: 0, right: 0, width: "45%", height: "100%", background: "linear-gradient(135deg, transparent 0%, rgba(242, 101, 32, 0.08) 100%)", clipPath: "polygon(20% 0, 100% 0, 100% 100%, 0% 100%)" }} />
+              <div className="row g-0 align-items-center" style={{ position: "relative", zIndex: 1 }}>
+                <div className="col-12 col-lg-7 p-4 p-md-5">
+                  <div className="py-3 py-lg-5 px-2 px-lg-4">
+                    <div className="d-inline-block mb-3 px-3 py-1 rounded-pill" style={{ backgroundColor: "rgba(242, 101, 32, 0.15)", border: "1px solid rgba(242, 101, 32, 0.3)" }}>
+                      <span className="fw-semibold fs-5" style={{ color: "#ff8a50" }}>NBA Accredited &bull; 5 Times</span>
                     </div>
-                    <div className="col-sm-6">
-                      <h2 className="fw-bold mb-1 text-center" style={{ color: "#f26520" }}>95%</h2>
-                      <p className="small fw-bold mb-0 fs-3 text-dark text-center">Placements in 2025</p>
-                      <p className="small text-muted fs-3 text-center">Leading Tech &amp; AI Companies</p>
-                    </div>
-                    <div className="col-sm-6">
-                      <h2 className="fw-bold mb-1 text-center" style={{ color: "#f26520" }}>240 + 300</h2>
-                      <p className="small fw-bold mb-0 fs-3 text-dark text-center">Annual Student Intake</p>
-                      <p className="small text-muted fs-3 text-center">CSE (AI) + CSE (AI&amp;ML)</p>
-                    </div>
-                    <div className="col-sm-6">
-                      <h2 className="fw-bold mb-1 text-center" style={{ color: "#f26520" }}>650+</h2>
-                      <p className="small fw-bold mb-0 fs-3 text-dark text-center">Globally Certified Students</p>
-                      <p className="small text-muted fs-3 text-center">(AI • ML • Cloud)</p>
+                    <h2 className="fw-bold mb-4" style={{ color: "#fff", fontSize: "clamp(1.8rem, 4vw, 2.8rem)", lineHeight: 1.2 }}>
+                      Department of <span style={{ color: "#f26520" }}>Information Technology</span>
+                    </h2>
+                    <p className="mb-4 fs-3" style={{ lineHeight: 1.8, color: "rgba(255,255,255,0.8)", textAlign: "justify" }}>
+                      The Department of Information Technology at KIET is committed to shaping future-ready professionals through an industry-aligned curriculum, cutting-edge research, and hands-on experience in emerging technologies. With a focus on AI, data science, cloud computing, cybersecurity, and IoT, students graduate equipped with the skills, adaptability, and problem-solving mindset to lead in a rapidly evolving digital world.
+                    </p>
+                    <div className="d-flex flex-wrap gap-3">
+                      <a
+                        href="https://admission.kiet.edu/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn px-5 py-3 text-white fw-semibold fs-3"
+                        style={{ backgroundColor: "#f26520", borderRadius: "8px", border: "none", textDecoration: "none", display: "inline-block", boxShadow: "0 4px 16px rgba(242, 101, 32, 0.4)" }}
+                      >
+                        Apply Now
+                      </a>
                     </div>
                   </div>
                 </div>
-                <div className="d-md-none">
-                  <div className="row g-3">
-                    {[
-                      ["₹7 Cr", "Funding Raised by Alumni", "Through Startup : 2025 Batch"],
-                      ["95%", "Placements in 2025", "Leading Tech & AI Companies"],
-                      ["240+300", "Annual Student Intake", "CSE (AI) + CSE (AI&ML)"],
-                      ["650+", "Globally Certified Students", "(AI • ML • Cloud)"],
-                    ].map((item) => (
-                      <div key={item[0]} className="col-12">
-                        <div className="px-4 py-3 text-center" style={{ borderRadius: "12px", background: "linear-gradient(135deg, #fff5f0 0%, #fff 100%)", border: "1px solid rgba(242, 101, 32, 0.15)" }}>
-                          <h2 className="fw-bold mb-1" style={{ color: "#f26520" }}>{item[0]}</h2>
-                          <p className="fw-bold mb-0 fs-3 text-dark text-center">{item[1]}</p>
-                          <p className="mb-0 text-muted fs-3 text-center">{item[2]}</p>
+                <div className="col-12 col-lg-5">
+                  {/* Desktop stats grid */}
+                  <div className="d-none d-lg-block p-4 p-lg-5">
+                    <div className="row g-3">
+                      {[
+                        ["95%", "Placements in 2025", "Leading Tech Companies"],
+                        ["650+", "Globally Certified", "AI \u2022 ML \u2022 Cloud"],
+                        ["240+300", "Annual Intake", "CSE (AI) + CSE (AI&ML)"],
+                        ["\u20B97 Cr", "Alumni Funding", "Startup : 2025 Batch"],
+                      ].map((item) => (
+                        <div key={item[0]} className="col-6">
+                          <div className="text-center p-3 rounded-3" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "12px" }}>
+                            <h3 className="fw-bold mb-1 fs-1" style={{ color: "#f26520" }}>{item[0]}</h3>
+                            <p className="fw-semibold mb-0 fs-4" style={{ color: "#fff" }}>{item[1]}</p>
+                            <p className="mb-0 fs-5" style={{ color: "rgba(255,255,255,0.5)" }}>{item[2]}</p>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
+                  </div>
+                  {/* Mobile stats */}
+                  <div className="d-lg-none px-4 pb-4">
+                    <div className="row g-2">
+                      {[
+                        ["95%", "Placements in 2025"],
+                        ["650+", "Globally Certified"],
+                        ["240+300", "Annual Intake"],
+                        ["\u20B97 Cr", "Alumni Funding"],
+                      ].map((item) => (
+                        <div key={item[0]} className="col-6">
+                          <div className="text-center py-3 rounded-3" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                            <h3 className="fw-bold mb-0 fs-2" style={{ color: "#f26520" }}>{item[0]}</h3>
+                            <p className="mb-0 fs-5" style={{ color: "rgba(255,255,255,0.7)" }}>{item[1]}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -458,8 +465,8 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
             </div>
             <div className="clubs-stack">
               {[
-                ["NextGen Supercomputing Club", "/cse-ai-assets/images/nextgen-logo.png", "https://nextgen-supercomputing.in", "NextGen Club is a community of passionate learners aspiring to become production-ready ML and AI engineers through hands-on projects and collaborative learning.", "#002855"],
-                ["DevUp Club", "/cse-ai-assets/images/devup-logo.png", "https://devup.co.in/", "DevUp Club is a vibrant technical community committed to empowering students across CP/DSA, Web Development, Android, UI/UX, and Data Science through workshops and projects.", "#00304c"],
+                ["Innogeeks", "/it_club/innogeeks.png", "#", "At Innogeeks, we embody our motto, 'We Learn, We Teach, We Conquer,' as a guiding principle in fostering a vibrant community of innovators, developers, and tech enthusiasts. Over the years, Innogeeks has grown into a cornerstone of technical excellence at KIET, fostering a culture of collaboration, learning, and impactful innovation.", "#002855"],
+                ["GEEK Room", "/it_club/geekroom.png", "#", "GEEK Room is a dynamic tech community dedicated to fostering innovation, collaboration, and continuous learning. The chapter actively hosts hackathons, technical events, workshops, and engaging meetups that bring together passionate students from diverse domains.", "#00304c"],
               ].map((club) => (
                 <div key={club[0]} className="club-card-outer">
                   <div className="club-card-inner bg-white h-100 border-0" style={{ borderRadius: "20px", overflow: "hidden", boxShadow: "0 8px 24px rgba(0, 0, 0, 0.1)", minHeight: "280px" }}>
@@ -502,28 +509,25 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                   <div className="row g-4 align-items-start">
                     <div className="col-12 col-lg-4 order-0 order-lg-1">
                       <div className="text-center">
-                        <img src="/cse-ai-assets/images/Dean's-photo.jpeg" alt="Dr. Rekha Kashyap - Dean" className="img-fluid rounded-3" style={{ maxWidth: "100%", height: "auto", boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)", objectFit: "cover" }} />
+                        <img src="/Dean_It/dr_puneet_goswami.png" alt="Dr. Puneet Goswami - Dean, IT" className="img-fluid rounded-3" style={{ maxWidth: "100%", height: "auto", boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)", objectFit: "cover" }} />
                       </div>
                     </div>
                     <div className="col-12 col-lg-8 order-1 order-lg-0">
                       <p className="mb-3 fs-4" style={{ lineHeight: 1.8, color: "#333", textAlign: "justify" }}>
-                        The future belongs to those who can think intelligently, build responsibly, and innovate fearlessly. At the Department of CSE (AI / AI &amp; ML), KIET Deemed to be University, we are shaping that future by redefining how technology education is delivered.
+                        The Department of Information Technology, accredited by the NBA five times and currently valid up to June 2028, is committed to excellence in teaching, learning, and research. Our industry-aligned curriculum equips students with strong technical foundations, adaptability, and problem-solving skills to thrive in a rapidly evolving technological landscape driven by innovation in artificial intelligence, data science, cloud computing, cybersecurity, and the Internet of Things.
                       </p>
                       <div className={deanExpanded ? "" : "d-none d-lg-block"}>
                         <p className="mb-3 fs-4" style={{ lineHeight: 1.8, color: "#333", textAlign: "justify" }}>
-                          Our AI-first ecosystem integrates strong computational foundations with supercomputing infrastructure, global certifications, industry co-creation, and experiential learning.
+                          Supported by a highly qualified faculty, professor of practice (Industry), and state-of-the-art laboratories, students gain hands-on experience through cutting-edge research, internships, and industry collaborations. They are encouraged to build expertise in emerging domains such as machine learning, blockchain, DevOps, edge computing, quantum computing, agentic AI, and intelligent systems development.
                         </p>
                         <p className="mb-3 fs-4" style={{ lineHeight: 1.8, color: "#333", textAlign: "justify" }}>
-                          We envision our department as a hub where artificial intelligence, data, cloud, and emerging technologies converge to create real-world impact.
-                        </p>
-                        <p className="mb-3 fs-4" style={{ lineHeight: 1.8, color: "#333", textAlign: "justify" }}>
-                          Our mission is clear &mdash; to build intelligent systems and intelligent leaders for a rapidly transforming world.
+                          Our vision is to evolve as a centre of excellence in IT and related research, nurturing graduates who emerge as innovative leaders, tech-driven entrepreneurs, research professionals, and solution architects equipped to make meaningful contributions to the digital ecosystem and society at large.
                         </p>
                       </div>
                       <button className="btn btn-link d-lg-none p-0 text-decoration-none" style={{ color: "#f26520", fontWeight: 600 }} onClick={() => setDeanExpanded(!deanExpanded)}>{deanExpanded ? "Show Less" : "Read More"}</button>
                       <div className="mt-4 mt-lg-5">
-                        <p className="mb-1 fw-bold fs-3" style={{ color: "#002855" }}>Dr. Rekha Kashyap</p>
-                        <p className="mb-0 text-muted fs-4">Dean, CSE (AI) &amp; CSE (AI &amp; ML)</p>
+                        <p className="mb-1 fw-bold fs-3" style={{ color: "#002855" }}>Dr. Puneet Goswami</p>
+                        <p className="mb-0 text-muted fs-4">Dean, IT</p>
                       </div>
                     </div>
                   </div>
@@ -713,20 +717,12 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
               Research Statistics
             </h2>
 
-            <div>
-              <div className="d-flex justify-content-end mb-4">
-                <div className="bg-white rounded-4 shadow-sm border" style={{ minWidth: "220px", overflow: "hidden" }}>
-                  <div className="d-flex align-items-center justify-content-between px-4 py-2">
-                    <label className="text-secondary fw-semibold mb-0 fs-4 small">Academic Year:</label>
-                    <button className="btn btn-link text-decoration-none fw-bold p-0 d-flex align-items-center gap-2" style={{ color: "#002855" }}>
-                      <span className="fs-4">2025-26</span>
-                      <span className="small fs-4" style={{ transform: "rotate(0deg)", transition: "transform 0.25s ease" }}>▼</span>
-                    </button>
-                  </div>
-                </div>
+            <div className="mt-4 rounded-4 overflow-hidden" style={{ background: "linear-gradient(135deg, #001a3a 0%, #002855 50%, #003d7a 100%)", padding: "clamp(1.5rem, 4vw, 3rem)" }}>
+              <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+                <p className="mb-0 fs-3" style={{ color: "rgba(255,255,255,0.7)" }}>Driving innovation through cutting-edge research</p>
+                <span className="badge rounded-pill fs-5 px-3 py-2" style={{ backgroundColor: "rgba(242, 101, 32, 0.15)", color: "#ff8a50", border: "1px solid rgba(242, 101, 32, 0.3)" }}>2025-26</span>
               </div>
-
-              <div className="row g-4 pt-3 pt-md-5">
+              <div className="row g-3 g-lg-4">
                 {[
                   [researchPubs, "Publications"],
                   [researchPatents, "Patents"],
@@ -734,9 +730,11 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                   [researchGrants, "Grants (Lakhs)"],
                 ].map((item) => (
                   <div key={item[1]} className="col-6 col-lg-3">
-                    <div ref={item[0].ref} className="card h-100 border-0 shadow-sm text-center py-4 rounded-4">
-                      <h2 className="fw-bold display-6 text-dark mb-2">{item[0].value}</h2>
-                      <p className="mb-0 text-secondary fs-2 fw-medium text-center">{item[1]}</p>
+                    <div ref={item[0].ref} className="research-stat-card text-center h-100" style={{ position: "relative", borderRadius: "16px", padding: "2rem 1rem", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", transition: "all 0.4s cubic-bezier(0.22, 1, 0.36, 1)" }}>
+                      <div className="mb-2" style={{ fontSize: "clamp(2.2rem, 5vw, 3.2rem)", fontWeight: 800, lineHeight: 1, color: "#fff" }}>
+                        {item[0].value}
+                      </div>
+                      <p className="fw-semibold mb-0 fs-3" style={{ color: "#f26520" }}>{item[1]}</p>
                     </div>
                   </div>
                 ))}
@@ -952,6 +950,14 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
             }
             .faculty-marquee-wrapper:hover .faculty-marquee-track {
               animation-play-state: paused;
+            }
+
+            /* Research stat cards */
+            .research-stat-card:hover {
+              background: rgba(255,255,255,0.1) !important;
+              border-color: rgba(242, 101, 32, 0.3) !important;
+              transform: translateY(-6px);
+              box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(242, 101, 32, 0.1);
             }
 
             /* Testimonial hover pop-out */
