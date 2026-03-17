@@ -2,240 +2,16 @@
 
 import { useEffect, useRef, useState } from "react";
 import Roadmap from "./Roadmap";
+import { TESTIMONIALS } from "@/app/data/cse-aiml-testimonials";
+import { PUBLICATIONS } from "@/app/data/cse-aiml-publications";
 
 const recruiterLogos = Array.from({ length: 49 }, (_, idx) => `/assets/images/kiet/placement/recruiters/${idx + 1}.${[3, 5, 10, 14, 15, 17, 20, 27, 32, 37, 45, 48, 49].includes(idx + 1) ? "jpg" : "png"}`);
 const recruitersLoop = [...recruiterLogos, ...recruiterLogos];
 
-const testimonials = [
-  {
-    company: "Soon Networks",
-    year: "2021-25",
-    name: "Akshat Sharma",
-    packageValue: "60 LPA",
-    image: "/cse-ai-assets/Testimonial photo/Akshat Sharma.png",
-    quote:
-      "First Year: Started post-JEE with CS50x in the first semester, fueled by an interest for open source and internet privacy, connected to communities li...",
-  },
-  {
-    company: "Triton One Limited",
-    year: "2022-26",
-    name: "Prapti Sharma",
-    packageValue: "55 LPA",
-    image: "/cse-ai-assets/Testimonial photo/Prapti Sharma.jpeg",
-    quote:
-      "I'm happy to share that I'm currently working at Triton, a Solana RPC provider, and I genuinely feel that my department, CSE-AIML, played an important...",
-  },
-  {
-    company: "Service Now",
-    year: "2022-26",
-    name: "Vedanshi Kaushik",
-    packageValue: "42.7 LPA",
-    image: "/cse-ai-assets/Testimonial photo/Vedanshi .jpeg",
-    quote:
-      "Being a part of KIET Group of Institutions as a B.Tech student from the CSE (AI & ML) department has been a meaningful and enriching journey for me. O...",
-  },
-  {
-    company: "Razorpay",
-    year: "2022-26",
-    name: "Archit Agarwal",
-    packageValue: "35 LPA",
-    image: "/cse-ai-assets/Testimonial photo/Archit Agarwal.jpg",
-    quote:
-      "Pursuing B.Tech in CSE (AI) at KIET Group of Institutions was an important phase in my academic and professional journey. The program was designed to ...",
-  },
-  {
-    company: "AMD",
-    year: "2022-26",
-    name: "Shobhit Sinha",
-    packageValue: "32 LPA",
-    image: "/cse-ai-assets/Testimonial photo/Shobhit Sinha.jpg",
-    quote:
-      "My journey at KIET Group of Institutions as a B.Tech graduate from the CSE (AI&ML) department contributed to my technical foundation and early career ...",
-  },
-  {
-    company: "GPU.NET",
-    year: "2021-25",
-    name: "Aryan Mishra",
-    packageValue: "24 LPA",
-    image: "/cse-ai-assets/Testimonial photo/Aryan Mishra .png",
-    quote:
-      "My journey at KIET Group of Institutions as a B.Tech graduate from the CSE (AI&ML) department was truly transformative! The vibrant campus and cutting...",
-  },
-  {
-    company: "Juspay",
-    year: "2022-26",
-    name: "Nayni Singhal",
-    packageValue: "21 LPA",
-    image: "/cse-ai-assets/Testimonial photo/Nayni Singhal.jpg",
-    quote:
-      "My journey at KIET Group of Institutions as a B.Tech student from the Computer Science & Engineering (AI & ML) branch (2022-2026 batch) has been a tru...",
-  },
-  {
-    company: "Razorpay",
-    year: "2022-26",
-    name: "Aditya Mohan Gupta",
-    packageValue: "21 LPA",
-    image: "/cse-ai-assets/Testimonial photo/Aditya Mohan Gupta.jpg",
-    quote:
-      "When I first stepped into KIET Group of Institutions, I had absolutely no background in DSA, or Web Development. The world of programming felt vast an...",
-  },
-  {
-    company: "Juspay",
-    year: "2022-26",
-    name: "Kanak Agarwal",
-    packageValue: "21 LPA",
-    image: "/cse-ai-assets/Testimonial photo/Kanak Agrawal.jpg",
-    quote:
-      "I'm glad to share that I'm currently interning at Juspay, with a Pre-Placement Offer of 21 LPA based on my internship performance. This achievement is...",
-  },
-  {
-    company: "MeetMux",
-    year: "2022-26",
-    name: "Parth Agarwal",
-    packageValue: "20 LPA",
-    image: "/cse-ai-assets/Testimonial photo/PARTH AGARWAL.jpg",
-    quote:
-      "Reflecting on my time at the KIET Group of Institutions, I am filled with immense gratitude for the AI & ML department, which served as the ultimate l...",
-  },
-  {
-    company: "CISCO",
-    year: "2021-25",
-    name: "Kanishk Joshi",
-    packageValue: "18 LPA",
-    image: "/cse-ai-assets/Testimonial photo/Kanishk Joshi .jpeg",
-    quote:
-      "During my first year at KIET Group of Institutions, Ghaziabad, I explored several domains, including machine learning and web development. I also dive...",
-  },
-  {
-    company: "Future First",
-    year: "2022-26",
-    name: "Krishna Kumar Chaudhary",
-    packageValue: "17 LPA",
-    image: "/cse-ai-assets/Testimonial photo/Krishna Kumar Chaudhary.jpg",
-    quote:
-      "Being placed in Futures First is a proud milestone for me, and I genuinely feel that this achievement is the result of the environment and support sys...",
-  },
-];
-
-const publications = [
-  {
-    title: "Security Driven Scheduling Model for Computational Grid Using NSGA-II",
-    author: "Dr. Rekha Kashyap, et al.",
-    link: "https://doi.org/10.1007/s10723-013-9251-x",
-    journal: "Jour. of Grid Comp.",
-  },
-  {
-    title: "Advanced hyperparameter optimization for lung cancer detection using DenseBeetle network",
-    author: "Dr. Laxman Singh, et al.",
-    link: "https://doi.org/10.1016/j.chemolab.2025.105584",
-    journal: "Chem. & Int. Lab. Sys. 2026",
-  },
-  {
-    title: "Low resource federated learning for classification using hybrid deep transfer models",
-    author: "Dr. Sapna Juneja, et al.",
-    link: "https://doi.org/10.1038/s41598-026-36848-w",
-    journal: "Sci. Rep. 2026",
-  },
-  {
-    title: "Hybrid deep learning system for crop disease classification using modified SegNet segmentation",
-    author: "Dr. Mukesh Kumar Tripathi, et al.",
-    link: "https://doi.org/10.1016/j.compeleceng.2025.110576",
-    journal: "Comp. & Elec. Eng. 2025",
-  },
-  {
-    title: "Firefly algorithm and DNN for improved contactless biometric authentication",
-    author: "Dr. Sapna Juneja, et al.",
-    link: "https://doi.org/10.1038/s41598-025-32633-3",
-    journal: "Sci. Rep. 2026",
-  },
-  {
-    title: "A survey on abnormal behavior detection based intelligence information video surveillance system using optimized machine learning methods",
-    author: "Dr. Laxman Singh, et al.",
-    link: "https://doi.org/10.1016/j.engappai.2025.113438",
-    journal: "Eng. App. Art. Int. 2026",
-  },
-  {
-    title: "Proposed ResVGG-Net Model for Mango Leaf Disease Classification and Agricultural Sustainability",
-    author: "Dr. Sapna Juneja, et al.",
-    link: "https://doi.org/10.1007/s10341-025-01667-2",
-    journal: "App. Fru. Sci. 2025",
-  },
-  {
-    title: "Hybrid optimization with constraints handling for combinatorial test case prioritization problems",
-    author: "Dr. Mukesh Kumar Tripathi, et al.",
-    link: "https://doi.org/10.1080/0954898x.2025.2517130",
-    journal: "NCNS 2025",
-  },
-  {
-    title: "Enhanced tree enumeration through satellite imagery and hybrid ensemble cyclic averaging stacked chain deep learning model tuned with BRO algorithm",
-    author: "Dr. Shelly Gupta, et al.",
-    link: "https://doi.org/10.1007/s12596-025-02810-8",
-    journal: "Jour. of Opt. 2025",
-  },
-  {
-    title: "Design of an Efficient Integrated Feature Engineering based Deep Learning Model Using CNN for Customer's Review Helpfulness Prediction",
-    author: "Dr. Laxman Singh, et al.",
-    link: "https://doi.org/10.1007/s11277-023-10834-1",
-    journal: "Wir. Per. Comm. 2024",
-  },
-  {
-    title: "Improvement of process capability analysis through Six Sigma methodology: a case study in the capacitor manufacturing industry",
-    author: "Nidhi Singh, et al.",
-    link: "https://doi.org/10.1504/IJSSCA.2025.145612",
-    journal: "IJSSCA 2025",
-  },
-  {
-    title: "Multi-model machine learning framework for lung cancer risk prediction: comparative analysis of classifiers",
-    author: "Dr. Sapna Juneja, et al.",
-    link: "https://doi.org/10.1016/j.slast.2025.100314",
-    journal: "SLAS Tech. 2025",
-  },
-  {
-    title: "Enhancing security and privacy of chest X-ray images by implementing edge-based steganography and layered cryptography",
-    author: "Dr. Sapna Juneja, et al.",
-    link: "https://doi.org/10.1016/j.aej.2025.08.051",
-    journal: "Alex. Eng. Jour. 2025",
-  },
-  {
-    title: "Hybrid pre trained model based feature extraction for enhanced indoor scene classification in federated learning environments",
-    author: "Dr. Sapna Juneja, et al.",
-    link: "https://doi.org/10.1038/s41598-025-16673-3",
-    journal: "Sci. Rep. 2025",
-  },
-  {
-    title: "Diabetic Retinopathy Detection with Uncertainty scores: Transfer Learning and Ensemble Calibration",
-    author: "Preeti Verma, et al.",
-    link: "https://doi.org/10.14201/adcaij.32209",
-    journal: "ADCAIJ 2025",
-  },
-  {
-    title: "Anomaly detection framework for highly scattered and dynamic data on large-scale networks using AWS",
-    author: "Dr. Richa Singh, et al.",
-    link: "https://doi.org/10.1007/s41870-024-01765-6",
-    journal: "IJIT 2024",
-  },
-  {
-    title: "Predicting the Veracity of News Articles Using Multimodal Embeddings and NLP-Based Features",
-    author: "Dr. Richa Singh, et al.",
-    link: "https://doi.org/10.1109/IDICAIEI58380.2023.10406898",
-    journal: "IDICAIEI 2023",
-  },
-  {
-    title: "Towards Intelligent Retail Security: ConvLSTM-Based Shoplifting Detection with Adam Optimization",
-    author: "Dr. Kiran, et al.",
-    link: "https://doi.org/10.5281/zenodo.17386861",
-    journal: "Zenodo 2025",
-  },
-  {
-    title: "An Ontology Alignment based on Machine learning for Integration of Patient Health Data",
-    author: "Sundeep Raj, et al.",
-    link: "http://dx.doi.org/10.12785/ijcds/1571028689",
-    journal: "IJCDS 2024",
-  },
-];
-
 export default function ProgramDetails({ faculty, facultyPageHref }) {
   const [openSection, setOpenSection] = useState("vision");
+  const [deanExpanded, setDeanExpanded] = useState(false);
+  const [selectedTestimonial, setSelectedTestimonial] = useState(null);
   const testimonialsRef = useRef(null);
   const publicationsRef = useRef(null);
   const [testimonialPage, setTestimonialPage] = useState(0);
@@ -269,7 +45,7 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
       return;
     }
 
-    const { pageCount, stepSize } = getCarouselMetrics(container, ".testimonial-card-wrapper", testimonials.length);
+    const { pageCount, stepSize } = getCarouselMetrics(container, ".testimonial-card-wrapper", TESTIMONIALS.length);
     setTestimonialPageCount(pageCount);
 
     if (stepSize <= 0) {
@@ -287,7 +63,7 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
       return;
     }
 
-    const { pageCount, stepSize } = getCarouselMetrics(container, ".testimonial-card-wrapper", testimonials.length);
+    const { pageCount, stepSize } = getCarouselMetrics(container, ".testimonial-card-wrapper", TESTIMONIALS.length);
     const boundedPage = Math.min(pageCount - 1, Math.max(0, requestedPage));
     setTestimonialPageCount(pageCount);
     setTestimonialPage(boundedPage);
@@ -303,7 +79,7 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
       return;
     }
 
-    const { pageCount, stepSize } = getCarouselMetrics(container, ".publication-card-wrapper", publications.length);
+    const { pageCount, stepSize } = getCarouselMetrics(container, ".publication-card-wrapper", PUBLICATIONS.length);
     setPublicationPageCount(pageCount);
 
     if (stepSize <= 0) {
@@ -321,7 +97,7 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
       return;
     }
 
-    const { pageCount, stepSize } = getCarouselMetrics(container, ".publication-card-wrapper", publications.length);
+    const { pageCount, stepSize } = getCarouselMetrics(container, ".publication-card-wrapper", PUBLICATIONS.length);
     const boundedPage = Math.min(pageCount - 1, Math.max(0, requestedPage));
     setPublicationPageCount(pageCount);
     setPublicationPage(boundedPage);
@@ -470,8 +246,6 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
         </section>
       </div>
 
-      <div id="info"></div>
-
       <div id="placement">
         <section className="mx-2 mx-md-4 mx-lg-5 px-0 px-md-3 px-lg-5 py-3 py-md-4">
           <div className="p-3 p-md-4 p-lg-5">
@@ -523,7 +297,73 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
 
       <Roadmap />
 
-      <div id="coe"></div>
+      <div id="coe">
+        <section className="mx-2 mx-md-4 mx-lg-5 px-0 px-md-3 px-lg-5 py-3 py-md-4">
+          <div className="p-3 p-md-4 p-lg-5">
+            <div className="row align-items-center g-4">
+              <div className="col-12 col-lg-6 mb-0 mb-lg-0">
+                <div className="pe-lg-4">
+                  <p className="text-muted mb-3 fs-3" style={{ letterSpacing: "0.5px" }}>
+                    Your Journey Into Advanced Computing Begins Here
+                  </p>
+                  <h2 className="fw-bold mb-4 fs-1" style={{ color: "black" }}>
+                    Driving <span style={{ color: "#ff5722" }}>Supercomputing with DGX </span>
+                    <br />Centre of Excellence
+                  </h2>
+                  <p className="text-muted mb-4 fs-3" style={{ lineHeight: 1.8, textAlign: "justify" }}>
+                    Powered by the NVIDIA DGX A100 Supercomputer, KIET enables enterprise-grade AI computing for advanced research in the field of AI. Students build and deploy complex AI models on industry-level GPU infrastructure. A hub for innovation, industry collaboration, and next-generation AI excellence.
+                  </p>
+                  <button
+                    type="button"
+                    className="btn fs-4 py-3 px-5 fw-semibold"
+                    style={{
+                      backgroundColor: "#ff5722",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "8px",
+                      transition: "all 0.3s ease",
+                      boxShadow: "0 4px 12px rgba(255, 87, 34, 0.3)",
+                    }}
+                  >
+                    View More
+                  </button>
+                </div>
+              </div>
+              <div className="col-12 col-lg-6">
+                <div className="position-relative">
+                  <div
+                    className="rounded-4 overflow-hidden"
+                    style={{
+                      boxShadow: "0 20px 60px rgba(0, 0, 0, 0.15)",
+                      border: "8px solid white",
+                      height: "260px",
+                      width: "100%",
+                      position: "relative",
+                    }}
+                  >
+                    <img
+                      alt="DGX Supercomputing Centre"
+                      loading="lazy"
+                      src="/cse-ai-assets/images/DGX-Supercomputing.png"
+                      style={{
+                        position: "absolute",
+                        height: "100%",
+                        width: "100%",
+                        left: 0,
+                        top: 0,
+                        right: 0,
+                        bottom: 0,
+                        objectFit: "cover",
+                        color: "transparent",
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
 
       <div id="clubs">
         <section className="mx-2 mx-md-4 mx-lg-5 px-0 px-md-3 px-lg-5 py-3 py-md-4">
@@ -585,15 +425,18 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                       <p className="mb-3 fs-4" style={{ lineHeight: 1.8, color: "#333", textAlign: "justify" }}>
                         The future belongs to those who can think intelligently, build responsibly, and innovate fearlessly. At the Department of CSE (AI / AI &amp; ML), KIET Deemed to be University, we are shaping that future by redefining how technology education is delivered.
                       </p>
-                      <div className="d-none d-lg-block">
+                      <div className={deanExpanded ? "" : "d-none d-lg-block"}>
                         <p className="mb-3 fs-4" style={{ lineHeight: 1.8, color: "#333", textAlign: "justify" }}>
                           Our AI-first ecosystem integrates strong computational foundations with supercomputing infrastructure, global certifications, industry co-creation, and experiential learning.
                         </p>
                         <p className="mb-3 fs-4" style={{ lineHeight: 1.8, color: "#333", textAlign: "justify" }}>
                           We envision our department as a hub where artificial intelligence, data, cloud, and emerging technologies converge to create real-world impact.
                         </p>
+                        <p className="mb-3 fs-4" style={{ lineHeight: 1.8, color: "#333", textAlign: "justify" }}>
+                          Our mission is clear &mdash; to build intelligent systems and intelligent leaders for a rapidly transforming world.
+                        </p>
                       </div>
-                      <button className="btn btn-link d-lg-none p-0 text-decoration-none" style={{ color: "#f26520", fontWeight: 600 }}>Read More</button>
+                      <button className="btn btn-link d-lg-none p-0 text-decoration-none" style={{ color: "#f26520", fontWeight: 600 }} onClick={() => setDeanExpanded(!deanExpanded)}>{deanExpanded ? "Show Less" : "Read More"}</button>
                       <div className="mt-4 mt-lg-5">
                         <p className="mb-1 fw-bold fs-3" style={{ color: "#002855" }}>Dr. Rekha Kashyap</p>
                         <p className="mb-0 text-muted fs-4">Dean, CSE (AI) &amp; CSE (AI &amp; ML)</p>
@@ -643,7 +486,7 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
               </h2>
             </div>
             <div ref={testimonialsRef} className="d-flex overflow-auto gap-4 testimonials-scroll-container" style={{ scrollBehavior: "smooth", scrollSnapType: "x mandatory" }}>
-              {testimonials.map((item) => (
+              {TESTIMONIALS.map((item) => (
                 <div key={item.name} className="testimonial-card-wrapper" style={{ flex: "0 0 calc(33.333% - 1rem)", scrollSnapAlign: "start" }}>
                   <div style={{ backgroundColor: "white", borderRadius: "16px", padding: "1.5rem", height: "100%", boxShadow: "0 4px 6px rgba(0, 0, 0, 0.07)", transition: "transform 0.3s ease, box-shadow 0.3s ease", cursor: "default", display: "flex", flexDirection: "column" }}>
                     <div className="d-flex justify-content-between align-items-center mb-3 pb-2" style={{ borderBottom: "2px solid #f3f4f6" }}>
@@ -663,7 +506,7 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                         <p className="mb-0 fs-4 fst-italic text-secondary" style={{ textAlign: "justify", lineHeight: 1.6 }}>{item.quote}</p>
                       </div>
                     </div>
-                    <button className="btn fs-5 p-2 fw-semibold mt-auto text-start border-0 bg-transparent" style={{ color: "#f26520" }}>Read More →</button>
+                    <button className="btn fs-5 p-2 fw-semibold mt-auto text-start border-0 bg-transparent" style={{ color: "#f26520" }} onClick={() => setSelectedTestimonial(item)}>Read More →</button>
                   </div>
                 </div>
               ))}
@@ -714,7 +557,7 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
 
             <div className="mb-5 position-relative">
               <div ref={publicationsRef} className="d-flex gap-4 overflow-auto pb-4 px-1 scrollbar-hide publications-scroll-container" style={{ scrollSnapType: "x mandatory", scrollBehavior: "smooth" }}>
-                {publications.map((paper) => (
+                {PUBLICATIONS.map((paper) => (
                   <div key={paper.title} className="card border-0 shadow-sm flex-shrink-0 p-4 d-flex flex-column justify-content-between publication-card-wrapper" style={{ width: "260px", borderRadius: "12px", minHeight: "240px", scrollSnapAlign: "start", backgroundColor: "#fff", transition: "transform 0.3s ease, box-shadow 0.3s ease", cursor: "pointer" }}>
                     <div>
                       <h4 className="fw-bold mb-3 fs-2" style={{ color: "#f26520", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden", lineHeight: 1.4 }}>{paper.title}</h4>
@@ -923,6 +766,40 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
           `}</style>
         </section>
       </div>
+
+      {selectedTestimonial && (
+        <div
+          style={{ position: "fixed", inset: 0, zIndex: 1050, display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "rgba(0,0,0,0.5)", padding: "1rem" }}
+          onClick={() => setSelectedTestimonial(null)}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{ backgroundColor: "#fff", borderRadius: "16px", maxWidth: "700px", width: "100%", maxHeight: "90vh", overflow: "auto", position: "relative" }}
+          >
+            <button
+              onClick={() => setSelectedTestimonial(null)}
+              style={{ position: "absolute", top: "12px", right: "16px", background: "none", border: "none", fontSize: "1.5rem", cursor: "pointer", color: "#666", zIndex: 1 }}
+              aria-label="Close"
+            >
+              &times;
+            </button>
+            <div className="d-flex flex-column flex-md-row p-4 gap-4">
+              <div className="text-center flex-shrink-0">
+                <div style={{ width: "120px", height: "120px", borderRadius: "50%", overflow: "hidden", margin: "0 auto", border: "3px solid #f26520", position: "relative", backgroundColor: "#e5e7eb" }}>
+                  <img alt={selectedTestimonial.name} src={selectedTestimonial.image} style={{ position: "absolute", height: "100%", width: "100%", left: 0, top: 0, objectFit: "cover", objectPosition: "top" }} />
+                </div>
+                <h4 className="fw-bold mt-3 mb-1" style={{ color: "#002855" }}>{selectedTestimonial.name}</h4>
+                <p className="fw-bold mb-1" style={{ color: "#f26520" }}>{selectedTestimonial.packageValue}</p>
+                <p className="text-muted small mb-0">{selectedTestimonial.company} | {selectedTestimonial.year}</p>
+              </div>
+              <div className="flex-grow-1">
+                <span className="fw-bold" style={{ color: "#f26520", fontSize: "2.5rem", lineHeight: 1 }}>&ldquo;</span>
+                <p className="fs-4 fst-italic text-secondary" style={{ textAlign: "justify", lineHeight: 1.7 }}>{selectedTestimonial.quote}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

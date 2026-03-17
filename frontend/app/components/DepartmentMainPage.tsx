@@ -1,7 +1,8 @@
 import Navbar from "./Navbar";
-import Hero from "./Hero";
 import ProgramDetails from "./ProgramDetails";
 import Footer from "./Footer";
+import BackToTop from "./BackToTop";
+import ImportantLinks from "./ImportantLinks";
 
 import { FACULTY_MEMBERS } from "@/app/data/cse-aiml-faculty-members";
 
@@ -39,7 +40,11 @@ function FloatingWidgets() {
       </div>
       <div className="whatsapp-rotate">
         <a target="_blank" rel="noopener noreferrer" className="text-decoration-none d-flex align-items-center justify-content-center" href="https://api.whatsapp.com/send/?phone=918588811998&text&app_absent=0">
-          <span className="text-white fw-bold">WA</span>
+          <span className="text-white fw-bold">
+            <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512" color="#fff" style={{ color: "#fff" }} height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6z" />
+            </svg>
+          </span>
         </a>
       </div>
     </>
@@ -50,7 +55,6 @@ function ProgramSectionNav() {
   const sectionLinks = [
     { label: "Overview", href: "#overview" },
     { label: "Highlights", href: "#infrastructure" },
-    { label: "Info", href: "#info" },
     { label: "Placement", href: "#placement" },
     { label: "Roadmap", href: "#roadmap" },
     { label: "COE", href: "#coe" },
@@ -64,52 +68,36 @@ function ProgramSectionNav() {
 
   return (
     <div
-      className="kiet-program-section-nav-wrap"
+      className="bg-white border-bottom shadow-sm w-100"
       style={{
-        borderTop: "1px solid #e5e7eb",
-        borderBottom: "1px solid #e5e7eb",
-        backgroundColor: "#ffffff",
         position: "sticky",
         top: 0,
         zIndex: 35,
-        marginRight: "56px",
       }}
     >
-      <div
-        className="kiet-program-section-nav"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "10px",
-          overflowX: "auto",
-          whiteSpace: "nowrap",
-          padding: "9px 84px 9px 18px",
-          maxWidth: "1400px",
-          margin: "0 auto",
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
-        }}
-      >
-        {sectionLinks.map((link) => (
-          <a
-            key={link.label}
-            href={link.href}
-            className="kiet-program-section-link"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              padding: "6px 11px",
-              borderRadius: "999px",
-              color: "#1f2937",
-              textDecoration: "none",
-              fontSize: "13px",
-              fontWeight: 600,
-              lineHeight: 1.2,
-            }}
+      <div className="position-relative py-3">
+        <div
+          className="overflow-auto px-4 px-md-5"
+          style={{
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+          }}
+        >
+          <nav
+            className="d-flex gap-4 justify-content-md-center"
+            style={{ minWidth: "max-content" }}
           >
-            {link.label}
-          </a>
-        ))}
+            {sectionLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="kiet-program-section-link"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        </div>
       </div>
     </div>
   );
@@ -121,12 +109,6 @@ export function DepartmentMainPage({ bodyClass, stylesheets, fontPreloads }: Dep
       <HeadAssets stylesheets={stylesheets} fontPreloads={fontPreloads} />
       <div className={`${bodyClass} kiet-page-scope`}>
         <Navbar />
-        <Hero
-          title="CSE (AI) & CSE (AI & ML)"
-          subtitle="Future-ready programs designed for machine intelligence, innovation, and high-impact careers."
-          backHref="/"
-          backLabel="Home"
-        />
         <ProgramSectionNav />
         <ProgramDetails
           faculty={FACULTY_MEMBERS}
@@ -134,6 +116,8 @@ export function DepartmentMainPage({ bodyClass, stylesheets, fontPreloads }: Dep
         />
         <Footer />
         <FloatingWidgets />
+        <ImportantLinks />
+        <BackToTop />
       </div>
     </>
   );
