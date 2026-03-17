@@ -4,34 +4,34 @@ import { useState } from "react";
 
 const roadmap = [
   {
-    label: "Artificial Intelligence",
-    image: "/emerging-technology/image.png",
-    slideImage: "/emerging-technology/image.png",
-  },
-  {
-    label: "Machine Learning",
-    image: "/emerging-technology/image copy.png",
-    slideImage: "/emerging-technology/image copy.png",
-  },
-  {
-    label: "Data Science & Analytics",
-    image: "/emerging-technology/image copy 2.png",
-    slideImage: "/emerging-technology/image copy 2.png",
+    label: "Android Development",
+    image: "/emerging-technology/androidDevelopment.png",
+    slideImage: "/emerging-technology/androidDevelopment.png",
   },
   {
     label: "Cloud Computing",
-    image: "/emerging-technology/image copy 3.png",
-    slideImage: "/emerging-technology/image copy 3.png",
+    image: "/emerging-technology/cloudComputing.png",
+    slideImage: "/emerging-technology/cloudComputing.png",
   },
   {
-    label: "Cybersecurity",
-    image: "/emerging-technology/image copy 4.png",
-    slideImage: "/emerging-technology/image copy 4.png",
+    label: "Data Engineering",
+    image: "/emerging-technology/dataEngineering.png",
+    slideImage: "/emerging-technology/dataEngineering.png",
   },
   {
-    label: "Internet of Things",
-    image: "/emerging-technology/image copy 5.png",
-    slideImage: "/emerging-technology/image copy 5.png",
+    label: "Data Structures",
+    image: "/emerging-technology/datastructure.png",
+    slideImage: "/emerging-technology/datastructure.png",
+  },
+  {
+    label: "OOPs in Java",
+    image: "/emerging-technology/oopsInjava.png",
+    slideImage: "/emerging-technology/oopsInjava.png",
+  },
+  {
+    label: "Web Development",
+    image: "/emerging-technology/webdevelopment.png",
+    slideImage: "/emerging-technology/webdevelopment.png",
   },
 ];
 

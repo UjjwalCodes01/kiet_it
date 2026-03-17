@@ -388,65 +388,21 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
       <div id="coe">
         <section className="mx-2 mx-md-4 mx-lg-5 px-0 px-md-3 px-lg-5 py-3 py-md-4">
           <div className="p-3 p-md-4 p-lg-5">
-            <div className="row align-items-center g-4">
-              <div className="col-12 col-lg-6 mb-0 mb-lg-0">
-                <div className="pe-lg-4">
-                  <p className="text-muted mb-3 fs-3" style={{ letterSpacing: "0.5px" }}>
-                    Your Journey Into Advanced Computing Begins Here
-                  </p>
-                  <h2 className="fw-bold mb-4 fs-1" style={{ color: "black" }}>
-                    Driving <span style={{ color: "#ff5722" }}>Supercomputing with DGX </span>
-                    <br />Centre of Excellence
-                  </h2>
-                  <p className="text-muted mb-4 fs-3" style={{ lineHeight: 1.8, textAlign: "justify" }}>
-                    Powered by the NVIDIA DGX A100 Supercomputer, KIET enables enterprise-grade AI computing for advanced research in the field of AI. Students build and deploy complex AI models on industry-level GPU infrastructure. A hub for innovation, industry collaboration, and next-generation AI excellence.
-                  </p>
-                  <button
-                    type="button"
-                    className="btn fs-4 py-3 px-5 fw-semibold"
-                    style={{
-                      backgroundColor: "#ff5722",
-                      color: "white",
-                      border: "none",
-                      borderRadius: "8px",
-                      transition: "all 0.3s ease",
-                      boxShadow: "0 4px 12px rgba(255, 87, 34, 0.3)",
-                    }}
-                  >
-                    View More
-                  </button>
+            <h2 className="fw-bold mb-4" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", color: "#002855", borderBottom: "3px solid #f26520", paddingBottom: "10px", display: "inline-block" }}>
+              Centre of Excellence
+            </h2>
+            <div className="rounded-4 overflow-hidden" style={{ background: "linear-gradient(135deg, #fff8f5 0%, #fff 50%, #f0f4f8 100%)", border: "2px solid rgba(242, 101, 32, 0.12)" }}>
+              <div style={{ height: "5px", background: "linear-gradient(90deg, #f26520, #002855)" }} />
+              <div className="p-4 p-md-5">
+                <div className="d-inline-block mb-3 px-3 py-1 rounded-pill" style={{ backgroundColor: "rgba(0, 40, 85, 0.08)", border: "1px solid rgba(0, 40, 85, 0.15)" }}>
+                  <span className="fw-semibold fs-5" style={{ color: "#002855" }}>Industry &ndash; Academia Initiative</span>
                 </div>
-              </div>
-              <div className="col-12 col-lg-6">
-                <div className="position-relative">
-                  <div
-                    className="rounded-4 overflow-hidden"
-                    style={{
-                      boxShadow: "0 20px 60px rgba(0, 0, 0, 0.15)",
-                      border: "8px solid white",
-                      height: "260px",
-                      width: "100%",
-                      position: "relative",
-                    }}
-                  >
-                    <img
-                      alt="DGX Supercomputing Centre"
-                      loading="lazy"
-                      src="/cse-ai-assets/images/DGX-Supercomputing.png"
-                      style={{
-                        position: "absolute",
-                        height: "100%",
-                        width: "100%",
-                        left: 0,
-                        top: 0,
-                        right: 0,
-                        bottom: 0,
-                        objectFit: "cover",
-                        color: "transparent",
-                      }}
-                    />
-                  </div>
-                </div>
+                <h3 className="fw-bold mb-3" style={{ fontSize: "clamp(1.5rem, 3vw, 2.2rem)", color: "#002855", lineHeight: 1.3 }}>
+                  Tech Mahindra <span style={{ color: "#f26520" }}>Centre of Excellence</span>
+                </h3>
+                <p className="fs-3 mb-0" style={{ lineHeight: 1.8, color: "#444", textAlign: "justify", maxWidth: "900px" }}>
+                  The Tech Mahindra Centre of Excellence at KIET, established within the Department of Information Technology, is an industry&ndash;academia initiative focused on employability enhancement. It provides training to students selected by Tech Mahindra, ensuring their skills align with current industry demands.
+                </p>
               </div>
             </div>
           </div>
@@ -717,24 +673,24 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
               Research Statistics
             </h2>
 
-            <div className="mt-4 rounded-4 overflow-hidden" style={{ background: "linear-gradient(135deg, #001a3a 0%, #002855 50%, #003d7a 100%)", padding: "clamp(1.5rem, 4vw, 3rem)" }}>
+            <div className="mt-4 rounded-4 overflow-hidden" style={{ background: "#fff", padding: "clamp(1.5rem, 4vw, 3rem)", boxShadow: "0 4px 20px rgba(0, 0, 0, 0.06)", border: "1px solid #e9ecef" }}>
               <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
-                <p className="mb-0 fs-3" style={{ color: "rgba(255,255,255,0.7)" }}>Driving innovation through cutting-edge research</p>
-                <span className="badge rounded-pill fs-5 px-3 py-2" style={{ backgroundColor: "rgba(242, 101, 32, 0.15)", color: "#ff8a50", border: "1px solid rgba(242, 101, 32, 0.3)" }}>2025-26</span>
+                <p className="mb-0 fs-3" style={{ color: "#666" }}>Driving innovation through cutting-edge research</p>
+                <span className="badge rounded-pill fs-5 px-3 py-2" style={{ backgroundColor: "#fff3ec", color: "#f26520", border: "1px solid rgba(242, 101, 32, 0.2)" }}>2025-26</span>
               </div>
               <div className="row g-3 g-lg-4">
                 {[
-                  [researchPubs, "Publications"],
-                  [researchPatents, "Patents"],
-                  [researchProjects, "Govt. Projects"],
-                  [researchGrants, "Grants (Lakhs)"],
+                  [researchPubs, "Publications", "#f26520"],
+                  [researchPatents, "Patents", "#002855"],
+                  [researchProjects, "Govt. Projects", "#f26520"],
+                  [researchGrants, "Grants (Lakhs)", "#002855"],
                 ].map((item) => (
                   <div key={item[1]} className="col-6 col-lg-3">
-                    <div ref={item[0].ref} className="research-stat-card text-center h-100" style={{ position: "relative", borderRadius: "16px", padding: "2rem 1rem", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", transition: "all 0.4s cubic-bezier(0.22, 1, 0.36, 1)" }}>
-                      <div className="mb-2" style={{ fontSize: "clamp(2.2rem, 5vw, 3.2rem)", fontWeight: 800, lineHeight: 1, color: "#fff" }}>
+                    <div ref={item[0].ref} className="text-center h-100" style={{ position: "relative", borderRadius: "16px", padding: "2rem 1rem", background: "#fafbfc", border: "1px solid #e9ecef", transition: "all 0.4s cubic-bezier(0.22, 1, 0.36, 1)" }}>
+                      <div className="mb-2" style={{ fontSize: "clamp(2.2rem, 5vw, 3.2rem)", fontWeight: 800, lineHeight: 1, color: item[2] }}>
                         {item[0].value}
                       </div>
-                      <p className="fw-semibold mb-0 fs-3" style={{ color: "#f26520" }}>{item[1]}</p>
+                      <p className="fw-semibold mb-0 fs-3" style={{ color: "#333" }}>{item[1]}</p>
                     </div>
                   </div>
                 ))}
@@ -750,12 +706,6 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
               {[
                 {
                   key: "vision",
-                  icon: (
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
-                      <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                      <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                    </svg>
-                  ),
                   title: "Vision",
                   content: (
                     <p className="mb-0" style={{ textAlign: "justify" }}>
@@ -765,11 +715,6 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                 },
                 {
                   key: "mission",
-                  icon: (
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
-                      <path d="M8 0a.5.5 0 0 1 .5.5v.382a4.5 4.5 0 0 1 3.618 3.618H12.5a.5.5 0 0 1 0 1h-.382a4.5 4.5 0 0 1-3.618 3.618V9.5a.5.5 0 0 1-1 0v-.382A4.5 4.5 0 0 1 3.882 5.5H3.5a.5.5 0 0 1 0-1h.382A4.5 4.5 0 0 1 7.5.882V.5A.5.5 0 0 1 8 0zM5 5a3 3 0 1 0 6 0 3 3 0 0 0-6 0z"/>
-                    </svg>
-                  ),
                   title: "Mission",
                   content: (
                     <ul className="mb-0 ps-3">
@@ -781,11 +726,6 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                 },
                 {
                   key: "program-outcomes",
-                  icon: (
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
-                      <path d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zM6.854 5.146a.5.5 0 1 0-.708.708L7.293 7 6.146 8.146a.5.5 0 1 0 .708.708L8 7.707l1.146 1.147a.5.5 0 1 0 .708-.708L8.707 7l1.147-1.146a.5.5 0 0 0-.708-.708L8 6.293 6.854 5.146z"/>
-                    </svg>
-                  ),
                   title: "Program Outcomes",
                   content: (
                     <ul className="mb-0 ps-3">
@@ -805,11 +745,6 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                 },
                 {
                   key: "syllabus",
-                  icon: (
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
-                      <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
-                    </svg>
-                  ),
                   title: "Syllabus",
                   content: (
                     <div className="d-flex flex-column gap-3 w-100">
@@ -849,9 +784,6 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                       onClick={() => setOpenSection(isOpen ? "" : section.key)}
                     >
                       <div className="d-flex align-items-center gap-3">
-                        <span className="d-flex align-items-center justify-content-center rounded-circle" style={{ width: "40px", height: "40px", backgroundColor: isOpen ? "#fff3ec" : "#f0f4f8", color: isOpen ? "#f26520" : "#002855", flexShrink: 0, transition: "all 0.3s ease" }}>
-                          {section.icon}
-                        </span>
                         <span className="fw-semibold fs-2" style={{ color: isOpen ? "#f26520" : "#002855", transition: "color 0.3s ease" }}>{section.title}</span>
                       </div>
                       <span style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)", color: isOpen ? "#f26520" : "#999", transition: "transform 0.3s ease, color 0.3s ease", fontSize: "0.85rem" }}>&#9660;</span>
@@ -950,14 +882,6 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
             }
             .faculty-marquee-wrapper:hover .faculty-marquee-track {
               animation-play-state: paused;
-            }
-
-            /* Research stat cards */
-            .research-stat-card:hover {
-              background: rgba(255,255,255,0.1) !important;
-              border-color: rgba(242, 101, 32, 0.3) !important;
-              transform: translateY(-6px);
-              box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(242, 101, 32, 0.1);
             }
 
             /* Testimonial hover pop-out */
