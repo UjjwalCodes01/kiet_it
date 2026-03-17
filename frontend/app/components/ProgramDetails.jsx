@@ -1,12 +1,48 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Roadmap from "./Roadmap";
 import { TESTIMONIALS } from "@/app/data/cse-aiml-testimonials";
 import { PUBLICATIONS } from "@/app/data/cse-aiml-publications";
 
 const recruiterLogos = Array.from({ length: 49 }, (_, idx) => `/assets/images/kiet/placement/recruiters/${idx + 1}.${[3, 5, 10, 14, 15, 17, 20, 27, 32, 37, 45, 48, 49].includes(idx + 1) ? "jpg" : "png"}`);
 const recruitersLoop = [...recruiterLogos, ...recruiterLogos];
+
+function useCountUp(target, duration = 1500) {
+  const [value, setValue] = useState(0);
+  const ref = useRef(null);
+  const triggered = useRef(false);
+  const decimals = String(target).includes(".") ? String(target).split(".")[1].length : 0;
+  const multiplier = Math.pow(10, decimals);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !triggered.current) {
+          triggered.current = true;
+          const start = performance.now();
+          const step = (now) => {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            setValue(Math.round(eased * target * multiplier) / multiplier);
+            if (progress < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [target, duration, multiplier]);
+
+  return { value, ref };
+}
 
 export default function ProgramDetails({ faculty, facultyPageHref }) {
   const [openSection, setOpenSection] = useState("vision");
@@ -18,6 +54,8 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
   const [testimonialPageCount, setTestimonialPageCount] = useState(1);
   const [publicationPage, setPublicationPage] = useState(0);
   const [publicationPageCount, setPublicationPageCount] = useState(1);
+  const testimonialAutoplayRef = useRef(null);
+  const testimonialHoveredRef = useRef(false);
 
   const getCarouselMetrics = (container, itemSelector, totalItems) => {
     if (!container) {
@@ -57,7 +95,7 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
     setTestimonialPage(currentPage);
   };
 
-  const scrollToTestimonialPage = (requestedPage) => {
+  const scrollToTestimonialPage = useCallback((requestedPage) => {
     const container = testimonialsRef.current;
     if (!container) {
       return;
@@ -71,7 +109,7 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
     if (stepSize > 0) {
       container.scrollTo({ left: boundedPage * stepSize, behavior: "smooth" });
     }
-  };
+  }, []);
 
   const syncPublicationPagination = () => {
     const container = publicationsRef.current;
@@ -134,6 +172,45 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
       window.removeEventListener("resize", onResize);
     };
   }, []);
+
+  // Testimonial auto-play
+  useEffect(() => {
+    const startAutoplay = () => {
+      testimonialAutoplayRef.current = setInterval(() => {
+        if (testimonialHoveredRef.current) return;
+        setTestimonialPage((prev) => {
+          const container = testimonialsRef.current;
+          if (!container) return prev;
+          const { pageCount, stepSize } = getCarouselMetrics(container, ".testimonial-card-wrapper", TESTIMONIALS.length);
+          const nextPage = prev >= pageCount - 1 ? 0 : prev + 1;
+          if (stepSize > 0) {
+            container.scrollTo({ left: nextPage * stepSize, behavior: "smooth" });
+          }
+          return nextPage;
+        });
+      }, 5000);
+    };
+
+    startAutoplay();
+    return () => clearInterval(testimonialAutoplayRef.current);
+  }, []);
+
+  const onTestimonialMouseEnter = () => {
+    testimonialHoveredRef.current = true;
+  };
+  const onTestimonialMouseLeave = () => {
+    testimonialHoveredRef.current = false;
+  };
+
+  const placementHighest = useCountUp(60);
+  const placementTop10 = useCountUp(17);
+  const placementAverage = useCountUp(6.5);
+  const placementCompanies = useCountUp(300);
+
+  const researchPubs = useCountUp(123);
+  const researchPatents = useCountUp(31);
+  const researchProjects = useCountUp(2);
+  const researchGrants = useCountUp(50);
 
   return (
     <>
@@ -254,15 +331,17 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
             </h2>
             <div className="row g-3">
               {[
-                ["60 LPA", "Highest Package", "#f26520"],
-                ["17 LPA", "Top 10% Placement", "#002855"],
-                ["6.5 LPA", "Average Package", "#f26520"],
-                ["300+", "Total Companies", "#002855"],
+                [placementHighest, " LPA", "Highest Package", "#f26520"],
+                [placementTop10, " LPA", "Top 10% Placement", "#002855"],
+                [placementAverage, " LPA", "Average Package", "#f26520"],
+                [placementCompanies, "+", "Total Companies", "#002855"],
               ].map((item) => (
-                <div key={item[1]} className="col-12 col-md-6 col-lg-3">
-                  <div className="card fs-1 h-100 border-0 text-white d-flex flex-column justify-content-center align-items-center text-center p-4" style={{ backgroundColor: item[2], borderRadius: "12px", minHeight: "140px" }}>
-                    <h3 className="fw-bold mb-2 fs-1" style={{ color: "#fff", lineHeight: 1.1 }}>{item[0]}</h3>
-                    <p className="mb-0 fs-2 text-white">{item[1]}</p>
+                <div key={item[2]} className="col-12 col-md-6 col-lg-3">
+                  <div ref={item[0].ref} className="card fs-1 h-100 border-0 text-white d-flex flex-column justify-content-center align-items-center text-center p-4" style={{ backgroundColor: item[3], borderRadius: "12px", minHeight: "140px" }}>
+                    <h3 className="fw-bold mb-2 fs-1" style={{ color: "#fff", lineHeight: 1.1 }}>
+                      {item[0].value}{item[1]}
+                    </h3>
+                    <p className="mb-0 fs-2 text-white">{item[2]}</p>
                   </div>
                 </div>
               ))}
@@ -459,19 +538,21 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                 View All<span className="ms-1">→</span>
               </a>
             </div>
-            <div className="d-flex gap-3 gap-md-4 overflow-auto pb-4 px-1 scrollbar-hide" style={{ scrollSnapType: "x mandatory" }}>
-              {faculty.slice(0, 18).map((member) => (
-                <div key={member.name} className="card border-0 shadow-sm flex-shrink-0" style={{ width: "180px", borderRadius: "12px", scrollSnapAlign: "start", transition: "transform 0.3s ease, box-shadow 0.3s ease", cursor: "pointer" }}>
-                  <div className="overflow-hidden" style={{ height: "200px", borderTopLeftRadius: "12px", borderTopRightRadius: "12px", position: "relative" }}>
-                    <img alt={member.name} src={member.image} style={{ position: "absolute", height: "100%", width: "100%", left: 0, top: 0, right: 0, bottom: 0, objectFit: "cover", objectPosition: "top", color: "transparent" }} />
+            <div className="faculty-marquee-wrapper">
+              <div className="faculty-marquee-track">
+                {[...faculty.slice(0, 18), ...faculty.slice(0, 18)].map((member, idx) => (
+                  <div key={`${member.name}-${idx}`} className="card border-0 shadow-sm flex-shrink-0" style={{ width: "180px", borderRadius: "12px", cursor: "pointer" }}>
+                    <div className="overflow-hidden" style={{ height: "200px", borderTopLeftRadius: "12px", borderTopRightRadius: "12px", position: "relative" }}>
+                      <img alt={member.name} src={member.image} style={{ position: "absolute", height: "100%", width: "100%", left: 0, top: 0, right: 0, bottom: 0, objectFit: "cover", objectPosition: "top", color: "transparent" }} />
+                    </div>
+                    <div className="card-body text-center p-2 p-md-3">
+                      <h3 className="card-title fw-bold mb-2 fs-4" style={{ color: "#00304c", lineHeight: 1.3 }}>{member.name}</h3>
+                      <p className="card-text text-center mb-3 fs-5" style={{ color: "#666", fontWeight: 500, lineHeight: 1.4 }}>{member.role}</p>
+                      <p className="card-text small text-center text-muted mb-0 fs-6" style={{ lineHeight: 1.3 }}>{member.qualification}</p>
+                    </div>
                   </div>
-                  <div className="card-body text-center p-2 p-md-3">
-                    <h3 className="card-title fw-bold mb-2 fs-4" style={{ color: "#00304c", lineHeight: 1.3 }}>{member.name}</h3>
-                    <p className="card-text text-center mb-3 fs-5" style={{ color: "#666", fontWeight: 500, lineHeight: 1.4 }}>{member.role}</p>
-                    <p className="card-text small text-center text-muted mb-0 fs-6" style={{ lineHeight: 1.3 }}>{member.qualification}</p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -485,7 +566,13 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                 Voices of Excellence
               </h2>
             </div>
-            <div ref={testimonialsRef} className="d-flex overflow-auto gap-4 testimonials-scroll-container" style={{ scrollBehavior: "smooth", scrollSnapType: "x mandatory" }}>
+            <div
+              ref={testimonialsRef}
+              className="d-flex overflow-auto gap-4 testimonials-scroll-container"
+              style={{ scrollBehavior: "smooth", scrollSnapType: "x mandatory" }}
+              onMouseEnter={onTestimonialMouseEnter}
+              onMouseLeave={onTestimonialMouseLeave}
+            >
               {TESTIMONIALS.map((item) => (
                 <div key={item.name} className="testimonial-card-wrapper" style={{ flex: "0 0 calc(33.333% - 1rem)", scrollSnapAlign: "start" }}>
                   <div style={{ backgroundColor: "white", borderRadius: "16px", padding: "1.5rem", height: "100%", boxShadow: "0 4px 6px rgba(0, 0, 0, 0.07)", transition: "transform 0.3s ease, box-shadow 0.3s ease", cursor: "default", display: "flex", flexDirection: "column" }}>
@@ -558,14 +645,27 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
             <div className="mb-5 position-relative">
               <div ref={publicationsRef} className="d-flex gap-4 overflow-auto pb-4 px-1 scrollbar-hide publications-scroll-container" style={{ scrollSnapType: "x mandatory", scrollBehavior: "smooth" }}>
                 {PUBLICATIONS.map((paper) => (
-                  <div key={paper.title} className="card border-0 shadow-sm flex-shrink-0 p-4 d-flex flex-column justify-content-between publication-card-wrapper" style={{ width: "260px", borderRadius: "12px", minHeight: "240px", scrollSnapAlign: "start", backgroundColor: "#fff", transition: "transform 0.3s ease, box-shadow 0.3s ease", cursor: "pointer" }}>
-                    <div>
-                      <h4 className="fw-bold mb-3 fs-2" style={{ color: "#f26520", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden", lineHeight: 1.4 }}>{paper.title}</h4>
-                      <p className="text-muted small mb-3 fs-4">{paper.author}</p>
+                  <div key={paper.title} className="publication-card-wrapper flex-shrink-0" style={{ width: "260px", scrollSnapAlign: "start", perspective: "1000px" }}>
+                    <div className="publication-flip-inner" style={{ position: "relative", width: "100%", minHeight: "240px", transition: "transform 0.6s ease", transformStyle: "preserve-3d" }}>
+                      {/* Front */}
+                      <div className="card border-0 shadow-sm p-4 d-flex flex-column justify-content-between publication-flip-front" style={{ position: "absolute", width: "100%", height: "100%", backfaceVisibility: "hidden", borderRadius: "12px", backgroundColor: "#fff", top: 0, left: 0 }}>
+                        <div>
+                          <h4 className="fw-bold mb-3 fs-2" style={{ color: "#f26520", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden", lineHeight: 1.4 }}>{paper.title}</h4>
+                          <p className="text-muted small mb-3 fs-4">{paper.author}</p>
+                        </div>
+                        <p className="text-center mb-0 fs-5 text-secondary fst-italic d-none d-md-block">Hover to see journal</p>
+                        <a href={paper.link} target="_blank" rel="noreferrer" className="btn btn-sm w-100 text-white fw-semibold fs-4 d-md-none" style={{ backgroundColor: "#00304c", borderRadius: "6px", padding: "0.5rem" }}>
+                          {paper.journal}
+                        </a>
+                      </div>
+                      {/* Back */}
+                      <div className="card border-0 shadow-sm p-4 d-flex flex-column justify-content-center align-items-center publication-flip-back" style={{ position: "absolute", width: "100%", height: "100%", backfaceVisibility: "hidden", borderRadius: "12px", backgroundColor: "#00304c", transform: "rotateY(180deg)", top: 0, left: 0 }}>
+                        <p className="fw-bold fs-1 text-white text-center mb-4" style={{ lineHeight: 1.3 }}>{paper.journal}</p>
+                        <a href={paper.link} target="_blank" rel="noreferrer" className="btn w-100 text-white fw-semibold fs-4" style={{ backgroundColor: "#f26520", borderRadius: "6px", padding: "0.5rem" }}>
+                          View Paper
+                        </a>
+                      </div>
                     </div>
-                    <a href={paper.link} target="_blank" rel="noreferrer" className="btn btn-sm w-100 text-white fw-semibold fs-4" style={{ backgroundColor: "#00304c", borderRadius: "6px", padding: "0.5rem" }}>
-                      {paper.journal}
-                    </a>
                   </div>
                 ))}
               </div>
@@ -623,14 +723,14 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
 
               <div className="row g-4 pt-3 pt-md-5">
                 {[
-                  ["123", "Publications"],
-                  ["31", "Patents"],
-                  ["2", "Govt. Projects"],
-                  ["50", "Grants (Lakhs)"],
+                  [researchPubs, "Publications"],
+                  [researchPatents, "Patents"],
+                  [researchProjects, "Govt. Projects"],
+                  [researchGrants, "Grants (Lakhs)"],
                 ].map((item) => (
                   <div key={item[1]} className="col-6 col-lg-3">
-                    <div className="card h-100 border-0 shadow-sm text-center py-4 rounded-4">
-                      <h2 className="fw-bold display-6 text-dark mb-2">{item[0]}</h2>
+                    <div ref={item[0].ref} className="card h-100 border-0 shadow-sm text-center py-4 rounded-4">
+                      <h2 className="fw-bold display-6 text-dark mb-2">{item[0].value}</h2>
                       <p className="mb-0 text-secondary fs-2 fw-medium text-center">{item[1]}</p>
                     </div>
                   </div>
@@ -762,6 +862,46 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
               .testimonials-scroll-container { scrollbar-width: none; -ms-overflow-style: none; }
               .testimonials-scroll-container::-webkit-scrollbar { display: none; }
               .testimonial-card-wrapper { flex-shrink: 0 !important; width: 80vw !important; flex: none !important; scroll-snap-align: center; }
+            }
+
+            /* Faculty auto-scroll marquee */
+            @keyframes faculty-scroll {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+            .faculty-marquee-wrapper {
+              overflow: hidden;
+              width: 100%;
+            }
+            .faculty-marquee-track {
+              display: flex;
+              gap: 1rem;
+              width: fit-content;
+              animation: faculty-scroll 60s linear infinite;
+            }
+            .faculty-marquee-wrapper:hover .faculty-marquee-track {
+              animation-play-state: paused;
+            }
+
+            /* Publications 3D card flip */
+            @media (min-width: 769px) {
+              .publication-card-wrapper:hover .publication-flip-inner {
+                transform: rotateY(180deg);
+              }
+            }
+            @media (max-width: 768px) {
+              .publication-flip-inner {
+                transform: none !important;
+              }
+              .publication-flip-front {
+                position: relative !important;
+              }
+              .publication-flip-back {
+                display: none !important;
+              }
+              .publication-card-wrapper {
+                perspective: none !important;
+              }
             }
           `}</style>
         </section>
