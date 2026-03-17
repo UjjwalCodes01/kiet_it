@@ -4,6 +4,132 @@ html {
 	font-size: 15px;
 }
 
+/* Mobile Menu Styles */
+.popup-mobile-menu {
+	position: fixed;
+	top: 0;
+	right: -400px;
+	width: 360px;
+	max-width: 90vw;
+	height: 100vh;
+	background: #ffffff;
+	z-index: 9999;
+	transition: right 0.4s ease-in-out;
+	overflow-y: auto;
+	box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.popup-mobile-menu.active {
+	right: 0;
+}
+
+.popup-mobile-menu .inner {
+	padding: 20px 25px;
+}
+
+.popup-mobile-menu .header-top {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #e5e5e5;
+	margin-bottom: 15px;
+}
+
+.popup-mobile-menu .header-top .logo img {
+	max-width: 150px;
+	height: auto;
+}
+
+.popup-mobile-menu .close-button {
+	background: none;
+	border: none;
+	font-size: 28px;
+	cursor: pointer;
+	color: #333;
+	padding: 5px;
+	line-height: 1;
+}
+
+.popup-mobile-menu .close-button:hover {
+	color: #0056b3;
+}
+
+.popup-mobile-menu .mainmenu {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.popup-mobile-menu .mainmenu > li {
+	border-bottom: 1px solid #f0f0f0;
+}
+
+.popup-mobile-menu .mainmenu > li > a {
+	display: block;
+	padding: 12px 0;
+	color: #333;
+	text-decoration: none;
+	font-size: 16px;
+	font-weight: 500;
+	transition: color 0.3s;
+}
+
+.popup-mobile-menu .mainmenu > li > a:hover {
+	color: #0056b3;
+}
+
+.popup-mobile-menu .mainmenu .submenu {
+	list-style: none;
+	padding: 0 0 10px 15px;
+	margin: 0;
+	display: none;
+}
+
+.popup-mobile-menu .mainmenu .has-droupdown.open > .submenu {
+	display: block;
+}
+
+.popup-mobile-menu .mainmenu .submenu li a {
+	display: block;
+	padding: 8px 0;
+	color: #666;
+	text-decoration: none;
+	font-size: 14px;
+	transition: color 0.3s;
+}
+
+.popup-mobile-menu .mainmenu .submenu li a:hover {
+	color: #0056b3;
+}
+
+.popup-mobile-menu .mainmenu > li.has-droupdown > a {
+	position: relative;
+}
+
+.popup-mobile-menu .mainmenu > li.has-droupdown > a::after {
+	content: '+';
+	position: absolute;
+	right: 0;
+	font-size: 20px;
+	font-weight: 300;
+	transition: transform 0.3s;
+}
+
+.popup-mobile-menu .mainmenu > li.has-droupdown.open > a::after {
+	content: '-';
+}
+
+.popup-mobile-menu-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 9998;
+}
+
 @media (min-width: 992px) {
 	.edu-header .header-top .header-info {
 		white-space: nowrap;

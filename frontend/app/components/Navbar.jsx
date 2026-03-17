@@ -1,4 +1,25 @@
+"use client";
+
+import { useState } from "react";
+
 export default function Navbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+    setOpenDropdown(null);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+    setOpenDropdown(null);
+  };
+
+  const toggleDropdown = (index) => {
+    setOpenDropdown(openDropdown === index ? null : index);
+  };
+
   return (
     <header className="edu-header header-style-1 header-fullwidth">
       <div className="header-top-bar">
@@ -272,7 +293,7 @@ export default function Navbar() {
             <div className="header-right">
               <ul className="header-action">
                 <li className="mobile-menu-bar d-block d-xl-none">
-                  <button className="hamberger-button" aria-label="Open menu">
+                  <button className="hamberger-button" aria-label="Open menu" onClick={toggleMobileMenu}>
                     <i className="icon-54"></i>
                   </button>
                 </li>
@@ -292,6 +313,198 @@ export default function Navbar() {
           </div>
         </a>
       </div>
+
+      {/* Mobile Menu Sidebar */}
+      <div className={`popup-mobile-menu ${isMobileMenuOpen ? 'active' : ''}`}>
+        <div className="inner">
+          <div className="header-top">
+            <div className="logo">
+              <a href="https://kiet.edu/">
+                <img
+                  src="/assets/images/logo/KIET-Logo.jpg"
+                  alt="KIET Logo"
+                  width={180}
+                  height={50}
+                />
+              </a>
+            </div>
+            <div className="close-menu">
+              <button className="close-button" onClick={closeMobileMenu} aria-label="Close menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <ul className="mainmenu">
+            <li className={`has-droupdown ${openDropdown === 0 ? 'open' : ''}`}>
+              <a href="#" onClick={(e) => { e.preventDefault(); toggleDropdown(0); }}>About</a>
+              <ul className="submenu">
+                <li><a href="https://kiet.edu/about/Overview/">Overview</a></li>
+                <li><a href="https://kiet.edu/about/vision-mission/">Vision &amp; Mission</a></li>
+                <li><a href="https://kiet.edu/about/executive-leadership/">Governance</a></li>
+                <li><a href="https://kiet.edu/about/chancellor-message/">Chancellor&apos;s Message</a></li>
+                <li><a href="https://kiet.edu/about/executive-director-message/">Executive Director&apos;s Message</a></li>
+                <li><a href="https://kiet.edu/about/awards-rankings/">Awards &amp; Rankings</a></li>
+                <li><a href="https://kiet.edu/about/recognitions-approvals/">Approvals</a></li>
+                <li><a href="https://www.youtube.com/watch?v=LEJcSr4wHBA">Campus Tour</a></li>
+                <li><a href="https://kiet.edu/about/infrastructure/">Infrastructure</a></li>
+                <li><a href="https://kiet.edu/about/academic-collaborations/">Academic Collaborations</a></li>
+              </ul>
+            </li>
+            <li className={`has-droupdown ${openDropdown === 1 ? 'open' : ''}`}>
+              <a href="#" onClick={(e) => { e.preventDefault(); toggleDropdown(1); }}>Approval - Rankings / Accreditations</a>
+              <ul className="submenu">
+                <li><a href="https://kiet.edu/ranking-accreditations/ugc/">UGC</a></li>
+                <li><a href="https://kiet.edu/ranking-accreditations/aicte/">AICTE</a></li>
+                <li><a href="https://kiet.edu/ranking-accreditations/naac/">NAAC</a></li>
+                <li><a href="https://kiet.edu/ranking-accreditations/nirf/">NIRF</a></li>
+                <li><a href="https://kiet.edu/ranking-accreditations/iso/">ISO</a></li>
+                <li><a href="https://kiet.edu/ranking-accreditations/bte/">BTE</a></li>
+                <li><a href="https://kiet.edu/ranking-accreditations/pci/">PCI</a></li>
+                <li><a href="https://kiet.edu/ranking-accreditations/nba/">NBA</a></li>
+                <li><a href="https://kiet.edu/ranking-accreditations/qs-igauge/">QS I-GAUGE</a></li>
+              </ul>
+            </li>
+            <li className={`has-droupdown ${openDropdown === 2 ? 'open' : ''}`}>
+              <a href="#" onClick={(e) => { e.preventDefault(); toggleDropdown(2); }}>Academics</a>
+              <ul className="submenu">
+                <li><a href="https://kiet.edu/academics/Overview/">About</a></li>
+                <li><a href="https://kiet.edu/academics/team-director-academics/">Team Director Academics</a></li>
+                <li><a href="https://kiet.edu/academics/institutes/">Institutes</a></li>
+                <li><a href="https://kiet.edu/academics/iqac/">IQAC</a></li>
+                <li><a href="https://kiet.edu/academics/curriculum-structure/">Curriculum Structure and Syllabus</a></li>
+                <li><a href="https://kiet.edu/academics/innovation-pedagogy/">Teaching &amp; Learning Pedagogy</a></li>
+                <li><a href="https://kiet.edu/academics/academic-calendar/">Academic Calendar</a></li>
+                <li><a href="https://kiet.edu/academics/student-grievance-redressal/">Grievance Redressal</a></li>
+                <li><a href="https://kiet.edu/academics/circulars-notices/">Circulars &amp; Notices</a></li>
+              </ul>
+            </li>
+            <li className={`has-droupdown ${openDropdown === 3 ? 'open' : ''}`}>
+              <a href="#" onClick={(e) => { e.preventDefault(); toggleDropdown(3); }}>Programs</a>
+              <ul className="submenu">
+                <li><a href="https://kiet.edu/programs/undergraduate-programs/">Undergraduate</a></li>
+                <li><a href="https://kiet.edu/programs/postgraduate-programs/">Postgraduate</a></li>
+                <li><a href="https://kiet.edu/programs/diploma-programs/">Diploma</a></li>
+                <li><a href="https://kiet.edu/doctoral-program/">Doctoral</a></li>
+                <li><a href="https://kiet.edu/post-doc-program/">Post-Doctoral</a></li>
+              </ul>
+            </li>
+            <li className={`has-droupdown ${openDropdown === 4 ? 'open' : ''}`}>
+              <a href="#" onClick={(e) => { e.preventDefault(); toggleDropdown(4); }}>Admission</a>
+              <ul className="submenu">
+                <li><a href="https://kiet.edu/admissions/admission-procedure/">Admission Procedure</a></li>
+                <li><a href="https://kiet.edu/admissions/international-admissions/">International Admissions</a></li>
+                <li><a href="https://kiet.edu/admissions/KEE/">KIET Entrance Examination</a></li>
+                <li><a href="https://kiet.edu/admissions/fee-structure/">Fee Structure</a></li>
+                <li><a href="https://kiet.edu/admissions/payment-procedure/">Payment Procedure</a></li>
+                <li><a href="https://kiet.edu/admissions/scholarship-schemes/">Scholarship Schemes</a></li>
+                <li><a href="https://kiet.edu/admissions/education-loan/">Education Loan Assistance</a></li>
+                <li><a href="https://kiet.edu/admissions/info-brochure/">Information Brochure</a></li>
+                <li><a href="https://kiet.edu/admissions/refund-policy/">Refund Policy</a></li>
+                <li><a href="https://kiet.edu/admissions/mandatory-disclosure/">Mandatory Disclosure</a></li>
+              </ul>
+            </li>
+            <li className={`has-droupdown ${openDropdown === 5 ? 'open' : ''}`}>
+              <a href="#" onClick={(e) => { e.preventDefault(); toggleDropdown(5); }}>Research</a>
+              <ul className="submenu">
+                <li><a href="https://kiet.edu/research/about/">About</a></li>
+                <li><a href="https://kiet.edu/research/publications-patents/">Publications &amp; Patents</a></li>
+                <li><a href="https://kiet.edu/research/consultancy/">Funded Projects/Consultancy</a></li>
+                <li><a href="https://kiet.edu/research/research-guidance/">Research Guidance (Ph.D.)</a></li>
+                <li><a href="https://kiet.edu/research/researchers-of-repute/">Researchers of Repute</a></li>
+                <li><a href="https://kiet.edu/research/research-policy/">Research Policy</a></li>
+                <li><a href="https://kiet.edu/research/kiet-research-magazine/">KIET Research Magazine</a></li>
+                <li><a href="https://kiet.edu/research/idea-lab/">IDEA Lab</a></li>
+              </ul>
+            </li>
+            <li className={`has-droupdown ${openDropdown === 6 ? 'open' : ''}`}>
+              <a href="#" onClick={(e) => { e.preventDefault(); toggleDropdown(6); }}>Placements</a>
+              <ul className="submenu">
+                <li><a href="https://kiet.edu/placements/Overview/">Overview</a></li>
+                <li><a href="https://kiet.edu/placements/team-crpc/">Team CRPC</a></li>
+                <li><a href="https://kiet.edu/placements/placement-recs/">Placement Records</a></li>
+                <li><a href="https://kiet.edu/placements/iipc/">Internships@IIPC</a></li>
+                <li><a href="https://kiet.edu/placements/training-div/">Training Division</a></li>
+                <li><a href="https://kiet.edu/placements/recruiters/">Recruiters@KIET</a></li>
+                <li><a href="https://kiet.edu/placements/kiet-ssb/">KIET SSB</a></li>
+                <li><a href="https://kiet.edu/placements/student-testimonials/">Student Testimonials</a></li>
+              </ul>
+            </li>
+            <li className={`has-droupdown ${openDropdown === 7 ? 'open' : ''}`}>
+              <a href="#" onClick={(e) => { e.preventDefault(); toggleDropdown(7); }}>Industry Readiness</a>
+              <ul className="submenu">
+                <li><a href="https://kiet.edu/industry-readiness/iicc/">Industry Institute Collaboration Cell (IICC)</a></li>
+                <li><a href="https://kiet.edu/industry-readiness/centre-of-excellence/">Centre of Excellence</a></li>
+                <li><a href="https://kiet.edu/industry-readiness/pop/">Professors of Practice</a></li>
+                <li><a href="https://kiet.edu/industry-readiness/adjunct-faculty/">Adjunct Faculty</a></li>
+                <li><a href="https://forms.gle/EuAbWvdwS585x2928">Apply for Professor of Practice</a></li>
+                <li><a href="https://kiet.edu/industry-readiness/technical-training/">Technical Training</a></li>
+              </ul>
+            </li>
+            <li className={`has-droupdown ${openDropdown === 8 ? 'open' : ''}`}>
+              <a href="#" onClick={(e) => { e.preventDefault(); toggleDropdown(8); }}>Events</a>
+              <ul className="submenu">
+                <li><a href="https://kiet.edu/events/kiet-in-media/">KIET in Media</a></li>
+                <li><a href="https://kiet.edu/events/upcoming-events/">Upcoming Events</a></li>
+                <li><a href="https://kiet.edu/events/kiet-news-letters/">KIET Newsletters</a></li>
+              </ul>
+            </li>
+            <li className={`has-droupdown ${openDropdown === 9 ? 'open' : ''}`}>
+              <a href="#" onClick={(e) => { e.preventDefault(); toggleDropdown(9); }}>Campus Life</a>
+              <ul className="submenu">
+                <li><a href="https://kiet.edu/campus-life/overview/">Overview</a></li>
+                <li><a href="https://kiet.edu/campus-life/gallery/">Gallery</a></li>
+                <li><a href="https://kiet.edu/campus-life/hostel/">Hostel</a></li>
+                <li><a href="https://kiet.edu/campus-life/sports/">Sports</a></li>
+                <li><a href="https://kiet.edu/campus-life/cultural-clubs/">Cultural Clubs</a></li>
+                <li><a href="https://kiet.edu/campus-life/technical-clubs/">Technical Clubs</a></li>
+                <li><a href="https://kiet.edu/campus-life/cultural-activities/">Cultural Activities</a></li>
+                <li><a href="https://kiet.edu/campus-life/common-facilities/">Common Facilities</a></li>
+                <li><a href="https://kiet.edu/campus-life/infrastructure/">Infrastructure</a></li>
+              </ul>
+            </li>
+            <li className={`has-droupdown ${openDropdown === 10 ? 'open' : ''}`}>
+              <a href="#" onClick={(e) => { e.preventDefault(); toggleDropdown(10); }}>Student Welfare</a>
+              <ul className="submenu">
+                <li><a href="https://kiet.edu/student-welfare/anti-ragging/">Anti-Ragging</a></li>
+                <li><a href="https://kiet.edu/student-welfare/proctorial-board/">Proctorial Board</a></li>
+                <li><a href="https://kiet.edu/student-welfare/student-discipline-policy/">Student Discipline Policy</a></li>
+                <li><a href="https://kiet.edu/student-welfare/student-handbook/">Student Handbook</a></li>
+                <li><a href="https://kiet.edu/student-welfare/internal-complaints-committee/">Internal Complaints Committee</a></li>
+                <li><a href="https://kiet.edu/student-welfare/career-guidance/">Career Counselling Centre</a></li>
+                <li><a href="https://kiet.edu/student-welfare/counselling-support/">Counselling Support</a></li>
+                <li><a href="https://kiet.edu/student-welfare/medical-facilities/">Medical Facilities</a></li>
+                <li><a href="https://kiet.edu/student-welfare/institutional-fitness-committee/">Institutional Fitness Committee</a></li>
+                <li><a href="https://kiet.edu/student-welfare/mental-health-policy/">Mental Health Well Being Policy</a></li>
+              </ul>
+            </li>
+            <li className={`has-droupdown ${openDropdown === 11 ? 'open' : ''}`}>
+              <a href="#" onClick={(e) => { e.preventDefault(); toggleDropdown(11); }}>Study in India</a>
+              <ul className="submenu">
+                <li><a href="https://www.studyinindia.gov.in/">Click here</a></li>
+              </ul>
+            </li>
+            <li className={`has-droupdown ${openDropdown === 12 ? 'open' : ''}`}>
+              <a href="#" onClick={(e) => { e.preventDefault(); toggleDropdown(12); }}>Doctoral</a>
+              <ul className="submenu">
+                <li><a href="https://kiet.edu/doctoral-program/">Click here</a></li>
+              </ul>
+            </li>
+            <li className={`has-droupdown ${openDropdown === 13 ? 'open' : ''}`}>
+              <a href="#" onClick={(e) => { e.preventDefault(); toggleDropdown(13); }}>Post-Doctoral</a>
+              <ul className="submenu">
+                <li><a href="https://kiet.edu/post-doc-program/">Click here</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div className="popup-mobile-menu-overlay" onClick={closeMobileMenu}></div>
+      )}
     </header>
   );
 }

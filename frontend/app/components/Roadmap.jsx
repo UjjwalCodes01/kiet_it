@@ -2,53 +2,81 @@
 
 import { useState } from "react";
 
+// SVG icons for each technology
+const TechIcons = {
+  android: (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 18C6 18.55 6.45 19 7 19H8V22.5C8 23.33 8.67 24 9.5 24C10.33 24 11 23.33 11 22.5V19H13V22.5C13 23.33 13.67 24 14.5 24C15.33 24 16 23.33 16 22.5V19H17C17.55 19 18 18.55 18 18V8H6V18ZM4 8C3.17 8 2.5 8.67 2.5 9.5V16.5C2.5 17.33 3.17 18 4 18C4.83 18 5.5 17.33 5.5 16.5V9.5C5.5 8.67 4.83 8 4 8ZM20 8C19.17 8 18.5 8.67 18.5 9.5V16.5C18.5 17.33 19.17 18 20 18C20.83 18 21.5 17.33 21.5 16.5V9.5C21.5 8.67 20.83 8 20 8ZM15.53 2.16L16.84 0.85C17.03 0.66 17.03 0.35 16.84 0.16C16.65 -0.03 16.34 -0.03 16.15 0.16L14.63 1.68C13.81 1.25 12.88 1 11.9 1C10.94 1 10.03 1.25 9.22 1.67L7.7 0.16C7.51 -0.03 7.2 -0.03 7.01 0.16C6.82 0.35 6.82 0.66 7.01 0.85L8.32 2.16C6.91 3.19 6 4.87 6 6.75V7H18V6.75C18 4.87 17.09 3.19 15.68 2.16H15.53ZM10 5H9V4H10V5ZM15 5H14V4H15V5Z" fill="#3DDC84"/>
+    </svg>
+  ),
+  cloud: (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4C9.11 4 6.6 5.64 5.35 8.04C2.34 8.36 0 10.91 0 14C0 17.31 2.69 20 6 20H19C21.76 20 24 17.76 24 15C24 12.36 21.95 10.22 19.35 10.04ZM19 18H6C3.79 18 2 16.21 2 14C2 11.95 3.53 10.24 5.56 10.03L6.63 9.92L7.13 8.97C8.08 7.14 9.94 6 12 6C14.62 6 16.88 7.86 17.39 10.43L17.69 11.93L19.22 12.04C20.78 12.14 22 13.45 22 15C22 16.65 20.65 18 19 18Z" fill="#2196F3"/>
+      <path d="M8 13H16V15H8V13Z" fill="#2196F3"/>
+      <path d="M11 10H13V18H11V10Z" fill="#2196F3"/>
+    </svg>
+  ),
+  dataEngineering: (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2C6.48 2 2 4.02 2 6.5V17.5C2 19.98 6.48 22 12 22C17.52 22 22 19.98 22 17.5V6.5C22 4.02 17.52 2 12 2ZM12 4C16.42 4 20 5.57 20 6.5C20 7.43 16.42 9 12 9C7.58 9 4 7.43 4 6.5C4 5.57 7.58 4 12 4ZM4 9.32C5.76 10.39 8.71 11 12 11C15.29 11 18.24 10.39 20 9.32V12.5C20 13.43 16.42 15 12 15C7.58 15 4 13.43 4 12.5V9.32ZM12 20C7.58 20 4 18.43 4 17.5V14.32C5.76 15.39 8.71 16 12 16C15.29 16 18.24 15.39 20 14.32V17.5C20 18.43 16.42 20 12 20Z" fill="#FF6F00"/>
+    </svg>
+  ),
+  dataStructures: (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#9C27B0"/>
+      <path d="M2 17L12 22L22 17V12L12 17L2 12V17Z" fill="#9C27B0"/>
+      <path d="M2 12L12 17L22 12" stroke="#9C27B0" strokeWidth="2"/>
+    </svg>
+  ),
+  java: (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8.851 18.56s-.917.534.653.714c1.902.218 2.874.187 4.969-.211 0 0 .552.346 1.321.646-4.699 2.013-10.633-.118-6.943-1.149M8.276 15.933s-1.028.762.542.924c2.032.209 3.636.227 6.413-.308 0 0 .384.389.987.602-5.679 1.661-12.007.13-7.942-1.218M13.116 11.475c1.158 1.333-.304 2.533-.304 2.533s2.939-1.518 1.589-3.418c-1.261-1.772-2.228-2.652 3.007-5.688 0-.001-8.216 2.051-4.292 6.573" fill="#E76F00"/>
+      <path d="M18.871 19.837s.679.559-.747.991c-2.712.822-11.288 1.069-13.669.033-.856-.373.75-.89 1.254-.998.527-.114.828-.093.828-.093-.953-.671-6.156 1.317-2.643 1.887 9.58 1.553 17.462-.7 14.977-1.82M9.292 13.21s-4.362 1.036-1.544 1.412c1.189.159 3.561.123 5.77-.062 1.806-.152 3.618-.477 3.618-.477s-.637.272-1.098.587c-4.429 1.165-12.986.623-10.522-.568 2.082-1.006 3.776-.892 3.776-.892M17.116 17.584c4.503-2.34 2.421-4.589.968-4.285-.355.074-.515.138-.515.138s.132-.207.385-.297c2.875-1.011 5.086 2.981-.928 4.562 0-.001.07-.062.09-.118" fill="#E76F00"/>
+      <path d="M14.401 0s2.494 2.494-2.365 6.338c-3.896 3.083-.889 4.845-.001 6.854-2.274-2.053-3.943-3.858-2.824-5.541 1.644-2.469 6.197-3.665 5.19-7.651" fill="#E76F00"/>
+    </svg>
+  ),
+  web: (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM4 12C4 11.39 4.08 10.79 4.21 10.22L8.99 15V16C8.99 17.1 9.89 18 10.99 18V19.93C7.06 19.43 4 16.07 4 12ZM17.89 17.4C17.64 16.59 16.89 16 16 16H15V13C15 12.45 14.55 12 14 12H8V10H10C10.55 10 11 9.55 11 9V7H13C14.1 7 15 6.1 15 5V4.59C17.93 5.78 20 8.65 20 12C20 14.08 19.19 15.98 17.89 17.4Z" fill="#E91E63"/>
+    </svg>
+  ),
+};
+
 const roadmap = [
   {
     label: "Android Development",
-    image: "/emerging-technology/androidDevelopment.png",
+    icon: "android",
     slideImage: "/emerging-technology/androidDevelopment.png",
   },
   {
     label: "Cloud Computing",
-    image: "/emerging-technology/cloudComputing.png",
+    icon: "cloud",
     slideImage: "/emerging-technology/cloudComputing.png",
   },
   {
     label: "Data Engineering",
-    image: "/emerging-technology/dataEngineering.png",
+    icon: "dataEngineering",
     slideImage: "/emerging-technology/dataEngineering.png",
   },
   {
     label: "Data Structures",
-    image: "/emerging-technology/datastructure.png",
+    icon: "dataStructures",
     slideImage: "/emerging-technology/datastructure.png",
   },
   {
     label: "OOPs in Java",
-    image: "/emerging-technology/oopsInjava.png",
+    icon: "java",
     slideImage: "/emerging-technology/oopsInjava.png",
   },
   {
     label: "Web Development",
-    image: "/emerging-technology/webdevelopment.png",
+    icon: "web",
     slideImage: "/emerging-technology/webdevelopment.png",
   },
 ];
 
-const CIRCLE_SIZE = 620;
-const NODE_SIZE = 96;
-const RADIUS = (CIRCLE_SIZE - NODE_SIZE) / 2;
-
-function getNodePosition(index, total, radius) {
-  const angle = (2 * Math.PI * index) / total - Math.PI / 2;
-  return {
-    x: radius * Math.cos(angle),
-    y: radius * Math.sin(angle),
-  };
-}
-
 export default function Roadmap() {
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(null);
 
   return (
     <section
@@ -57,7 +85,7 @@ export default function Roadmap() {
       style={{ padding: "4rem 0", position: "relative", zIndex: 1 }}
     >
       <div className="p-3 p-md-4 p-lg-5">
-        <div className="mb-4">
+        <div className="mb-5">
           <h2
             className="fw-bold mb-3 fs-1"
             style={{
@@ -70,254 +98,356 @@ export default function Roadmap() {
             Emerging Technology Pathways
           </h2>
           <div>
-            <span className="fs-3 fst-italic" style={{ fontWeight: 500, color: "#666" }}>
-              Click a pathway to explore details
+            <span
+              className="d-lg-none"
+              style={{ fontWeight: 500, fontSize: "1.5rem", color: "#666", fontStyle: "italic" }}
+            >
+              Tap logo to read more
+            </span>
+            <span
+              className="d-none d-lg-inline fs-3 fst-italic"
+              style={{ fontWeight: 500, color: "#666" }}
+            >
+              Hover and view details
             </span>
           </div>
         </div>
 
-        {/* Desktop: Circular layout */}
+        {/* Desktop: Grid layout with alternating rows */}
         <div className="d-none d-lg-block">
-          <div className="d-flex align-items-center justify-content-center gap-5">
-            {/* Detail panel on the left */}
+          <div style={{ position: "relative", padding: "1rem 0" }}>
             <div
               style={{
-                flex: "0 0 600px",
-                maxWidth: "600px",
-                transition: "opacity 0.4s ease",
-              }}
-            >
-              <div
-                style={{
-                  backgroundColor: "#fff",
-                  borderRadius: "16px",
-                  border: "3px solid #f26520",
-                  boxShadow: "0 12px 40px rgba(0, 0, 0, 0.12)",
-                  padding: "1.5rem",
-                  width: "100%",
-                }}
-              >
-                <h3 className="fw-bold fs-2 mb-3" style={{ color: "#002855" }}>
-                  {roadmap[activeStep].label}
-                </h3>
-                <img
-                  src={roadmap[activeStep].slideImage}
-                  alt={`${roadmap[activeStep].label} Slide`}
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    borderRadius: "8px",
-                    display: "block",
-                  }}
-                />
-              </div>
-            </div>
-
-            {/* Circle on the right */}
-            <div
-              style={{
-                width: `${CIRCLE_SIZE}px`,
-                height: `${CIRCLE_SIZE}px`,
+                display: "grid",
+                gridTemplateColumns: `repeat(${roadmap.length}, 1fr)`,
+                gridTemplateRows: "auto 60px auto",
+                gap: "0 0.5rem",
                 position: "relative",
-                flexShrink: 0,
+                zIndex: 2,
               }}
             >
-              {/* SVG ring connector */}
-              <svg
-                width={CIRCLE_SIZE}
-                height={CIRCLE_SIZE}
-                style={{ position: "absolute", top: 0, left: 0 }}
-              >
-                <circle
-                  cx={CIRCLE_SIZE / 2}
-                  cy={CIRCLE_SIZE / 2}
-                  r={RADIUS}
-                  fill="none"
-                  stroke="#e0e0e0"
-                  strokeWidth="2"
-                  strokeDasharray="6 4"
-                />
-              </svg>
-
-              {/* Center content */}
-              <div
-                style={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  width: `${RADIUS * 1.2}px`,
-                  textAlign: "center",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <div
-                  style={{
-                    width: "110px",
-                    height: "110px",
-                    borderRadius: "50%",
-                    overflow: "hidden",
-                    border: "3px solid #f26520",
-                    marginBottom: "10px",
-                    flexShrink: 0,
-                  }}
-                >
-                  <img
-                    src={roadmap[activeStep].image}
-                    alt={roadmap[activeStep].label}
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                  />
-                </div>
-                <p className="fw-bold fs-3 mb-0" style={{ color: "#f26520", lineHeight: 1.2 }}>
-                  {roadmap[activeStep].label}
-                </p>
-                <p className="fs-5 text-muted mb-0 mt-1">
-                  Pathway {activeStep + 1} of {roadmap.length}
-                </p>
-              </div>
-
-              {/* Nodes around the circle */}
               {roadmap.map((item, idx) => {
-                const { x, y } = getNodePosition(idx, roadmap.length, RADIUS);
-                const isActive = activeStep === idx;
+                const isTopRow = idx % 2 === 0;
+                const isActive = activeIndex === idx;
+                const gridColumn = idx + 1;
+                const gridRow = isTopRow ? 1 : 3;
+
+                // Determine popup position based on item position
+                const isLeftSide = idx < 3;
+                const popupStyle = isLeftSide
+                  ? {
+                      left: "100%",
+                      ...(isTopRow
+                        ? { top: "50%", transform: `translateY(10px) translateX(40px) scale(${isActive ? 1 : 0.95})` }
+                        : { bottom: "50%", transform: `translateY(-10px) translateX(40px) scale(${isActive ? 1 : 0.95})` }),
+                    }
+                  : {
+                      left: "0",
+                      ...(isTopRow
+                        ? { top: "50%", transform: `translateY(10px) translateX(-620px) scale(${isActive ? 1 : 0.95})` }
+                        : { bottom: "50%", transform: `translateY(-10px) translateX(-620px) scale(${isActive ? 1 : 0.95})` }),
+                    };
+
                 return (
                   <div
                     key={item.label}
+                    className="text-center"
                     style={{
-                      position: "absolute",
-                      left: `${CIRCLE_SIZE / 2 + x - NODE_SIZE / 2}px`,
-                      top: `${CIRCLE_SIZE / 2 + y - NODE_SIZE / 2}px`,
-                      width: `${NODE_SIZE}px`,
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
+                      gridColumn,
+                      gridRow,
+                      position: "relative",
                       cursor: "pointer",
-                      zIndex: isActive ? 5 : 2,
                     }}
-                    onClick={() => setActiveStep(idx)}
+                    onMouseEnter={() => setActiveIndex(idx)}
+                    onMouseLeave={() => setActiveIndex(null)}
                   >
                     <div
                       style={{
-                        width: `${NODE_SIZE}px`,
-                        height: `${NODE_SIZE}px`,
+                        width: "85px",
+                        height: "85px",
                         borderRadius: "50%",
-                        overflow: "hidden",
-                        border: isActive ? "4px solid #f26520" : "3px solid #ccc",
                         backgroundColor: "#fff",
+                        margin: "0 auto 0.4rem",
                         boxShadow: isActive
-                          ? "0 0 0 5px rgba(242, 101, 32, 0.25), 0 6px 20px rgba(0, 0, 0, 0.2)"
-                          : "0 4px 12px rgba(0, 0, 0, 0.1)",
+                          ? "0 8px 25px rgba(242, 101, 32, 0.4)"
+                          : "0 4px 15px rgba(0, 40, 85, 0.3)",
+                        border: isActive ? "3px solid #f26520" : "none",
+                        overflow: "hidden",
                         transition: "all 0.3s ease",
-                        transform: isActive ? "scale(1.2)" : "scale(1)",
+                        transform: isActive ? "scale(1.15)" : "scale(1)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        padding: "18px",
                       }}
                     >
-                      <img
-                        src={item.image}
-                        alt={item.label}
-                        style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "50%" }}
-                      />
+                      {TechIcons[item.icon]}
                     </div>
-                    <p
+                    <div
+                      className="fs-5"
                       style={{
-                        marginTop: "6px",
-                        fontSize: "0.65rem",
                         fontWeight: 800,
                         color: isActive ? "#f26520" : "#002855",
                         textTransform: "uppercase",
-                        textAlign: "center",
-                        lineHeight: 1.15,
-                        maxWidth: "110px",
+                        margin: 0,
+                        lineHeight: 1.2,
                         transition: "color 0.3s ease",
                       }}
                     >
                       {item.label}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile: vertical list with tap-to-expand */}
-        <div className="d-lg-none">
-          <div className="d-flex flex-column gap-3">
-            {roadmap.map((item, idx) => {
-              const isActive = activeStep === idx;
-              return (
-                <div key={item.label}>
-                  <button
-                    className="w-100 d-flex align-items-center gap-3 border-0 bg-white rounded-3 p-3"
-                    style={{
-                      boxShadow: isActive
-                        ? "0 4px 16px rgba(242, 101, 32, 0.2)"
-                        : "0 2px 8px rgba(0, 0, 0, 0.06)",
-                      border: isActive ? "2px solid #f26520" : "2px solid transparent",
-                      cursor: "pointer",
-                      transition: "all 0.3s ease",
-                    }}
-                    onClick={() => setActiveStep(idx)}
-                  >
-                    <div
-                      style={{
-                        width: "50px",
-                        height: "50px",
-                        borderRadius: "50%",
-                        overflow: "hidden",
-                        border: isActive ? "3px solid #f26520" : "2px solid #ccc",
-                        flexShrink: 0,
-                      }}
-                    >
-                      <img
-                        src={item.image}
-                        alt={item.label}
-                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                      />
                     </div>
-                    <span
-                      className="fw-bold fs-3 text-start flex-grow-1"
-                      style={{ color: isActive ? "#f26520" : "#002855" }}
-                    >
-                      {item.label}
-                    </span>
-                    <span
-                      style={{
-                        fontSize: "0.8rem",
-                        color: isActive ? "#f26520" : "#999",
-                        transform: isActive ? "rotate(180deg)" : "rotate(0)",
-                        transition: "transform 0.3s ease",
-                      }}
-                    >
-                      ▼
-                    </span>
-                  </button>
-                  {isActive && (
+                    {/* Hover popup */}
                     <div
-                      className="mt-2 p-3 bg-white rounded-3"
                       style={{
-                        border: "2px solid #f26520",
-                        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
+                        position: "absolute",
+                        ...popupStyle,
+                        opacity: isActive ? 1 : 0,
+                        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                        pointerEvents: isActive ? "auto" : "none",
+                        zIndex: 200,
+                        width: "600px",
+                        backgroundColor: "#fff",
+                        borderRadius: "12px",
+                        boxShadow: "0 25px 80px rgba(0, 0, 0, 0.35)",
+                        border: "4px solid #f26520",
+                        padding: "16px",
                       }}
                     >
+                      <button
+                        style={{
+                          position: "absolute",
+                          top: "-14px",
+                          right: "-14px",
+                          width: "36px",
+                          height: "36px",
+                          borderRadius: "50%",
+                          backgroundColor: "#f26520",
+                          border: "none",
+                          color: "#fff",
+                          fontSize: "1.1rem",
+                          fontWeight: "bold",
+                          cursor: "pointer",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)",
+                        }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveIndex(null);
+                        }}
+                      >
+                        ✕
+                      </button>
                       <img
                         src={item.slideImage}
                         alt={`${item.label} Slide`}
                         style={{
                           width: "100%",
                           height: "auto",
-                          borderRadius: "8px",
+                          borderRadius: "6px",
                           display: "block",
                         }}
                       />
                     </div>
-                  )}
+                  </div>
+                );
+              })}
+
+              {/* Connecting line in the middle row */}
+              <div
+                style={{
+                  gridColumn: `1 / ${roadmap.length + 1}`,
+                  gridRow: 2,
+                  position: "relative",
+                  height: "60px",
+                }}
+              >
+                <svg
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: 0,
+                    width: "100%",
+                    height: "60px",
+                    transform: "translateY(-50%)",
+                    zIndex: 1,
+                  }}
+                  viewBox="0 0 1000 60"
+                  preserveAspectRatio="none"
+                >
+                  <defs>
+                    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#f26520" />
+                      <stop offset="50%" stopColor="#002855" />
+                      <stop offset="100%" stopColor="#f26520" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M 0 30 Q 83 10, 166 30 Q 250 50, 333 30 Q 416 10, 500 30 Q 583 50, 666 30 Q 750 10, 833 30 Q 916 50, 1000 30"
+                    fill="none"
+                    stroke="url(#lineGradient)"
+                    strokeWidth="3"
+                    strokeDasharray="8 6"
+                    opacity="0.7"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile: Vertical timeline layout with curved connecting line */}
+        <div className="d-lg-none">
+          <div
+            style={{
+              position: "relative",
+              paddingLeft: "90px",
+              minHeight: "600px",
+            }}
+          >
+            {/* Vertical curved connecting line */}
+            <svg
+              style={{
+                position: "absolute",
+                left: "5px",
+                top: "0px",
+                width: "60px",
+                height: "600px",
+                zIndex: 1,
+                pointerEvents: "none",
+              }}
+              viewBox="0 0 60 600"
+              preserveAspectRatio="none"
+            >
+              <defs>
+                <linearGradient id="mobileLineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#f26520" />
+                  <stop offset="50%" stopColor="#002855" />
+                  <stop offset="100%" stopColor="#f26520" />
+                </linearGradient>
+              </defs>
+              <path
+                d="M 30 50 Q 45 100, 30 150 Q 15 200, 30 250 Q 45 300, 30 350 Q 15 400, 30 450 Q 45 500, 30 550"
+                fill="none"
+                stroke="url(#mobileLineGradient)"
+                strokeWidth="3"
+                strokeDasharray="8 6"
+                opacity="0.7"
+              />
+            </svg>
+
+            {roadmap.map((item, idx) => {
+              const isActive = activeIndex === idx;
+              const topPosition = idx * 100; // 100px spacing between items
+
+              return (
+                <div
+                  key={item.label}
+                  style={{
+                    position: "absolute",
+                    top: `${topPosition}px`,
+                    left: 0,
+                    right: 0,
+                    minHeight: "80px",
+                    display: "flex",
+                    alignItems: "center",
+                    cursor: "pointer",
+                    zIndex: 2,
+                  }}
+                  onClick={() => setActiveIndex(isActive ? null : idx)}
+                >
+                  <div
+                    style={{
+                      position: "absolute",
+                      left: "5px",
+                      top: "20px",
+                      width: "60px",
+                      height: "60px",
+                      borderRadius: "50%",
+                      backgroundColor: "#fff",
+                      border: isActive ? "3px solid #f26520" : "2px solid #e0e0e0",
+                      boxShadow: isActive
+                        ? "0 6px 18px rgba(242, 101, 32, 0.35)"
+                        : "0 3px 10px rgba(0, 40, 85, 0.3)",
+                      overflow: "hidden",
+                      transition: "all 0.3s ease",
+                      transform: isActive ? "scale(1.1)" : "scale(1)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      padding: "12px",
+                    }}
+                  >
+                    {TechIcons[item.icon]}
+                  </div>
+                  <h5
+                    style={{
+                      fontSize: "0.95rem",
+                      fontWeight: 800,
+                      color: isActive ? "#f26520" : "#002855",
+                      textTransform: "uppercase",
+                      margin: 0,
+                      marginLeft: "75px",
+                      marginTop: "20px",
+                      transition: "color 0.3s ease",
+                    }}
+                  >
+                    {item.label}
+                  </h5>
                 </div>
               );
             })}
           </div>
+
+          {/* Mobile slide panel */}
+          {activeIndex !== null && (
+            <div
+              style={{
+                marginTop: "1rem",
+                padding: "16px",
+                backgroundColor: "#fff",
+                borderRadius: "12px",
+                boxShadow: "0 8px 30px rgba(0, 0, 0, 0.15)",
+                border: "3px solid #f26520",
+              }}
+            >
+              <div className="d-flex justify-content-between align-items-center mb-3">
+                <h4 className="fw-bold mb-0 fs-3" style={{ color: "#002855" }}>
+                  {roadmap[activeIndex].label}
+                </h4>
+                <button
+                  style={{
+                    width: "32px",
+                    height: "32px",
+                    borderRadius: "50%",
+                    backgroundColor: "#f26520",
+                    border: "none",
+                    color: "#fff",
+                    fontSize: "1rem",
+                    fontWeight: "bold",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                  onClick={() => setActiveIndex(null)}
+                >
+                  ✕
+                </button>
+              </div>
+              <img
+                src={roadmap[activeIndex].slideImage}
+                alt={`${roadmap[activeIndex].label} Slide`}
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  borderRadius: "8px",
+                  display: "block",
+                }}
+              />
+            </div>
+          )}
         </div>
       </div>
     </section>

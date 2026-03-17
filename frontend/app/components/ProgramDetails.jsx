@@ -2,8 +2,68 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Roadmap from "./Roadmap";
-import { TESTIMONIALS } from "@/app/data/cse-aiml-testimonials";
-import { PUBLICATIONS } from "@/app/data/cse-aiml-publications";
+
+// Achievers data sorted by package (descending)
+const ACHIEVERS = [
+  { name: "Isha Rastogi", company: "Microsoft", package: "52 LPA", image: "/acchievers/isha_rastogi.png" },
+  { name: "Palak Mittal", company: "Amazon", package: "48.89 LPA", image: "/acchievers/palak_mittal.png" },
+  { name: "Srishti Pawar", company: "Amazon", package: "48.89 LPA", image: "/acchievers/Shrishti_Pawar.png" },
+  { name: "Umang Sharma", company: "Amazon", package: "48.89 LPA", image: "/acchievers/umang_smarma.png" },
+  { name: "Riya Garg", company: "Amazon", package: "45.64 LPA", image: "/acchievers/riya_garg.png" },
+  { name: "Shifa Rifat", company: "ServiceNow", package: "42.67 LPA", image: "/acchievers/Shifa_Rifat.png" },
+  { name: "Divyank Goyal", company: "Morgan Stanley", package: "30.22 LPA", image: "/acchievers/Divyank_Goyal.png" },
+  { name: "Utkarsh Jain", company: "Travclan", package: "30 LPA", image: "/acchievers/Utkarsh_Jain.png" },
+  { name: "Anshika Sharma", company: "Walmart", package: "23 LPA", image: "/acchievers/Anshika_Sharma.png" },
+  { name: "Siddharth Kumar Jha", company: "Turing", package: "20 LPA", image: "/acchievers/siddharth_kumar_jha.png" },
+  { name: "Srijan Srivastava", company: "Samagra", package: "18 LPA", image: "/acchievers/riya_satpathi.png" },
+  { name: "Ayushi Singh", company: "Cisco", package: "17.39 LPA", image: "/acchievers/Nikita_Gautam.png" },
+  { name: "Sachin Kumar Gupta", company: "Josh Technology", package: "15.37 LPA", image: "/acchievers/Akansh_Pratap_Singh.png" },
+  { name: "Dev Bhaskar Singh", company: "Trellix", package: "14.5 LPA", image: "/acchievers/Dev_Bhaskar_Singh.png" },
+  { name: "Isha Gupta", company: "ION Group", package: "14.1 LPA", image: "/acchievers/isha_rastogi.png" },
+  { name: "Chinmoy Chakraborty", company: "Samagra", package: "12 LPA", image: "/acchievers/Chinmoy_Chakraborty.png" },
+  { name: "Anurag Ranjan", company: "Healthkart", package: "12 LPA", image: "/acchievers/anurag_ranjan.png" },
+  { name: "Khushi Jain", company: "Healthkart", package: "12 LPA", image: "/acchievers/Khushi_Jain.png" },
+  { name: "Soumy Jain", company: "Interra Systems", package: "12 LPA", image: "/acchievers/Soumy_Jain.png" },
+  { name: "Akansh Pratap Singh", company: "Infoedge", package: "10 LPA", image: "/acchievers/Akansh_Pratap_Singh.png" },
+  { name: "Kanhaiya Tulsyan", company: "Infoedge", package: "10 LPA", image: "/acchievers/Kanhaiya_Tulsan.png" },
+  { name: "Nikita Gautam", company: "JSW", package: "10 LPA", image: "/acchievers/Nikita_Gautam.png" },
+];
+
+// Alumni Testimonials data
+const ALUMNI_TESTIMONIALS = [
+  {
+    name: "Shifa Rifat",
+    designation: "Associate Software Engineer",
+    company: "ServiceNow",
+    batch: "IT 2024",
+    quote: "From the quiet focus of lab benches to the energy of late-night project sprints, every experience at KIET has shaped not just my career—but my character. I am sincerely grateful to the Information Technology department—our HODs, faculty, and every mentor—whose unwavering support, insight, and belief in me made this journey possible. Beyond technical skills, I leave with a sense of purpose, resilience, and memories that will echo far beyond these walls.",
+    image: "/acchievers/Shifa_Rifat.png",
+  },
+  {
+    name: "Unnati Bhardwaj",
+    designation: "Product Consultant",
+    company: "Smarter.Codes",
+    batch: "IT 2024",
+    quote: "Supportive mentors and a culture of innovation in the IT Department gave me the space to experiment, build, and grow. Some of those experiments turned into proud moments on national and global platforms. KIET enriched my journey with experiences that reached far beyond the classroom.",
+    image: "/acchievers/Nikita_Gautam.png",
+  },
+  {
+    name: "Isha Rastogi",
+    designation: "Software Engineer",
+    company: "Microsoft",
+    batch: "IT 2024",
+    quote: "I feel proud and grateful for the journey at KIET that shaped my professional foundation. The academic environment, dedicated faculty, and constant support from the Information Technology department played a vital role in preparing me for the industry. Now, working at Microsoft, I carry with me not just technical skills but also the confidence, discipline, and values instilled during my time at KIET. I am thankful for all the opportunities and encouragement that helped turn my aspirations into reality.",
+    image: "/acchievers/isha_rastogi.png",
+  },
+  {
+    name: "Chinmoy Chakraborty",
+    designation: "SDE",
+    company: "Zomato",
+    batch: "IT 2023",
+    quote: "I've been fortunate to be a part of the IT department at KIET Group of Institutions. The department has helped me establish a strong academic foundation, as well as foster personal growth. The faculty has always been supportive and has guided us towards excellence. The Department of IT has also provided students with a rich environment to explore industry technology through various student clubs. Above all, the department has ensured an all-round holistic development of students, and I am grateful to be a part of such a vibrant ecosystem.",
+    image: "/acchievers/Chinmoy_Chakraborty.png",
+  },
+];
 
 const recruiterLogos = Array.from({ length: 49 }, (_, idx) => `/assets/images/kiet/placement/recruiters/${idx + 1}.${[3, 5, 10, 14, 15, 17, 20, 27, 32, 37, 45, 48, 49].includes(idx + 1) ? "jpg" : "png"}`);
 const recruitersLoop = [...recruiterLogos, ...recruiterLogos];
@@ -47,15 +107,11 @@ function useCountUp(target, duration = 1500) {
 export default function ProgramDetails({ faculty, facultyPageHref }) {
   const [openSection, setOpenSection] = useState("vision");
   const [deanExpanded, setDeanExpanded] = useState(false);
-  const [selectedTestimonial, setSelectedTestimonial] = useState(null);
-  const testimonialsRef = useRef(null);
-  const publicationsRef = useRef(null);
-  const [testimonialPage, setTestimonialPage] = useState(0);
-  const [testimonialPageCount, setTestimonialPageCount] = useState(1);
-  const [publicationPage, setPublicationPage] = useState(0);
-  const [publicationPageCount, setPublicationPageCount] = useState(1);
-  const testimonialAutoplayRef = useRef(null);
-  const testimonialHoveredRef = useRef(false);
+  const achieversRef = useRef(null);
+  const [achieverPage, setAchieverPage] = useState(0);
+  const [achieverPageCount, setAchieverPageCount] = useState(1);
+  const achieverAutoplayRef = useRef(null);
+  const achieverHoveredRef = useRef(false);
 
   const getCarouselMetrics = (container, itemSelector, totalItems) => {
     if (!container) {
@@ -77,111 +133,71 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
     return { cardsPerView, stepSize: cardStride * cardsPerView, pageCount };
   };
 
-  const syncTestimonialPagination = () => {
-    const container = testimonialsRef.current;
+  const syncAchieverPagination = () => {
+    const container = achieversRef.current;
     if (!container) {
       return;
     }
 
-    const { pageCount, stepSize } = getCarouselMetrics(container, ".testimonial-card-wrapper", TESTIMONIALS.length);
-    setTestimonialPageCount(pageCount);
+    const { pageCount, stepSize } = getCarouselMetrics(container, ".achiever-card-wrapper", ACHIEVERS.length);
+    setAchieverPageCount(pageCount);
 
     if (stepSize <= 0) {
-      setTestimonialPage(0);
+      setAchieverPage(0);
       return;
     }
 
     const currentPage = Math.min(pageCount - 1, Math.max(0, Math.round(container.scrollLeft / stepSize)));
-    setTestimonialPage(currentPage);
+    setAchieverPage(currentPage);
   };
 
-  const scrollToTestimonialPage = useCallback((requestedPage) => {
-    const container = testimonialsRef.current;
+  const scrollToAchieverPage = useCallback((requestedPage) => {
+    const container = achieversRef.current;
     if (!container) {
       return;
     }
 
-    const { pageCount, stepSize } = getCarouselMetrics(container, ".testimonial-card-wrapper", TESTIMONIALS.length);
+    const { pageCount, stepSize } = getCarouselMetrics(container, ".achiever-card-wrapper", ACHIEVERS.length);
     const boundedPage = Math.min(pageCount - 1, Math.max(0, requestedPage));
-    setTestimonialPageCount(pageCount);
-    setTestimonialPage(boundedPage);
+    setAchieverPageCount(pageCount);
+    setAchieverPage(boundedPage);
 
     if (stepSize > 0) {
       container.scrollTo({ left: boundedPage * stepSize, behavior: "smooth" });
     }
   }, []);
 
-  const syncPublicationPagination = () => {
-    const container = publicationsRef.current;
-    if (!container) {
-      return;
-    }
-
-    const { pageCount, stepSize } = getCarouselMetrics(container, ".publication-card-wrapper", PUBLICATIONS.length);
-    setPublicationPageCount(pageCount);
-
-    if (stepSize <= 0) {
-      setPublicationPage(0);
-      return;
-    }
-
-    const currentPage = Math.min(pageCount - 1, Math.max(0, Math.round(container.scrollLeft / stepSize)));
-    setPublicationPage(currentPage);
-  };
-
-  const scrollToPublicationPage = (requestedPage) => {
-    const container = publicationsRef.current;
-    if (!container) {
-      return;
-    }
-
-    const { pageCount, stepSize } = getCarouselMetrics(container, ".publication-card-wrapper", PUBLICATIONS.length);
-    const boundedPage = Math.min(pageCount - 1, Math.max(0, requestedPage));
-    setPublicationPageCount(pageCount);
-    setPublicationPage(boundedPage);
-
-    if (stepSize > 0) {
-      container.scrollTo({ left: boundedPage * stepSize, behavior: "smooth" });
-    }
-  };
-
   useEffect(() => {
-    const testimonialsContainer = testimonialsRef.current;
-    const publicationsContainer = publicationsRef.current;
-    if (!testimonialsContainer && !publicationsContainer) {
+    const achieversContainer = achieversRef.current;
+    if (!achieversContainer) {
       return;
     }
 
-    syncTestimonialPagination();
-    syncPublicationPagination();
+    syncAchieverPagination();
 
-    const onTestimonialScroll = () => syncTestimonialPagination();
-    const onPublicationsScroll = () => syncPublicationPagination();
+    const onAchieverScroll = () => syncAchieverPagination();
     const onResize = () => {
-      syncTestimonialPagination();
-      syncPublicationPagination();
+      syncAchieverPagination();
     };
 
-    testimonialsContainer?.addEventListener("scroll", onTestimonialScroll, { passive: true });
-    publicationsContainer?.addEventListener("scroll", onPublicationsScroll, { passive: true });
+    achieversContainer?.addEventListener("scroll", onAchieverScroll, { passive: true });
     window.addEventListener("resize", onResize);
 
     return () => {
-      testimonialsContainer?.removeEventListener("scroll", onTestimonialScroll);
-      publicationsContainer?.removeEventListener("scroll", onPublicationsScroll);
+      achieversContainer?.removeEventListener("scroll", onAchieverScroll);
       window.removeEventListener("resize", onResize);
     };
   }, []);
 
-  // Testimonial auto-play
+  // Achiever auto-play
   useEffect(() => {
     const startAutoplay = () => {
-      testimonialAutoplayRef.current = setInterval(() => {
-        if (testimonialHoveredRef.current) return;
-        setTestimonialPage((prev) => {
-          const container = testimonialsRef.current;
+      achieverAutoplayRef.current = setInterval(() => {
+        if (achieverHoveredRef.current) return;
+        setAchieverPage((prev) => {
+          const container = achieversRef.current;
           if (!container) return prev;
-          const { pageCount, stepSize } = getCarouselMetrics(container, ".testimonial-card-wrapper", TESTIMONIALS.length);
+          const { pageCount, stepSize } = getCarouselMetrics(container, ".achiever-card-wrapper", ACHIEVERS.length);
           const nextPage = prev >= pageCount - 1 ? 0 : prev + 1;
           if (stepSize > 0) {
             container.scrollTo({ left: nextPage * stepSize, behavior: "smooth" });
@@ -192,19 +208,19 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
     };
 
     startAutoplay();
-    return () => clearInterval(testimonialAutoplayRef.current);
+    return () => clearInterval(achieverAutoplayRef.current);
   }, []);
 
-  const onTestimonialMouseEnter = () => {
-    testimonialHoveredRef.current = true;
+  const onAchieverMouseEnter = () => {
+    achieverHoveredRef.current = true;
   };
-  const onTestimonialMouseLeave = () => {
-    testimonialHoveredRef.current = false;
+  const onAchieverMouseLeave = () => {
+    achieverHoveredRef.current = false;
   };
 
-  const placementHighest = useCountUp(60);
-  const placementTop10 = useCountUp(17);
-  const placementAverage = useCountUp(6.5);
+  const placementHighest = useCountUp(1.78);
+  const placementTop10 = useCountUp(19.6);
+  const placementAverage = useCountUp(8.5);
   const placementCompanies = useCountUp(300);
 
   const researchPubs = useCountUp(123);
@@ -231,7 +247,7 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                       Department of <span style={{ color: "#f26520" }}>Information Technology</span>
                     </h2>
                     <p className="mb-4 fs-3" style={{ lineHeight: 1.8, color: "rgba(255,255,255,0.8)", textAlign: "justify" }}>
-                      The Department of Information Technology at KIET is committed to shaping future-ready professionals through an industry-aligned curriculum, cutting-edge research, and hands-on experience in emerging technologies. With a focus on AI, data science, cloud computing, cybersecurity, and IoT, students graduate equipped with the skills, adaptability, and problem-solving mindset to lead in a rapidly evolving digital world.
+                      The Information Technology department builds future-ready professionals through strong computing fundamentals and advanced domains like Quantum Computing, AWS Cloud, AI, ML, and Data Engineering. With an industry-aligned curriculum, experiential learning, and globally recognized certifications, students gain the skills and innovation mindset to excel in today's digital landscape.
                     </p>
                     <div className="d-flex flex-wrap gap-3">
                       <a
@@ -251,10 +267,10 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                   <div className="d-none d-lg-block p-4 p-lg-5">
                     <div className="row g-3">
                       {[
-                        ["95%", "Placements in 2025", "Leading Tech Companies"],
-                        ["650+", "Globally Certified", "AI \u2022 ML \u2022 Cloud"],
-                        ["240+300", "Annual Intake", "CSE (AI) + CSE (AI&ML)"],
-                        ["\u20B97 Cr", "Alumni Funding", "Startup : 2025 Batch"],
+                        ["1.78 Cr", "Highest Package", "2026 Batch"],
+                        ["89%", "Placements", "2021-2025 Batches"],
+                        ["180", "Annual Intake", "IT Department"],
+                        ["370+", "Globally Certified", "Students"],
                       ].map((item) => (
                         <div key={item[0]} className="col-6">
                           <div className="text-center p-3 rounded-3" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "12px" }}>
@@ -270,10 +286,10 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                   <div className="d-lg-none px-4 pb-4">
                     <div className="row g-2">
                       {[
-                        ["95%", "Placements in 2025"],
-                        ["650+", "Globally Certified"],
-                        ["240+300", "Annual Intake"],
-                        ["\u20B97 Cr", "Alumni Funding"],
+                        ["1.78 Cr", "Highest Package"],
+                        ["89%", "Placements"],
+                        ["180", "Annual Intake"],
+                        ["370+", "Certified Students"],
                       ].map((item) => (
                         <div key={item[0]} className="col-6">
                           <div className="text-center py-3 rounded-3" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
@@ -299,10 +315,12 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
             </h2>
             <div className="row g-4">
               {[
-                ["/cse-ai-assets/images/key3.jpeg", "Introduction of Advanced AI-Centric Core Courses", "Our curriculum is systematically structured to progress from foundational sciences and programming to advanced domains such as AI, ML, DL, Gen AI, Cloud Computing, Computer Vision, Data Engineering, Cyber Security, and Full-Stack Development delivered by a highly qualified academic team of faculty members."],
-                ["/cse-ai-assets/images/Experimental-Learning.JPG", "Strong Focus on Experiential & AI-Driven Learning", "Our department adopts a future-focused learning approach through AI-driven assessments, Project-Based Learning (PBL), social internships, and industry-oriented capstone projects. Students gain hands-on experience with CodeTantra, AWS Academy, HackerRank, Kaggle, WeXL, and Infosys Springboard."],
-                ["/cse-ai-assets/images/key1.jpeg", "Industry-Aligned Specializations with Global Certifications", "Our Department blends strong academic foundations with industry-ready skills through professional electives aligned with globally recognized certifications, offering specialization tracks in AI & ML, Cloud Operations & Security, and Data Engineering & Cloud Analytics."],
-                ["/cse-ai-assets/images/key4.jpeg", "Structured Placement Preparation Ecosystem", "The department provides focused preparation through DSA training, coding contests on iamneo/CodeTantra/HackerRank/CodeChef, AMCAT assessments, resume and LinkedIn optimization support, technical bootcamps, and personalized mentoring."],
+                ["/department_highlights/Emerging_it_technologies.png", "Introduction to Emerging IT Technologies", "Our curriculum is strategically designed to build strong foundations in computing and programming while introducing students to emerging technologies such as Quantum Computing, AWS Cloud, Artificial Intelligence, Machine Learning, Deep Learning, Cybersecurity, Data Engineering, Computer Vision, and Full-Stack Development. Delivered by a highly qualified faculty team from premier institutions and reputed universities, the program ensures a perfect blend of academic rigor and industry-aligned expertise."],
+                ["/department_highlights/Experiential_Learning_with_an_AI-Driven_Approach.png", "Experiential Learning with an AI-Driven Approach", "A future-focused, experiential learning ecosystem integrating AI-driven assessments, cloud-based labs, and industry-oriented projects. Students gain hands-on expertise in Quantum Computing, AWS Cloud, AI, and Cybersecurity through platforms like AWS Academy, Kaggle, and HackerRank—ensuring strong practical skills, innovation, and industry readiness."],
+                ["/department_highlights/Industry-Centric_Tracks.png", "Industry-Centric Tracks with Globally Recognized Certifications", "Our Information Technology program integrates strong computing foundations with industry-centric specialization tracks in Quantum Computing, AWS Cloud, AI & ML, and Data Engineering, aligned with globally recognized certifications. Enriched through expert-led sessions and hands-on learning, it prepares students to be certification-ready, technically proficient, and highly employable in the evolving digital and quantum-driven landscape."],
+                ["/department_highlights/Comprehensive_Placement_Preparation_Platform.png", "Comprehensive Placement Preparation Platform", "The department delivers a structured placement preparation framework combining DSA mastery, competitive coding, and continuous assessments through platforms like CodeTantra, HackerRank, CodeChef, and IAMNeo. With added focus on cloud and emerging technologies, students receive certification support, career profiling, technical bootcamps, and expert mentoring—ensuring holistic, industry-ready placement outcomes."],
+                ["/department_highlights/Future_Technology_Quantum_Computation.png", "Future Technology — Quantum Computation", "The department pioneers next-generation learning by integrating Quantum Computing with core Information Technology. Through hands-on experience with IBM Qiskit, quantum algorithms, and hybrid quantum-classical systems, students explore the future of computation. This forward-looking approach empowers learners to innovate at the intersection of IT, AI, and quantum intelligence, preparing them for disruptive technological advancements."],
+                ["/department_highlights/Hands-on_Learning_and_Innovative_Ecosystem.png", "Hands-on Learning and Innovative Ecosystem", "The department fosters an experiential and innovation-driven learning environment where students engage in real-world projects, cloud-based labs, and emerging technologies like Quantum Computing, AWS, and AI. Through hackathons, research initiatives, and industry collaborations, students develop practical skills, creativity, and problem-solving abilities—preparing them to innovate and excel in a rapidly evolving technological landscape."],
               ].map((item) => (
                 <div key={item[1]} className="col-12 col-lg-6">
                   <div className="d-none d-md-flex bg-white rounded-3 overflow-hidden h-100 highlight-card" style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)", transition: "transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease", cursor: "pointer", borderLeft: "4px solid transparent" }}>
@@ -339,9 +357,9 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
             <p className="fs-3 text-muted mb-4">Our students are placed across top-tier companies with exceptional packages</p>
             <div className="row g-4">
               {[
-                [placementHighest, "60", " LPA", "Highest Package", "orange", "Highest offer in the department"],
-                [placementTop10, "17", " LPA", "Top 10% Placement", "navy", "Average of top 10% placed students"],
-                [placementAverage, "6.5", " LPA", "Average Package", "orange", "Overall average placement package"],
+                [placementHighest, "1.78", " Cr", "Highest Package", "orange", "PROTON AG, Switzerland"],
+                [placementTop10, "19.6", " LPA", "Top 10% Average", "navy", "Average of top 10% placed students"],
+                [placementAverage, "8.5", " LPA", "Average Package", "orange", "Overall average placement package"],
                 [placementCompanies, "300", "+", "Total Companies", "navy", "Recruiting partners across industries"],
               ].map((item) => (
                 <div key={item[3]} className="col-6 col-lg-3">
@@ -391,6 +409,24 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
             <h2 className="fw-bold mb-4" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", color: "#002855", borderBottom: "3px solid #f26520", paddingBottom: "10px", display: "inline-block" }}>
               Centre of Excellence
             </h2>
+
+            {/* Quantum Computing Lab */}
+            <div className="rounded-4 overflow-hidden mb-4" style={{ background: "linear-gradient(135deg, #f0f4f8 0%, #fff 50%, #fff8f5 100%)", border: "2px solid rgba(0, 40, 85, 0.12)" }}>
+              <div style={{ height: "5px", background: "linear-gradient(90deg, #002855, #f26520)" }} />
+              <div className="p-4 p-md-5">
+                <div className="d-inline-block mb-3 px-3 py-1 rounded-pill" style={{ backgroundColor: "rgba(242, 101, 32, 0.08)", border: "1px solid rgba(242, 101, 32, 0.15)" }}>
+                  <span className="fw-semibold fs-5" style={{ color: "#f26520" }}>Next-Gen Computing</span>
+                </div>
+                <h3 className="fw-bold mb-3" style={{ fontSize: "clamp(1.5rem, 3vw, 2.2rem)", color: "#002855", lineHeight: 1.3 }}>
+                  Quantum Computing <span style={{ color: "#f26520" }}>Laboratory</span>
+                </h3>
+                <p className="fs-3 mb-0" style={{ lineHeight: 1.8, color: "#444", textAlign: "justify", maxWidth: "900px" }}>
+                  The Quantum Computing Laboratory at KIET&apos;s IT Department is a pioneering facility dedicated to exploring the frontiers of quantum technology. Equipped with access to IBM Qiskit and quantum simulation platforms, students gain hands-on experience with quantum algorithms, qubit manipulation, and hybrid quantum-classical computing. This state-of-the-art lab prepares students to lead innovations at the intersection of quantum mechanics and information technology, positioning them at the forefront of the next computing revolution.
+                </p>
+              </div>
+            </div>
+
+            {/* Tech Mahindra Centre of Excellence */}
             <div className="rounded-4 overflow-hidden" style={{ background: "linear-gradient(135deg, #fff8f5 0%, #fff 50%, #f0f4f8 100%)", border: "2px solid rgba(242, 101, 32, 0.12)" }}>
               <div style={{ height: "5px", background: "linear-gradient(90deg, #f26520, #002855)" }} />
               <div className="p-4 p-md-5">
@@ -523,42 +559,30 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
         </section>
       </div>
 
-      <div id="testimonials">
+      <div id="achievers">
         <section className="mx-2 mx-md-4 mx-lg-5 px-0 px-md-3 px-lg-5" style={{ padding: "0 0 5rem 0", position: "relative" }}>
           <div className="p-3 p-md-4 p-lg-5">
             <div className="mb-4">
               <h2 className="fw-bold mb-3" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", color: "#002855", borderBottom: "3px solid #f26520", paddingBottom: "10px", display: "inline-block" }}>
-                Voices of Excellence
+                Our Achievers
               </h2>
             </div>
             <div
-              ref={testimonialsRef}
-              className="d-flex overflow-auto gap-4 testimonials-scroll-container"
+              ref={achieversRef}
+              className="d-flex overflow-auto gap-3 achievers-scroll-container"
               style={{ scrollBehavior: "smooth", scrollSnapType: "x mandatory" }}
-              onMouseEnter={onTestimonialMouseEnter}
-              onMouseLeave={onTestimonialMouseLeave}
+              onMouseEnter={onAchieverMouseEnter}
+              onMouseLeave={onAchieverMouseLeave}
             >
-              {TESTIMONIALS.map((item) => (
-                <div key={item.name} className="testimonial-card-wrapper" style={{ flex: "0 0 calc(33.333% - 1rem)", scrollSnapAlign: "start" }}>
-                  <div style={{ backgroundColor: "white", borderRadius: "16px", padding: "1.5rem", height: "100%", boxShadow: "0 4px 6px rgba(0, 0, 0, 0.07)", transition: "transform 0.3s ease, box-shadow 0.3s ease", cursor: "default", display: "flex", flexDirection: "column" }}>
-                    <div className="d-flex justify-content-between align-items-center mb-3 pb-2" style={{ borderBottom: "2px solid #f3f4f6" }}>
-                      <p className="fs-2 fw-bold mb-0" style={{ color: "#f26520" }}>{item.company}</p>
-                      <span className="fs-5 fw-semibold text-secondary" style={{ backgroundColor: "#f3f4f6", padding: "0.3rem 0.8rem", borderRadius: "12px" }}>{item.year}</span>
+              {ACHIEVERS.map((item) => (
+                <div key={item.name} className="achiever-card-wrapper" style={{ flex: "0 0 180px", scrollSnapAlign: "start" }}>
+                  <div className="achiever-card" style={{ backgroundColor: "white", borderRadius: "16px", padding: "1rem", height: "100%", boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)", transition: "transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease", cursor: "default", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
+                    <div style={{ width: "100px", height: "100px", borderRadius: "50%", overflow: "hidden", position: "relative", backgroundColor: "#e5e7eb", border: "3px solid #f26520", marginBottom: "0.75rem" }}>
+                      <img alt={item.name} src={item.image} style={{ position: "absolute", height: "100%", width: "100%", left: 0, top: 0, objectFit: "cover", objectPosition: "top" }} />
                     </div>
-                    <div style={{ display: "flex", justifyContent: "center", marginBottom: "0.75rem" }}>
-                      <div style={{ width: "90px", height: "90px", borderRadius: "50%", overflow: "hidden", position: "relative", backgroundColor: "#e5e7eb", border: "3px solid #f26520" }}>
-                        <img alt={item.name} src={item.image} style={{ position: "absolute", height: "100%", width: "100%", left: 0, top: 0, right: 0, bottom: 0, objectFit: "cover", objectPosition: "top", color: "transparent" }} />
-                      </div>
-                    </div>
-                    <h4 className="fs-2 fw-bold text-dark text-center mb-1">{item.name}</h4>
-                    <p className="fs-2 fw-bold text-center mb-3" style={{ color: "#f26520" }}>{item.packageValue}</p>
-                    <div className="flex-grow-1 mb-3">
-                      <div className="d-flex align-items-start gap-2">
-                        <span className="fs-1 fw-bold" style={{ color: "#f26520", lineHeight: 1 }}>❝</span>
-                        <p className="mb-0 fs-4 fst-italic text-secondary" style={{ textAlign: "justify", lineHeight: 1.6 }}>{item.quote}</p>
-                      </div>
-                    </div>
-                    <button className="btn fs-5 p-2 fw-semibold mt-auto text-start border-0 bg-transparent" style={{ color: "#f26520" }} onClick={() => setSelectedTestimonial(item)}>Read More →</button>
+                    <h4 className="fs-4 fw-bold text-dark mb-1" style={{ lineHeight: 1.2 }}>{item.name}</h4>
+                    <p className="fs-5 fw-semibold mb-1" style={{ color: "#f26520" }}>{item.package}</p>
+                    <p className="fs-5 text-muted mb-0">{item.company}</p>
                   </div>
                 </div>
               ))}
@@ -568,30 +592,30 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                 <button
                   className="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center p-0"
                   style={{ width: "32px", height: "32px", border: "1px solid #f26520", backgroundColor: "transparent", color: "#f26520", transition: "all 0.3s ease" }}
-                  aria-label="Previous testimonial"
-                  onClick={() => scrollToTestimonialPage(testimonialPage - 1)}
-                  disabled={testimonialPage === 0}
+                  aria-label="Previous achiever"
+                  onClick={() => scrollToAchieverPage(achieverPage - 1)}
+                  disabled={achieverPage === 0}
                 >
                   <span style={{ fontSize: "1.2rem", lineHeight: 0, paddingBottom: "4px" }}>‹</span>
                 </button>
                 <button
                   className="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center p-0"
                   style={{ width: "32px", height: "32px", border: "1px solid #f26520", backgroundColor: "transparent", color: "#f26520", transition: "all 0.3s ease" }}
-                  aria-label="Next testimonial"
-                  onClick={() => scrollToTestimonialPage(testimonialPage + 1)}
-                  disabled={testimonialPage >= testimonialPageCount - 1}
+                  aria-label="Next achiever"
+                  onClick={() => scrollToAchieverPage(achieverPage + 1)}
+                  disabled={achieverPage >= achieverPageCount - 1}
                 >
                   <span style={{ fontSize: "1.2rem", lineHeight: 0, paddingBottom: "4px" }}>›</span>
                 </button>
               </div>
               <div className="d-flex gap-2">
-                {Array.from({ length: testimonialPageCount }).map((_, index) => (
+                {Array.from({ length: achieverPageCount }).map((_, index) => (
                   <button
-                    key={`testimonial-dot-${index}`}
+                    key={`achiever-dot-${index}`}
                     type="button"
-                    aria-label={`Go to testimonial page ${index + 1}`}
-                    onClick={() => scrollToTestimonialPage(index)}
-                    style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: testimonialPage === index ? "#ff5722" : "transparent", border: testimonialPage === index ? "1px solid #ff5722" : "1px solid #ced4da", cursor: "pointer", padding: 0 }}
+                    aria-label={`Go to achiever page ${index + 1}`}
+                    onClick={() => scrollToAchieverPage(index)}
+                    style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: achieverPage === index ? "#ff5722" : "transparent", border: achieverPage === index ? "1px solid #ff5722" : "1px solid #ced4da", cursor: "pointer", padding: 0 }}
                   />
                 ))}
               </div>
@@ -600,76 +624,10 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
         </section>
       </div>
 
-      <div id="publications">
+      <div id="research">
         <section className="mx-2 mx-md-4 mx-lg-5 px-0 px-md-3 px-lg-5 py-3 py-md-4">
           <div className="p-3 p-md-4 p-lg-5">
-            <h3 className="fw-bold mb-4" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", color: "#002855", borderBottom: "3px solid #f26520", paddingBottom: "10px", display: "inline-block" }}>
-              Recent Publications
-            </h3>
-
-            <div className="mb-5 position-relative">
-              <div ref={publicationsRef} className="d-flex gap-4 overflow-auto pb-4 px-1 scrollbar-hide publications-scroll-container" style={{ scrollSnapType: "x mandatory", scrollBehavior: "smooth" }}>
-                {PUBLICATIONS.map((paper) => (
-                  <div key={paper.title} className="publication-card-wrapper flex-shrink-0" style={{ width: "260px", scrollSnapAlign: "start", perspective: "1000px" }}>
-                    <div className="publication-flip-inner" style={{ position: "relative", width: "100%", minHeight: "240px", transition: "transform 0.6s ease", transformStyle: "preserve-3d" }}>
-                      {/* Front */}
-                      <div className="card border-0 shadow-sm p-4 d-flex flex-column justify-content-between publication-flip-front" style={{ position: "absolute", width: "100%", height: "100%", backfaceVisibility: "hidden", borderRadius: "12px", backgroundColor: "#fff", top: 0, left: 0 }}>
-                        <div>
-                          <h4 className="fw-bold mb-3 fs-2" style={{ color: "#f26520", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden", lineHeight: 1.4 }}>{paper.title}</h4>
-                          <p className="text-muted small mb-3 fs-4">{paper.author}</p>
-                        </div>
-                        <p className="text-center mb-0 fs-5 text-secondary fst-italic d-none d-md-block">Hover to see journal</p>
-                        <a href={paper.link} target="_blank" rel="noreferrer" className="btn btn-sm w-100 text-white fw-semibold fs-4 d-md-none" style={{ backgroundColor: "#00304c", borderRadius: "6px", padding: "0.5rem" }}>
-                          {paper.journal}
-                        </a>
-                      </div>
-                      {/* Back */}
-                      <div className="card border-0 shadow-sm p-4 d-flex flex-column justify-content-center align-items-center publication-flip-back" style={{ position: "absolute", width: "100%", height: "100%", backfaceVisibility: "hidden", borderRadius: "12px", backgroundColor: "#00304c", transform: "rotateY(180deg)", top: 0, left: 0 }}>
-                        <p className="fw-bold fs-1 text-white text-center mb-4" style={{ lineHeight: 1.3 }}>{paper.journal}</p>
-                        <a href={paper.link} target="_blank" rel="noreferrer" className="btn w-100 text-white fw-semibold fs-4" style={{ backgroundColor: "#f26520", borderRadius: "6px", padding: "0.5rem" }}>
-                          View Paper
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="d-flex justify-content-between align-items-center mt-3">
-                <div className="d-flex gap-2">
-                  <button
-                    className="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center p-0"
-                    style={{ width: "32px", height: "32px", border: "1px solid #f26520", backgroundColor: "transparent", color: "#f26520", transition: "all 0.3s ease" }}
-                    aria-label="Previous publications"
-                    onClick={() => scrollToPublicationPage(publicationPage - 1)}
-                    disabled={publicationPage === 0}
-                  >
-                    <span style={{ fontSize: "1.2rem", lineHeight: 0, paddingBottom: "4px" }}>‹</span>
-                  </button>
-                  <button
-                    className="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center p-0"
-                    style={{ width: "32px", height: "32px", border: "1px solid #f26520", backgroundColor: "transparent", color: "#f26520", transition: "all 0.3s ease" }}
-                    aria-label="Next publications"
-                    onClick={() => scrollToPublicationPage(publicationPage + 1)}
-                    disabled={publicationPage >= publicationPageCount - 1}
-                  >
-                    <span style={{ fontSize: "1.2rem", lineHeight: 0, paddingBottom: "4px" }}>›</span>
-                  </button>
-                </div>
-                <div className="d-flex gap-2">
-                  {Array.from({ length: publicationPageCount }).map((_, index) => (
-                    <button
-                      key={`publication-dot-${index}`}
-                      type="button"
-                      aria-label={`Go to publications page ${index + 1}`}
-                      onClick={() => scrollToPublicationPage(index)}
-                      style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: publicationPage === index ? "#f26520" : "transparent", border: publicationPage === index ? "1px solid #f26520" : "1px solid #ced4da", cursor: "pointer", padding: 0 }}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <h2 className="fw-bold mt-5" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", color: "#002855", borderBottom: "3px solid #f26520", paddingBottom: "10px", display: "inline-block" }}>
+            <h2 className="fw-bold mb-4" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", color: "#002855", borderBottom: "3px solid #f26520", paddingBottom: "10px", display: "inline-block" }}>
               Research Statistics
             </h2>
 
@@ -695,6 +653,33 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                   </div>
                 ))}
               </div>
+            </div>
+
+            {/* Alumni Testimonials */}
+            <h2 className="fw-bold mt-5 mb-4" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", color: "#002855", borderBottom: "3px solid #f26520", paddingBottom: "10px", display: "inline-block" }}>
+              Alumni Testimonials
+            </h2>
+            <div className="row g-4">
+              {ALUMNI_TESTIMONIALS.map((alumni) => (
+                <div key={alumni.name} className="col-12 col-md-6">
+                  <div className="h-100 p-4 rounded-4 alumni-testimonial-card" style={{ backgroundColor: "#fff", boxShadow: "0 4px 16px rgba(0, 0, 0, 0.06)", border: "1px solid #e9ecef", borderLeft: "4px solid #f26520", transition: "all 0.4s cubic-bezier(0.22, 1, 0.36, 1)", cursor: "pointer" }}>
+                    <div className="d-flex gap-3 align-items-start mb-3">
+                      <div style={{ width: "70px", height: "70px", borderRadius: "50%", overflow: "hidden", flexShrink: 0, border: "2px solid #f26520" }}>
+                        <img src={alumni.image} alt={alumni.name} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }} />
+                      </div>
+                      <div>
+                        <h4 className="fw-bold mb-1 fs-3" style={{ color: "#002855" }}>{alumni.name}</h4>
+                        <p className="mb-0 fs-5" style={{ color: "#f26520" }}>{alumni.designation} at {alumni.company}</p>
+                        <p className="mb-0 fs-6 text-muted">{alumni.batch}</p>
+                      </div>
+                    </div>
+                    <div className="d-flex align-items-start gap-2">
+                      <span className="fw-bold" style={{ color: "#f26520", fontSize: "1.5rem", lineHeight: 1 }}>&ldquo;</span>
+                      <p className="mb-0 fs-4 fst-italic" style={{ color: "#555", lineHeight: 1.7, textAlign: "justify" }}>{alumni.quote}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -801,15 +786,20 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
 
           <style>{`
             @media (min-width: 769px) {
-              .testimonials-scroll-container { scrollbar-width: none; -ms-overflow-style: none; }
-              .testimonials-scroll-container::-webkit-scrollbar { display: none; }
-              .testimonial-card-wrapper { flex-shrink: 0; width: calc((100% - 3.75rem) / 4); min-width: 280px; }
+              .achievers-scroll-container { scrollbar-width: none; -ms-overflow-style: none; }
+              .achievers-scroll-container::-webkit-scrollbar { display: none; }
             }
 
             @media (max-width: 768px) {
-              .testimonials-scroll-container { scrollbar-width: none; -ms-overflow-style: none; }
-              .testimonials-scroll-container::-webkit-scrollbar { display: none; }
-              .testimonial-card-wrapper { flex-shrink: 0 !important; width: 80vw !important; flex: none !important; scroll-snap-align: center; }
+              .achievers-scroll-container { scrollbar-width: none; -ms-overflow-style: none; }
+              .achievers-scroll-container::-webkit-scrollbar { display: none; }
+              .achiever-card-wrapper { flex: 0 0 140px !important; }
+            }
+
+            /* Achiever card hover */
+            .achiever-card:hover {
+              transform: translateY(-8px) scale(1.03);
+              box-shadow: 0 16px 32px rgba(242, 101, 32, 0.15) !important;
             }
 
             /* Faculty auto-scroll marquee */
@@ -819,6 +809,14 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
               transform: translateY(-6px);
               box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14) !important;
               border-left-color: #f26520 !important;
+            }
+
+            /* Alumni Testimonials hover pop-out */
+            .alumni-testimonial-card:hover {
+              transform: translateY(-12px) scale(1.03);
+              box-shadow: 0 24px 48px rgba(242, 101, 32, 0.2) !important;
+              border-left-width: 6px;
+              z-index: 10;
             }
 
             /* Clubs overlapping hover */
@@ -882,16 +880,6 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
             }
             .faculty-marquee-wrapper:hover .faculty-marquee-track {
               animation-play-state: paused;
-            }
-
-            /* Testimonial hover pop-out */
-            .testimonial-card-wrapper > div {
-              transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1) !important;
-            }
-            .testimonial-card-wrapper:hover > div {
-              transform: translateY(-14px) scale(1.04);
-              box-shadow: 0 28px 56px rgba(242, 101, 32, 0.22), 0 0 0 2px rgba(242, 101, 32, 0.15) !important;
-              z-index: 10;
             }
 
             /* Placement stat cards */
@@ -973,64 +961,9 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
               background: #fff;
               box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
             }
-
-            /* Publications 3D card flip */
-            @media (min-width: 769px) {
-              .publication-card-wrapper:hover .publication-flip-inner {
-                transform: rotateY(180deg);
-              }
-            }
-            @media (max-width: 768px) {
-              .publication-flip-inner {
-                transform: none !important;
-              }
-              .publication-flip-front {
-                position: relative !important;
-              }
-              .publication-flip-back {
-                display: none !important;
-              }
-              .publication-card-wrapper {
-                perspective: none !important;
-              }
-            }
           `}</style>
         </section>
       </div>
-
-      {selectedTestimonial && (
-        <div
-          style={{ position: "fixed", inset: 0, zIndex: 1050, display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "rgba(0,0,0,0.5)", padding: "1rem" }}
-          onClick={() => setSelectedTestimonial(null)}
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{ backgroundColor: "#fff", borderRadius: "16px", maxWidth: "700px", width: "100%", maxHeight: "90vh", overflow: "auto", position: "relative" }}
-          >
-            <button
-              onClick={() => setSelectedTestimonial(null)}
-              style={{ position: "absolute", top: "12px", right: "16px", background: "none", border: "none", fontSize: "1.5rem", cursor: "pointer", color: "#666", zIndex: 1 }}
-              aria-label="Close"
-            >
-              &times;
-            </button>
-            <div className="d-flex flex-column flex-md-row p-4 gap-4">
-              <div className="text-center flex-shrink-0">
-                <div style={{ width: "120px", height: "120px", borderRadius: "50%", overflow: "hidden", margin: "0 auto", border: "3px solid #f26520", position: "relative", backgroundColor: "#e5e7eb" }}>
-                  <img alt={selectedTestimonial.name} src={selectedTestimonial.image} style={{ position: "absolute", height: "100%", width: "100%", left: 0, top: 0, objectFit: "cover", objectPosition: "top" }} />
-                </div>
-                <h4 className="fw-bold mt-3 mb-1" style={{ color: "#002855" }}>{selectedTestimonial.name}</h4>
-                <p className="fw-bold mb-1" style={{ color: "#f26520" }}>{selectedTestimonial.packageValue}</p>
-                <p className="text-muted small mb-0">{selectedTestimonial.company} | {selectedTestimonial.year}</p>
-              </div>
-              <div className="flex-grow-1">
-                <span className="fw-bold" style={{ color: "#f26520", fontSize: "2.5rem", lineHeight: 1 }}>&ldquo;</span>
-                <p className="fs-4 fst-italic text-secondary" style={{ textAlign: "justify", lineHeight: 1.7 }}>{selectedTestimonial.quote}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 }
