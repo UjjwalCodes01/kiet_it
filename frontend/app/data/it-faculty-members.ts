@@ -6,10 +6,10 @@ export type FacultyMember = {
 };
 
 export const IT_FACULTY_MEMBERS: FacultyMember[] = [
-  // Sr. Professor, Dean
+  // Dean
   {
     name: "Dr. Puneet Goswami",
-    role: "Professor, Dean",
+    role: "Dean-IT, Professor",
     qualification: "Ph.D.",
     image: "/IT/deansir.JPG"
   },
@@ -29,19 +29,19 @@ export const IT_FACULTY_MEMBERS: FacultyMember[] = [
   // Program Heads & Associate Professors
   {
     name: "Dr. Sanjeev Kumar",
-    role: "Program Head, Associate Professor",
+    role: "Prog. Head, Asso. Professor",
     qualification: "Ph.D.",
     image: "/IT/Dr. Sanjeev Kumar Kapoor.JPG"
   },
   {
     name: "Dr. Mukul Aggarwal",
-    role: "Program Head (1st Year - IT), Associate Professor",
+    role: "Prog. Head (1st Yr.-IT), Asso. Professor",
     qualification: "Ph.D.",
     image: "/IT/Dr. Mukul Aggarwal.JPG"
   },
   {
     name: "Dr. Surendra Kr Keshari",
-    role: "Program Head (1st Year - CS), Associate Professor",
+    role: "Prog. Head (1st Yr.-CS), Asso. Professor",
     qualification: "Ph.D.",
     image: "/IT/Dr. Surendra Kr. Keshari.JPG"
   },
@@ -84,10 +84,10 @@ export const IT_FACULTY_MEMBERS: FacultyMember[] = [
   },
   // Assistant Professors
   {
-    name: "Ms. Minakshi",
+    name: "Dr. Pavi Saraswat",
     role: "Assistant Professor",
-    qualification: "M.Tech.",
-    image: "/IT/Ms. Minakshi .JPG"
+    qualification: "Ph.D.",
+    image: "/IT/Dr. Pavi Saraswat.JPG"
   },
   {
     name: "Dr. Deepak Vishwakarma",
@@ -96,21 +96,33 @@ export const IT_FACULTY_MEMBERS: FacultyMember[] = [
     image: "/IT/Dr. Deepak Vishwakarma.JPG"
   },
   {
+    name: "Dr. Priya Singh",
+    role: "Assistant Professor",
+    qualification: "Ph.D.",
+    image: "/IT/Dr. Priya Singh.JPG"
+  },
+  {
+    name: "Ms. Minakshi",
+    role: "Assistant Professor",
+    qualification: "Ph.D.* (Pursuing)",
+    image: "/IT/Ms. Minakshi .JPG"
+  },
+  {
     name: "Mr. Mayank Tyagi",
     role: "Assistant Professor",
-    qualification: "M.Tech.",
+    qualification: "Ph.D.* (Pursuing)",
     image: "/IT/Mr. Mayank Tyagi.JPG"
   },
   {
     name: "Mr. Shashank Yadav",
     role: "Assistant Professor",
-    qualification: "M.Tech.",
+    qualification: "Ph.D.* (Pursuing)",
     image: "/IT/Mr. Shashank Yadav.JPG"
   },
   {
-    name: "Prof. Rajeev Singh",
+    name: "Mr. Rajeev Singh",
     role: "Assistant Professor",
-    qualification: "M.Tech.",
+    qualification: "Ph.D.* (Pursuing)",
     image: "/IT/Mr. Rajeev Singh.JPG"
   },
   {
@@ -122,7 +134,7 @@ export const IT_FACULTY_MEMBERS: FacultyMember[] = [
   {
     name: "Mr. Sherish Johri",
     role: "Assistant Professor",
-    qualification: "M.Tech.",
+    qualification: "Ph.D.* (Pursuing)",
     image: "/IT/Mr. Sherish Johri.JPG"
   },
   {
@@ -134,13 +146,13 @@ export const IT_FACULTY_MEMBERS: FacultyMember[] = [
   {
     name: "Mr. Dinesh Kumar",
     role: "Assistant Professor",
-    qualification: "M.Tech.",
+    qualification: "Ph.D.* (Pursuing)",
     image: "/IT/Mr. Dinesh Kumar.JPG"
   },
   {
     name: "Ms. Anjali Jain",
     role: "Assistant Professor",
-    qualification: "M.Tech.",
+    qualification: "Ph.D.* (Pursuing)",
     image: "/IT/Ms. Anjali Jain.JPG"
   },
   {
@@ -152,7 +164,7 @@ export const IT_FACULTY_MEMBERS: FacultyMember[] = [
   {
     name: "Ms. Neha",
     role: "Assistant Professor",
-    qualification: "M.Tech.",
+    qualification: "Ph.D.* (Pursuing)",
     image: "/IT/Ms. Neha.JPG"
   },
   {
@@ -170,7 +182,7 @@ export const IT_FACULTY_MEMBERS: FacultyMember[] = [
   {
     name: "Ms. Krista Chaudhary",
     role: "Assistant Professor",
-    qualification: "M.Tech.",
+    qualification: "Ph.D.* (Pursuing)",
     image: "/IT/Ms. Krista Chaudhary.JPG"
   },
   {
@@ -188,7 +200,7 @@ export const IT_FACULTY_MEMBERS: FacultyMember[] = [
   {
     name: "Mr. Ankit Kumar",
     role: "Assistant Professor",
-    qualification: "M.Tech.",
+    qualification: "Ph.D.* (Pursuing)",
     image: "/IT/Mr. Ankit Kumar.JPG"
   },
   {
@@ -204,10 +216,10 @@ export const IT_FACULTY_MEMBERS: FacultyMember[] = [
     image: "/IT/Ms. Anupriya Pal.JPG"
   },
   {
-    name: "Dr. Pavi Saraswat",
+    name: "Ms. Kritika",
     role: "Assistant Professor",
-    qualification: "Ph.D.",
-    image: "/IT/Dr. Pavi Saraswat.JPG"
+    qualification: "Ph.D.* (Pursuing)",
+    image: "/IT/Ms Kritika.jpg"
   },
   {
     name: "Ms. Yogita Chand",
