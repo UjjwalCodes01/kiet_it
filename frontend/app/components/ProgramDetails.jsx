@@ -112,6 +112,13 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
   const [achieverPageCount, setAchieverPageCount] = useState(1);
   const achieverAutoplayRef = useRef(null);
   const achieverHoveredRef = useRef(false);
+  
+  // Alumni testimonials carousel state
+  const alumniRef = useRef(null);
+  const [alumniPage, setAlumniPage] = useState(0);
+  const [alumniPageCount, setAlumniPageCount] = useState(1);
+  const alumniAutoplayRef = useRef(null);
+  const alumniHoveredRef = useRef(false);
 
   const getCarouselMetrics = (container, itemSelector, totalItems) => {
     if (!container) {
@@ -167,24 +174,70 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
     }
   }, []);
 
+  // Alumni carousel functions
+  const syncAlumniPagination = () => {
+    const container = alumniRef.current;
+    if (!container) {
+      return;
+    }
+
+    const { pageCount, stepSize } = getCarouselMetrics(container, ".alumni-card-wrapper", ALUMNI_TESTIMONIALS.length);
+    setAlumniPageCount(pageCount);
+
+    if (stepSize <= 0) {
+      setAlumniPage(0);
+      return;
+    }
+
+    const currentPage = Math.min(pageCount - 1, Math.max(0, Math.round(container.scrollLeft / stepSize)));
+    setAlumniPage(currentPage);
+  };
+
+  const scrollToAlumniPage = useCallback((requestedPage) => {
+    const container = alumniRef.current;
+    if (!container) {
+      return;
+    }
+
+    const { pageCount, stepSize } = getCarouselMetrics(container, ".alumni-card-wrapper", ALUMNI_TESTIMONIALS.length);
+    const boundedPage = Math.min(pageCount - 1, Math.max(0, requestedPage));
+    setAlumniPageCount(pageCount);
+    setAlumniPage(boundedPage);
+
+    if (stepSize > 0) {
+      container.scrollTo({ left: boundedPage * stepSize, behavior: "smooth" });
+    }
+  }, []);
+
   useEffect(() => {
     const achieversContainer = achieversRef.current;
+    const alumniContainer = alumniRef.current;
+    
     if (!achieversContainer) {
       return;
     }
 
     syncAchieverPagination();
+    if (alumniContainer) {
+      syncAlumniPagination();
+    }
 
     const onAchieverScroll = () => syncAchieverPagination();
+    const onAlumniScroll = () => syncAlumniPagination();
     const onResize = () => {
       syncAchieverPagination();
+      if (alumniContainer) {
+        syncAlumniPagination();
+      }
     };
 
     achieversContainer?.addEventListener("scroll", onAchieverScroll, { passive: true });
+    alumniContainer?.addEventListener("scroll", onAlumniScroll, { passive: true });
     window.addEventListener("resize", onResize);
 
     return () => {
       achieversContainer?.removeEventListener("scroll", onAchieverScroll);
+      alumniContainer?.removeEventListener("scroll", onAlumniScroll);
       window.removeEventListener("resize", onResize);
     };
   }, []);
@@ -211,6 +264,28 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
     return () => clearInterval(achieverAutoplayRef.current);
   }, []);
 
+  // Alumni auto-play
+  useEffect(() => {
+    const startAutoplay = () => {
+      alumniAutoplayRef.current = setInterval(() => {
+        if (alumniHoveredRef.current) return;
+        setAlumniPage((prev) => {
+          const container = alumniRef.current;
+          if (!container) return prev;
+          const { pageCount, stepSize } = getCarouselMetrics(container, ".alumni-card-wrapper", ALUMNI_TESTIMONIALS.length);
+          const nextPage = prev >= pageCount - 1 ? 0 : prev + 1;
+          if (stepSize > 0) {
+            container.scrollTo({ left: nextPage * stepSize, behavior: "smooth" });
+          }
+          return nextPage;
+        });
+      }, 6000);
+    };
+
+    startAutoplay();
+    return () => clearInterval(alumniAutoplayRef.current);
+  }, []);
+
   const onAchieverMouseEnter = () => {
     achieverHoveredRef.current = true;
   };
@@ -218,13 +293,20 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
     achieverHoveredRef.current = false;
   };
 
+  const onAlumniMouseEnter = () => {
+    alumniHoveredRef.current = true;
+  };
+  const onAlumniMouseLeave = () => {
+    alumniHoveredRef.current = false;
+  };
+
   const placementHighest = useCountUp(1.78);
-  const placementTop10 = useCountUp(19.6);
-  const placementAverage = useCountUp(8.5);
+  const placementTop10 = useCountUp(16);
+  const placementAverage = useCountUp(6.5);
   const placementCompanies = useCountUp(300);
 
-  const researchPubs = useCountUp(123);
-  const researchPatents = useCountUp(31);
+  const researchPubs = useCountUp(138);
+  const researchPatents = useCountUp(48);
   const researchProjects = useCountUp(2);
   const researchGrants = useCountUp(50);
 
@@ -268,7 +350,7 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                     <div className="row g-3">
                       {[
                         ["1.78 Cr", "Highest Package", "2026 Batch"],
-                        ["89%", "Placements", "2021-2025 Batches"],
+                        ["90%", "Placements", "2021-2025 Batches"],
                         ["180", "Annual Intake", "IT Department"],
                         ["370+", "Globally Certified", "Students"],
                       ].map((item) => (
@@ -287,7 +369,7 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                     <div className="row g-2">
                       {[
                         ["1.78 Cr", "Highest Package"],
-                        ["89%", "Placements"],
+                        ["90%", "Placements"],
                         ["180", "Annual Intake"],
                         ["370+", "Certified Students"],
                       ].map((item) => (
@@ -319,7 +401,7 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                 ["/department_highlights/Experiential_Learning_with_an_AI-Driven_Approach.png", "Experiential Learning with an AI-Driven Approach", "A future-focused, experiential learning ecosystem integrating AI-driven assessments, cloud-based labs, and industry-oriented projects. Students gain hands-on expertise in Quantum Computing, AWS Cloud, AI, and Cybersecurity through platforms like AWS Academy, Kaggle, and HackerRank—ensuring strong practical skills, innovation, and industry readiness."],
                 ["/department_highlights/Industry-Centric_Tracks.png", "Industry-Centric Tracks with Globally Recognized Certifications", "Our Information Technology program integrates strong computing foundations with industry-centric specialization tracks in Quantum Computing, AWS Cloud, AI & ML, and Data Engineering, aligned with globally recognized certifications. Enriched through expert-led sessions and hands-on learning, it prepares students to be certification-ready, technically proficient, and highly employable in the evolving digital and quantum-driven landscape."],
                 ["/department_highlights/Comprehensive_Placement_Preparation_Platform.png", "Comprehensive Placement Preparation Platform", "The department delivers a structured placement preparation framework combining DSA mastery, competitive coding, and continuous assessments through platforms like CodeTantra, HackerRank, CodeChef, and IAMNeo. With added focus on cloud and emerging technologies, students receive certification support, career profiling, technical bootcamps, and expert mentoring—ensuring holistic, industry-ready placement outcomes."],
-                ["/department_highlights/Future_Technology_Quantum_Computation.png", "Future Technology — Quantum Computation", "The department pioneers next-generation learning by integrating Quantum Computing with core Information Technology. Through hands-on experience with IBM Qiskit, quantum algorithms, and hybrid quantum-classical systems, students explore the future of computation. This forward-looking approach empowers learners to innovate at the intersection of IT, AI, and quantum intelligence, preparing them for disruptive technological advancements."],
+                ["/department_highlights/Future_Technology_Quantum_Computation.png", "Future Technology — Quantum Computing","The department pioneers next-generation learning by integrating Quantum Computing with core Information Technology. Through hands-on experience with IBM Qiskit, quantum algorithms, and hybrid quantum-classical systems, students explore the future of computation. This forward-looking approach empowers learners to innovate at the intersection of IT, AI, and quantum intelligence, preparing them for disruptive technological advancements."],
                 ["/department_highlights/Hands-on_Learning_and_Innovative_Ecosystem.png", "Hands-on Learning and Innovative Ecosystem", "The department fosters an experiential and innovation-driven learning environment where students engage in real-world projects, cloud-based labs, and emerging technologies like Quantum Computing, AWS, and AI. Through hackathons, research initiatives, and industry collaborations, students develop practical skills, creativity, and problem-solving abilities—preparing them to innovate and excel in a rapidly evolving technological landscape."],
               ].map((item) => (
                 <div key={item[1]} className="col-12 col-lg-6">
@@ -356,10 +438,10 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
             </h2>
             <p className="fs-3 text-muted mb-4">Our students are placed across top-tier companies with exceptional packages</p>
             <div className="row g-4">
-              {[
+              {[    
                 [placementHighest, "1.78", " Cr", "Highest Package", "orange", "PROTON AG, Switzerland"],
-                [placementTop10, "19.6", " LPA", "Top 10% Average", "navy", "Average of top 10% placed students"],
-                [placementAverage, "8.5", " LPA", "Average Package", "orange", "Overall average placement package"],
+                [placementTop10, "16", " LPA ", "Top 10% Average(2022-25)", "navy", "Average of top 10% placed students"],
+                [placementAverage, "6.5", " LPA ", "Average Package(2022-25)", "orange", "Overall average placement package"],
                 [placementCompanies, "300", "+", "Total Companies", "navy", "Recruiting partners across industries"],
               ].map((item) => (
                 <div key={item[3]} className="col-6 col-lg-3">
@@ -634,7 +716,7 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
             <div className="mt-4 rounded-4 overflow-hidden" style={{ background: "#fff", padding: "clamp(1.5rem, 4vw, 3rem)", boxShadow: "0 4px 20px rgba(0, 0, 0, 0.06)", border: "1px solid #e9ecef" }}>
               <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
                 <p className="mb-0 fs-3" style={{ color: "#666" }}>Driving innovation through cutting-edge research</p>
-                <span className="badge rounded-pill fs-5 px-3 py-2" style={{ backgroundColor: "#fff3ec", color: "#f26520", border: "1px solid rgba(242, 101, 32, 0.2)" }}>2025-26</span>
+                <span className="badge rounded-pill fs-5 px-3 py-2" style={{ backgroundColor: "#fff3ec", color: "#f26520", border: "1px solid rgba(242, 101, 32, 0.2)" }}></span>
               </div>
               <div className="row g-3 g-lg-4">
                 {[
@@ -656,30 +738,71 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
             </div>
 
             {/* Alumni Testimonials */}
-            <h2 className="fw-bold mt-5 mb-4" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", color: "#002855", borderBottom: "3px solid #f26520", paddingBottom: "10px", display: "inline-block" }}>
-              Alumni Testimonials
-            </h2>
-            <div className="row g-4">
-              {ALUMNI_TESTIMONIALS.map((alumni) => (
-                <div key={alumni.name} className="col-12 col-md-6">
-                  <div className="h-100 p-4 rounded-4 alumni-testimonial-card" style={{ backgroundColor: "#fff", boxShadow: "0 4px 16px rgba(0, 0, 0, 0.06)", border: "1px solid #e9ecef", borderLeft: "4px solid #f26520", transition: "all 0.4s cubic-bezier(0.22, 1, 0.36, 1)", cursor: "pointer" }}>
-                    <div className="d-flex gap-3 align-items-start mb-3">
-                      <div style={{ width: "70px", height: "70px", borderRadius: "50%", overflow: "hidden", flexShrink: 0, border: "2px solid #f26520" }}>
-                        <img src={alumni.image} alt={alumni.name} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }} />
+            <div className="mt-5">
+              <h2 className="fw-bold mb-4" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", color: "#002855", borderBottom: "3px solid #f26520", paddingBottom: "10px", display: "inline-block" }}>
+                Alumni Testimonials
+              </h2>
+              <div
+                ref={alumniRef}
+                className="d-flex overflow-auto gap-4 alumni-scroll-container"
+                style={{ scrollBehavior: "smooth", scrollSnapType: "x mandatory", paddingBottom: "1rem" }}
+                onMouseEnter={onAlumniMouseEnter}
+                onMouseLeave={onAlumniMouseLeave}
+              >
+                {ALUMNI_TESTIMONIALS.map((alumni) => (
+                  <div key={alumni.name} className="alumni-card-wrapper" style={{ flex: "0 0 calc(50% - 0.75rem)", scrollSnapAlign: "start" }}>
+                    <div className="h-100 p-4 rounded-4 alumni-testimonial-card" style={{ backgroundColor: "#fff", boxShadow: "0 4px 16px rgba(0, 0, 0, 0.06)", border: "1px solid #e9ecef", borderLeft: "4px solid #f26520", transition: "all 0.4s cubic-bezier(0.22, 1, 0.36, 1)", cursor: "pointer", minHeight: "320px", display: "flex", flexDirection: "column" }}>
+                      <div className="d-flex gap-3 align-items-start mb-3">
+                        <div style={{ width: "70px", height: "70px", borderRadius: "50%", overflow: "hidden", flexShrink: 0, border: "2px solid #f26520" }}>
+                          <img src={alumni.image} alt={alumni.name} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }} />
+                        </div>
+                        <div>
+                          <h4 className="fw-bold mb-1 fs-3" style={{ color: "#002855" }}>{alumni.name}</h4>
+                          <p className="mb-0 fs-5" style={{ color: "#f26520" }}>{alumni.designation} at {alumni.company}</p>
+                          <p className="mb-0 fs-6 text-muted">{alumni.batch}</p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="fw-bold mb-1 fs-3" style={{ color: "#002855" }}>{alumni.name}</h4>
-                        <p className="mb-0 fs-5" style={{ color: "#f26520" }}>{alumni.designation} at {alumni.company}</p>
-                        <p className="mb-0 fs-6 text-muted">{alumni.batch}</p>
+                      <div className="d-flex align-items-start gap-2 flex-grow-1">
+                        <span className="fw-bold" style={{ color: "#f26520", fontSize: "1.5rem", lineHeight: 1 }}>&ldquo;</span>
+                        <p className="mb-0 fs-4 fst-italic" style={{ color: "#555", lineHeight: 1.7, textAlign: "justify" }}>{alumni.quote}</p>
                       </div>
-                    </div>
-                    <div className="d-flex align-items-start gap-2">
-                      <span className="fw-bold" style={{ color: "#f26520", fontSize: "1.5rem", lineHeight: 1 }}>&ldquo;</span>
-                      <p className="mb-0 fs-4 fst-italic" style={{ color: "#555", lineHeight: 1.7, textAlign: "justify" }}>{alumni.quote}</p>
                     </div>
                   </div>
+                ))}
+              </div>
+              <div className="d-flex justify-content-between align-items-center mt-3">
+                <div className="d-flex gap-2">
+                  <button
+                    className="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center p-0"
+                    style={{ width: "32px", height: "32px", border: "1px solid #f26520", backgroundColor: "transparent", color: "#f26520", transition: "all 0.3s ease" }}
+                    aria-label="Previous testimonial"
+                    onClick={() => scrollToAlumniPage(alumniPage - 1)}
+                    disabled={alumniPage === 0}
+                  >
+                    <span style={{ fontSize: "1.2rem", lineHeight: 0, paddingBottom: "4px" }}>‹</span>
+                  </button>
+                  <button
+                    className="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center p-0"
+                    style={{ width: "32px", height: "32px", border: "1px solid #f26520", backgroundColor: "transparent", color: "#f26520", transition: "all 0.3s ease" }}
+                    aria-label="Next testimonial"
+                    onClick={() => scrollToAlumniPage(alumniPage + 1)}
+                    disabled={alumniPage >= alumniPageCount - 1}
+                  >
+                    <span style={{ fontSize: "1.2rem", lineHeight: 0, paddingBottom: "4px" }}>›</span>
+                  </button>
                 </div>
-              ))}
+                <div className="d-flex gap-2">
+                  {Array.from({ length: alumniPageCount }).map((_, index) => (
+                    <button
+                      key={`alumni-dot-${index}`}
+                      type="button"
+                      aria-label={`Go to testimonial page ${index + 1}`}
+                      onClick={() => scrollToAlumniPage(index)}
+                      style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: alumniPage === index ? "#ff5722" : "transparent", border: alumniPage === index ? "1px solid #ff5722" : "1px solid #ced4da", cursor: "pointer", padding: 0 }}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
 
@@ -813,10 +936,24 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
 
             /* Alumni Testimonials hover pop-out */
             .alumni-testimonial-card:hover {
-              transform: translateY(-12px) scale(1.03);
-              box-shadow: 0 24px 48px rgba(242, 101, 32, 0.2) !important;
+              transform: translateY(-8px) scale(1.02);
+              box-shadow: 0 20px 40px rgba(242, 101, 32, 0.18) !important;
               border-left-width: 6px;
-              z-index: 10;
+            }
+
+            /* Alumni scroll container */
+            .alumni-scroll-container { 
+              scrollbar-width: none; 
+              -ms-overflow-style: none; 
+            }
+            .alumni-scroll-container::-webkit-scrollbar { 
+              display: none; 
+            }
+
+            @media (max-width: 768px) {
+              .alumni-card-wrapper { 
+                flex: 0 0 85vw !important; 
+              }
             }
 
             /* Clubs overlapping hover */

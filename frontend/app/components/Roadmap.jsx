@@ -40,6 +40,15 @@ const TechIcons = {
       <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM4 12C4 11.39 4.08 10.79 4.21 10.22L8.99 15V16C8.99 17.1 9.89 18 10.99 18V19.93C7.06 19.43 4 16.07 4 12ZM17.89 17.4C17.64 16.59 16.89 16 16 16H15V13C15 12.45 14.55 12 14 12H8V10H10C10.55 10 11 9.55 11 9V7H13C14.1 7 15 6.1 15 5V4.59C17.93 5.78 20 8.65 20 12C20 14.08 19.19 15.98 17.89 17.4Z" fill="#E91E63"/>
     </svg>
   ),
+  quantum: (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="3" fill="#00BCD4" stroke="#00BCD4" strokeWidth="1.5"/>
+      <ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="#00BCD4" strokeWidth="1.5" transform="rotate(0 12 12)"/>
+      <ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="#00BCD4" strokeWidth="1.5" transform="rotate(60 12 12)"/>
+      <ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="#00BCD4" strokeWidth="1.5" transform="rotate(120 12 12)"/>
+      <circle cx="12" cy="12" r="1.5" fill="#fff"/>
+    </svg>
+  ),
 };
 
 const roadmap = [
@@ -72,6 +81,11 @@ const roadmap = [
     label: "Web Development",
     icon: "web",
     slideImage: "/emerging-technology/webdevelopment.png",
+  },
+  {
+    label: "Quantum Computing",
+    icon: "quantum",
+    slideImage: "/emerging-technology/quantum-computing.png",
   },
 ];
 
@@ -303,7 +317,7 @@ export default function Roadmap() {
             style={{
               position: "relative",
               paddingLeft: "90px",
-              minHeight: "600px",
+              minHeight: `${roadmap.length * 100}px`,
             }}
           >
             {/* Vertical curved connecting line */}
@@ -313,11 +327,11 @@ export default function Roadmap() {
                 left: "5px",
                 top: "0px",
                 width: "60px",
-                height: "600px",
+                height: `${roadmap.length * 100}px`,
                 zIndex: 1,
                 pointerEvents: "none",
               }}
-              viewBox="0 0 60 600"
+              viewBox={`0 0 60 ${roadmap.length * 100}`}
               preserveAspectRatio="none"
             >
               <defs>
@@ -328,7 +342,7 @@ export default function Roadmap() {
                 </linearGradient>
               </defs>
               <path
-                d="M 30 50 Q 45 100, 30 150 Q 15 200, 30 250 Q 45 300, 30 350 Q 15 400, 30 450 Q 45 500, 30 550"
+                d="M 30 50 Q 45 100, 30 150 Q 15 200, 30 250 Q 45 300, 30 350 Q 15 400, 30 450 Q 45 500, 30 550 Q 15 600, 30 650"
                 fill="none"
                 stroke="url(#mobileLineGradient)"
                 strokeWidth="3"
