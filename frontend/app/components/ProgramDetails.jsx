@@ -552,8 +552,8 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
             </div>
             <div className="clubs-stack">
               {[
-                ["Innogeeks", "/it_club/innogeeks.png", "#", "At Innogeeks, we embody our motto, 'We Learn, We Teach, We Conquer,' as a guiding principle in fostering a vibrant community of innovators, developers, and tech enthusiasts. Over the years, Innogeeks has grown into a cornerstone of technical excellence at KIET, fostering a culture of collaboration, learning, and impactful innovation.", "#002855"],
-                ["GEEK Room", "/it_club/geekroom.png", "#", "GEEK Room is a dynamic tech community dedicated to fostering innovation, collaboration, and continuous learning. The chapter actively hosts hackathons, technical events, workshops, and engaging meetups that bring together passionate students from diverse domains.", "#00304c"],
+                ["Innogeeks", "/it_club/innogeeks.png", "https://www.innogeeks.in/", "At Innogeeks, we embody our motto, 'We Learn, We Teach, We Conquer,' as a guiding principle in fostering a vibrant community of innovators, developers, and tech enthusiasts. Over the years, Innogeeks has grown into a cornerstone of technical excellence at KIET, fostering a culture of collaboration, learning, and impactful innovation.", "#002855"],
+                ["GEEK Room", "/it_club/geekroom.png", "https://geekroom-kiet-six.vercel.app/", "GEEK Room is a dynamic tech community dedicated to fostering innovation, collaboration, and continuous learning. The chapter actively hosts hackathons, technical events, workshops, and engaging meetups that bring together passionate students from diverse domains.", "#00304c"],
               ].map((club) => (
                 <div key={club[0]} className="club-card-outer">
                   <div className="club-card-inner bg-white h-100 border-0" style={{ borderRadius: "20px", overflow: "hidden", boxShadow: "0 8px 24px rgba(0, 0, 0, 0.1)", minHeight: "280px" }}>

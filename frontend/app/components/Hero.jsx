@@ -1,7 +1,7 @@
 export default function Hero({
   title = "Our Faculty",
-  subtitle = "Meet the distinguished faculty members of CSE (AI) & CSE (AI & ML)",
-  backHref = "/programs/undergraduate-programs/cse-aiml",
+  subtitle = "Meet the distinguished faculty members of Information Technology",
+  backHref = "/",
   backLabel = "Back to Home",
 }) {
   return (

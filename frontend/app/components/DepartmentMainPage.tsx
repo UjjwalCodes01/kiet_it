@@ -61,8 +61,8 @@ function ProgramSectionNav() {
     { label: "Clubs", href: "#clubs" },
     { label: "Dean's Message", href: "#dean-message" },
     { label: "Faculty", href: "#faculty" },
-    { label: "Testimonials", href: "#testimonials" },
-    { label: "Publications & Research", href: "#publications" },
+    { label: "Achievers", href: "#achievers" },
+    { label: "Publications & Research", href: "#research" },
     { label: "Syllabus", href: "#syllabus" },
   ];
 

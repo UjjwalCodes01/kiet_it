@@ -3,7 +3,7 @@ import Hero from "./Hero";
 import FacultyCard from "./FacultyCard";
 import Footer from "./Footer";
 
-import type { FacultyMember } from "@/app/data/cse-aiml-faculty-members";
+import type { FacultyMember } from "@/app/data/it-faculty-members";
 
 type FacultyDirectoryPageProps = {
   bodyClass: string;

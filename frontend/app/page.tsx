@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
 import { DepartmentMainPage } from "@/app/components/DepartmentMainPage";
-import { CSE_AIML_MAIN_DATA } from "@/app/data/cse-aiml-main";
+import { IT_MAIN_DATA } from "@/app/data/it-main";
 
 export const metadata: Metadata = {
-  title: CSE_AIML_MAIN_DATA.meta.title,
-  description: CSE_AIML_MAIN_DATA.meta.description,
-  keywords: CSE_AIML_MAIN_DATA.meta.keywords,
+  title: IT_MAIN_DATA.meta.title,
+  description: IT_MAIN_DATA.meta.description,
+  keywords: IT_MAIN_DATA.meta.keywords,
   alternates: {
     canonical: "/",
   },
@@ -19,9 +19,9 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <DepartmentMainPage
-      bodyClass={CSE_AIML_MAIN_DATA.meta.bodyClass}
-      stylesheets={CSE_AIML_MAIN_DATA.meta.stylesheets}
-      fontPreloads={CSE_AIML_MAIN_DATA.meta.fontPreloads}
+      bodyClass={IT_MAIN_DATA.meta.bodyClass}
+      stylesheets={IT_MAIN_DATA.meta.stylesheets}
+      fontPreloads={IT_MAIN_DATA.meta.fontPreloads}
     />
   );
 }
