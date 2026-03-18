@@ -8,6 +8,9 @@ export const metadata: Metadata = {
     template: "%s | KIET University",
   },
   description: "KIET University website pages migrated to Next.js.",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

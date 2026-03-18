@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 
 import { FacultyDirectoryPage } from "@/app/components/FacultyDirectoryPage";
-import { CSE_AIML_FACULTY_DATA } from "@/app/data/cse-aiml-faculty";
-import { FACULTY_MEMBERS } from "@/app/data/cse-aiml-faculty-members";
+import { IT_FACULTY_DATA } from "@/app/data/it-faculty";
+import { IT_FACULTY_MEMBERS } from "@/app/data/it-faculty-members";
 
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: CSE_AIML_FACULTY_DATA.meta.title,
-  description: CSE_AIML_FACULTY_DATA.meta.description,
-  keywords: CSE_AIML_FACULTY_DATA.meta.keywords,
+  title: IT_FACULTY_DATA.meta.title,
+  description: IT_FACULTY_DATA.meta.description,
+  keywords: IT_FACULTY_DATA.meta.keywords,
   alternates: {
     canonical: "/programs/undergraduate-programs/cse-aiml/faculty",
   },
@@ -22,10 +22,10 @@ export const metadata: Metadata = {
 export default function CseAimlFacultyPage() {
   return (
     <FacultyDirectoryPage
-      bodyClass={CSE_AIML_FACULTY_DATA.meta.bodyClass}
-      stylesheets={CSE_AIML_FACULTY_DATA.meta.stylesheets}
-      fontPreloads={CSE_AIML_FACULTY_DATA.meta.fontPreloads}
-      members={FACULTY_MEMBERS}
+      bodyClass={IT_FACULTY_DATA.meta.bodyClass}
+      stylesheets={IT_FACULTY_DATA.meta.stylesheets}
+      fontPreloads={IT_FACULTY_DATA.meta.fontPreloads}
+      members={IT_FACULTY_MEMBERS}
     />
   );
 }

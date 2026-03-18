@@ -5,6 +5,7 @@ import Roadmap from "./Roadmap";
 
 // Achievers data sorted by package (descending)
 const ACHIEVERS = [
+  { name: "Satyam Mishra", company: "Proton AG", package: "1.78 Cr", image: "/acchievers/satyam_mishra.png" },
   { name: "Isha Rastogi", company: "Microsoft", package: "52 LPA", image: "/acchievers/isha_rastogi.png" },
   { name: "Palak Mittal", company: "Amazon", package: "48.89 LPA", image: "/acchievers/palak_mittal.png" },
   { name: "Srishti Pawar", company: "Amazon", package: "48.89 LPA", image: "/acchievers/Shrishti_Pawar.png" },
@@ -307,8 +308,6 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
 
   const researchPubs = useCountUp(138);
   const researchPatents = useCountUp(48);
-  const researchProjects = useCountUp(2);
-  const researchGrants = useCountUp(50);
 
   return (
     <>
@@ -496,15 +495,22 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
             <div className="rounded-4 overflow-hidden mb-4" style={{ background: "linear-gradient(135deg, #f0f4f8 0%, #fff 50%, #fff8f5 100%)", border: "2px solid rgba(0, 40, 85, 0.12)" }}>
               <div style={{ height: "5px", background: "linear-gradient(90deg, #002855, #f26520)" }} />
               <div className="p-4 p-md-5">
-                <div className="d-inline-block mb-3 px-3 py-1 rounded-pill" style={{ backgroundColor: "rgba(242, 101, 32, 0.08)", border: "1px solid rgba(242, 101, 32, 0.15)" }}>
-                  <span className="fw-semibold fs-5" style={{ color: "#f26520" }}>Next-Gen Computing</span>
+                <div className="row align-items-center">
+                  <div className="col-12 col-lg-8">
+                    <div className="d-inline-block mb-3 px-3 py-1 rounded-pill" style={{ backgroundColor: "rgba(242, 101, 32, 0.08)", border: "1px solid rgba(242, 101, 32, 0.15)" }}>
+                      <span className="fw-semibold fs-5" style={{ color: "#f26520" }}>Next-Gen Computing</span>
+                    </div>
+                    <h3 className="fw-bold mb-3" style={{ fontSize: "clamp(1.5rem, 3vw, 2.2rem)", color: "#002855", lineHeight: 1.3 }}>
+                      Quantum Computing <span style={{ color: "#f26520" }}>Laboratory</span>
+                    </h3>
+                    <p className="fs-3 mb-0" style={{ lineHeight: 1.8, color: "#444", textAlign: "justify", maxWidth: "900px" }}>
+                      The Quantum Computing Laboratory at KIET&apos;s IT Department is a pioneering facility dedicated to exploring the frontiers of quantum technology. Equipped with access to IBM Qiskit and quantum simulation platforms, students gain hands-on experience with quantum algorithms, qubit manipulation, and hybrid quantum-classical computing. This state-of-the-art lab prepares students to lead innovations at the intersection of quantum mechanics and information technology, positioning them at the forefront of the next computing revolution.
+                    </p>
+                  </div>
+                  <div className="col-12 col-lg-4 mt-4 mt-lg-0">
+                    <img src="/coi/quantum_computing.png" alt="Quantum Computing Lab" className="img-fluid rounded-3" style={{ width: "100%", boxShadow: "0 4px 16px rgba(0, 0, 0, 0.1)" }} />
+                  </div>
                 </div>
-                <h3 className="fw-bold mb-3" style={{ fontSize: "clamp(1.5rem, 3vw, 2.2rem)", color: "#002855", lineHeight: 1.3 }}>
-                  Quantum Computing <span style={{ color: "#f26520" }}>Laboratory</span>
-                </h3>
-                <p className="fs-3 mb-0" style={{ lineHeight: 1.8, color: "#444", textAlign: "justify", maxWidth: "900px" }}>
-                  The Quantum Computing Laboratory at KIET&apos;s IT Department is a pioneering facility dedicated to exploring the frontiers of quantum technology. Equipped with access to IBM Qiskit and quantum simulation platforms, students gain hands-on experience with quantum algorithms, qubit manipulation, and hybrid quantum-classical computing. This state-of-the-art lab prepares students to lead innovations at the intersection of quantum mechanics and information technology, positioning them at the forefront of the next computing revolution.
-                </p>
               </div>
             </div>
 
@@ -512,15 +518,22 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
             <div className="rounded-4 overflow-hidden" style={{ background: "linear-gradient(135deg, #fff8f5 0%, #fff 50%, #f0f4f8 100%)", border: "2px solid rgba(242, 101, 32, 0.12)" }}>
               <div style={{ height: "5px", background: "linear-gradient(90deg, #f26520, #002855)" }} />
               <div className="p-4 p-md-5">
-                <div className="d-inline-block mb-3 px-3 py-1 rounded-pill" style={{ backgroundColor: "rgba(0, 40, 85, 0.08)", border: "1px solid rgba(0, 40, 85, 0.15)" }}>
-                  <span className="fw-semibold fs-5" style={{ color: "#002855" }}>Industry &ndash; Academia Initiative</span>
+                <div className="row align-items-center">
+                  <div className="col-12 col-lg-8">
+                    <div className="d-inline-block mb-3 px-3 py-1 rounded-pill" style={{ backgroundColor: "rgba(0, 40, 85, 0.08)", border: "1px solid rgba(0, 40, 85, 0.15)" }}>
+                      <span className="fw-semibold fs-5" style={{ color: "#002855" }}>Industry &ndash; Academia Initiative</span>
+                    </div>
+                    <h3 className="fw-bold mb-3" style={{ fontSize: "clamp(1.5rem, 3vw, 2.2rem)", color: "#002855", lineHeight: 1.3 }}>
+                      Tech Mahindra <span style={{ color: "#f26520" }}>Centre of Excellence</span>
+                    </h3>
+                    <p className="fs-3 mb-0" style={{ lineHeight: 1.8, color: "#444", textAlign: "justify", maxWidth: "900px" }}>
+                      The Tech Mahindra Centre of Excellence at KIET, established within the Department of Information Technology, is an industry&ndash;academia initiative focused on employability enhancement. It provides training to students selected by Tech Mahindra, ensuring their skills align with current industry demands.
+                    </p>
+                  </div>
+                  <div className="col-12 col-lg-4 mt-4 mt-lg-0">
+                    <img src="/coi/tech_mahindra.png" alt="Tech Mahindra Centre of Excellence" className="img-fluid rounded-3" style={{ width: "100%", boxShadow: "0 4px 16px rgba(0, 0, 0, 0.1)" }} />
+                  </div>
                 </div>
-                <h3 className="fw-bold mb-3" style={{ fontSize: "clamp(1.5rem, 3vw, 2.2rem)", color: "#002855", lineHeight: 1.3 }}>
-                  Tech Mahindra <span style={{ color: "#f26520" }}>Centre of Excellence</span>
-                </h3>
-                <p className="fs-3 mb-0" style={{ lineHeight: 1.8, color: "#444", textAlign: "justify", maxWidth: "900px" }}>
-                  The Tech Mahindra Centre of Excellence at KIET, established within the Department of Information Technology, is an industry&ndash;academia initiative focused on employability enhancement. It provides training to students selected by Tech Mahindra, ensuring their skills align with current industry demands.
-                </p>
               </div>
             </div>
           </div>
@@ -626,7 +639,7 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                 {[...faculty.slice(0, 18), ...faculty.slice(0, 18)].map((member, idx) => (
                   <div key={`${member.name}-${idx}`} className="card border-0 shadow-sm flex-shrink-0" style={{ width: "180px", borderRadius: "12px", cursor: "pointer" }}>
                     <div className="overflow-hidden" style={{ height: "200px", borderTopLeftRadius: "12px", borderTopRightRadius: "12px", position: "relative" }}>
-                      <img alt={member.name} src={member.image} style={{ position: "absolute", height: "100%", width: "100%", left: 0, top: 0, right: 0, bottom: 0, objectFit: "cover", objectPosition: "top", color: "transparent" }} />
+                      <img alt={member.name} src={member.image} style={{ position: "absolute", height: "100%", width: "100%", left: 0, top: 0, right: 0, bottom: 0, objectFit: "cover", objectPosition: "center 15%", color: "transparent" }} />
                     </div>
                     <div className="card-body text-center p-2 p-md-3">
                       <h3 className="card-title fw-bold mb-2 fs-4" style={{ color: "#00304c", lineHeight: 1.3 }}>{member.name}</h3>
@@ -660,7 +673,7 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                 <div key={item.name} className="achiever-card-wrapper" style={{ flex: "0 0 180px", scrollSnapAlign: "start" }}>
                   <div className="achiever-card" style={{ backgroundColor: "white", borderRadius: "16px", padding: "1rem", height: "100%", boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)", transition: "transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease", cursor: "default", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
                     <div style={{ width: "100px", height: "100px", borderRadius: "50%", overflow: "hidden", position: "relative", backgroundColor: "#e5e7eb", border: "3px solid #f26520", marginBottom: "0.75rem" }}>
-                      <img alt={item.name} src={item.image} style={{ position: "absolute", height: "100%", width: "100%", left: 0, top: 0, objectFit: "cover", objectPosition: "top" }} />
+                      <img alt={item.name} src={item.image} style={{ position: "absolute", height: "100%", width: "100%", left: 0, top: 0, objectFit: "cover", objectPosition: "center 20%" }} />
                     </div>
                     <h4 className="fs-4 fw-bold text-dark mb-1" style={{ lineHeight: 1.2 }}>{item.name}</h4>
                     <p className="fs-5 fw-semibold mb-1" style={{ color: "#f26520" }}>{item.package}</p>
@@ -713,27 +726,93 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
               Research Statistics
             </h2>
 
-            <div className="mt-4 rounded-4 overflow-hidden" style={{ background: "#fff", padding: "clamp(1.5rem, 4vw, 3rem)", boxShadow: "0 4px 20px rgba(0, 0, 0, 0.06)", border: "1px solid #e9ecef" }}>
-              <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
-                <p className="mb-0 fs-3" style={{ color: "#666" }}>Driving innovation through cutting-edge research</p>
-                <span className="badge rounded-pill fs-5 px-3 py-2" style={{ backgroundColor: "#fff3ec", color: "#f26520", border: "1px solid rgba(242, 101, 32, 0.2)" }}></span>
-              </div>
-              <div className="row g-3 g-lg-4">
-                {[
-                  [researchPubs, "Publications", "#f26520"],
-                  [researchPatents, "Patents", "#002855"],
-                  [researchProjects, "Govt. Projects", "#f26520"],
-                  [researchGrants, "Grants (Lakhs)", "#002855"],
-                ].map((item) => (
-                  <div key={item[1]} className="col-6 col-lg-3">
-                    <div ref={item[0].ref} className="text-center h-100" style={{ position: "relative", borderRadius: "16px", padding: "2rem 1rem", background: "#fafbfc", border: "1px solid #e9ecef", transition: "all 0.4s cubic-bezier(0.22, 1, 0.36, 1)" }}>
-                      <div className="mb-2" style={{ fontSize: "clamp(2.2rem, 5vw, 3.2rem)", fontWeight: 800, lineHeight: 1, color: item[2] }}>
-                        {item[0].value}
+            <div className="row g-4 mt-2">
+              {/* Publications Card */}
+              <div className="col-12 col-md-6">
+                <div ref={researchPubs.ref} className="research-stat-card h-100" style={{ background: "linear-gradient(135deg, #fff8f5 0%, #fff 100%)", borderRadius: "20px", overflow: "hidden", boxShadow: "0 8px 32px rgba(242, 101, 32, 0.12)", border: "1px solid rgba(242, 101, 32, 0.1)", position: "relative" }}>
+                  <div style={{ height: "5px", background: "linear-gradient(90deg, #f26520, #ff8a50)" }} />
+                  <div className="d-flex flex-column flex-lg-row align-items-center p-4 gap-4">
+                    <div className="flex-shrink-0" style={{ width: "140px", height: "140px", borderRadius: "16px", overflow: "hidden", boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)", background: "#fff" }}>
+                      <img src="/publication.png" alt="Publications" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    </div>
+                    <div className="text-center text-lg-start flex-grow-1">
+                      <div style={{ fontSize: "clamp(3rem, 6vw, 4.5rem)", fontWeight: 800, lineHeight: 1, color: "#f26520", textShadow: "2px 2px 4px rgba(242, 101, 32, 0.1)" }}>
+                        {researchPubs.value}+
                       </div>
-                      <p className="fw-semibold mb-0 fs-3" style={{ color: "#333" }}>{item[1]}</p>
+                      <h3 className="fw-bold mb-2 fs-1" style={{ color: "#002855" }}>Publications</h3>
+                      <p className="mb-0 fs-4 text-muted">Research papers published in reputed journals & conferences</p>
                     </div>
                   </div>
-                ))}
+                  <div style={{ position: "absolute", bottom: "-30px", right: "-30px", width: "120px", height: "120px", borderRadius: "50%", background: "rgba(242, 101, 32, 0.05)" }} />
+                </div>
+              </div>
+
+              {/* Patents Card */}
+              <div className="col-12 col-md-6">
+                <div ref={researchPatents.ref} className="research-stat-card h-100" style={{ background: "linear-gradient(135deg, #f0f4f8 0%, #fff 100%)", borderRadius: "20px", overflow: "hidden", boxShadow: "0 8px 32px rgba(0, 40, 85, 0.12)", border: "1px solid rgba(0, 40, 85, 0.1)", position: "relative" }}>
+                  <div style={{ height: "5px", background: "linear-gradient(90deg, #002855, #1a5276)" }} />
+                  <div className="d-flex flex-column flex-lg-row align-items-center p-4 gap-4">
+                    <div className="flex-shrink-0" style={{ width: "140px", height: "140px", borderRadius: "16px", overflow: "hidden", boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)", background: "#fff" }}>
+                      <img src="/patent.png" alt="Patents" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    </div>
+                    <div className="text-center text-lg-start flex-grow-1">
+                      <div style={{ fontSize: "clamp(3rem, 6vw, 4.5rem)", fontWeight: 800, lineHeight: 1, color: "#002855", textShadow: "2px 2px 4px rgba(0, 40, 85, 0.1)" }}>
+                        {researchPatents.value}+
+                      </div>
+                      <h3 className="fw-bold mb-2 fs-1" style={{ color: "#002855" }}>Patents</h3>
+                      <p className="mb-0 fs-4 text-muted">Innovative patents filed & granted to faculty & students</p>
+                    </div>
+                  </div>
+                  <div style={{ position: "absolute", bottom: "-30px", right: "-30px", width: "120px", height: "120px", borderRadius: "50%", background: "rgba(0, 40, 85, 0.05)" }} />
+                </div>
+              </div>
+            </div>
+
+            {/* Industry Academia Connect */}
+            <div className="mt-5">
+              <h2 className="fw-bold mb-4" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", color: "#002855", borderBottom: "3px solid #f26520", paddingBottom: "10px", display: "inline-block" }}>
+                Industry Academia Connect
+              </h2>
+              <div className="row g-4">
+                {/* Session 1 */}
+                <div className="col-12 col-lg-6">
+                  <div className="h-100 rounded-4 overflow-hidden" style={{ boxShadow: "0 8px 24px rgba(0, 0, 0, 0.08)", transition: "transform 0.3s ease, box-shadow 0.3s ease", border: "2px solid rgba(242, 101, 32, 0.1)" }}>
+                    <div style={{ height: "5px", background: "linear-gradient(90deg, #f26520, #002855)" }} />
+                    <div className="p-4">
+                      <img src="/conclave/session1.png" alt="Digital Conclave 2025 - Session 1" className="w-100 rounded-3 mb-3" style={{ objectFit: "cover", height: "300px", boxShadow: "0 4px 16px rgba(0, 0, 0, 0.1)" }} />
+                      <h3 className="fw-bold mb-3 fs-2" style={{ color: "#002855" }}>Digital Conclave 2025 - Session 1</h3>
+                      <p className="mb-3 fs-4 text-muted">Expert Talk Series on emerging technologies and industry insights</p>
+                      <div className="d-flex gap-3 flex-wrap">
+                        <a href="/conclave/session-1" className="btn px-4 py-2 text-white fw-semibold fs-4" style={{ backgroundColor: "#002855", borderRadius: "8px", border: "none", boxShadow: "0 4px 12px rgba(0, 40, 85, 0.3)" }}>
+                          Read More
+                        </a>
+                        <a href="https://youtu.be/-Agff_KdsHg?si=A4XU7HZ-UkZd90gv" target="_blank" rel="noopener noreferrer" className="btn px-4 py-2 text-white fw-semibold fs-4" style={{ backgroundColor: "#f26520", borderRadius: "8px", border: "none", boxShadow: "0 4px 12px rgba(242, 101, 32, 0.3)" }}>
+                          Watch Video
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Session 2 */}
+                <div className="col-12 col-lg-6">
+                  <div className="h-100 rounded-4 overflow-hidden" style={{ boxShadow: "0 8px 24px rgba(0, 0, 0, 0.08)", transition: "transform 0.3s ease, box-shadow 0.3s ease", border: "2px solid rgba(242, 101, 32, 0.1)" }}>
+                    <div style={{ height: "5px", background: "linear-gradient(90deg, #002855, #f26520)" }} />
+                    <div className="p-4">
+                      <img src="/conclave/session2.png" alt="Digital Conclave 2025 - Session 2" className="w-100 rounded-3 mb-3" style={{ objectFit: "cover", height: "300px", boxShadow: "0 4px 16px rgba(0, 0, 0, 0.1)" }} />
+                      <h3 className="fw-bold mb-3 fs-2" style={{ color: "#002855" }}>Digital Conclave 2025 - Session 2</h3>
+                      <p className="mb-3 fs-4 text-muted">Beyond Earth, Beyond Limits: Shaping Tomorrow's Technology</p>
+                      <div className="d-flex gap-3 flex-wrap">
+                        <a href="/conclave/session-2" className="btn px-4 py-2 text-white fw-semibold fs-4" style={{ backgroundColor: "#002855", borderRadius: "8px", border: "none", boxShadow: "0 4px 12px rgba(0, 40, 85, 0.3)" }}>
+                          Read More
+                        </a>
+                        <a href="https://youtu.be/-1hIAPpNZVU?si=9KpjtRl3uC59DF8a" target="_blank" rel="noopener noreferrer" className="btn px-4 py-2 text-white fw-semibold fs-4" style={{ backgroundColor: "#f26520", borderRadius: "8px", border: "none", boxShadow: "0 4px 12px rgba(242, 101, 32, 0.3)" }}>
+                          Watch Video
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -754,7 +833,7 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                     <div className="h-100 p-4 rounded-4 alumni-testimonial-card" style={{ backgroundColor: "#fff", boxShadow: "0 4px 16px rgba(0, 0, 0, 0.06)", border: "1px solid #e9ecef", borderLeft: "4px solid #f26520", transition: "all 0.4s cubic-bezier(0.22, 1, 0.36, 1)", cursor: "pointer", minHeight: "320px", display: "flex", flexDirection: "column" }}>
                       <div className="d-flex gap-3 align-items-start mb-3">
                         <div style={{ width: "70px", height: "70px", borderRadius: "50%", overflow: "hidden", flexShrink: 0, border: "2px solid #f26520" }}>
-                          <img src={alumni.image} alt={alumni.name} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }} />
+                          <img src={alumni.image} alt={alumni.name} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%" }} />
                         </div>
                         <div>
                           <h4 className="fw-bold mb-1 fs-3" style={{ color: "#002855" }}>{alumni.name}</h4>
@@ -856,7 +935,7 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                   title: "Syllabus",
                   content: (
                     <div className="d-flex flex-column gap-3 w-100">
-                      <a href="https://kiet.edu/cse-ai-assets/B.Tech_1st%20Year%20Course%20Booklet%202025-26.pdf" target="_blank" rel="noreferrer" className="d-flex align-items-center justify-content-between text-decoration-none bg-white rounded shadow-sm" style={{ padding: "14px 18px", width: "100%", border: "1px solid #e9ecef", transition: "all 0.25s ease" }}>
+                      <a href="/syllabus/B.Tech_1st_Year_Course_Booklet_2025-26.pdf" download="B.Tech_1st_Year_Course_Booklet_2025-26.pdf" className="d-flex align-items-center justify-content-between text-decoration-none bg-white rounded shadow-sm" style={{ padding: "14px 18px", width: "100%", border: "1px solid #e9ecef", transition: "all 0.25s ease" }}>
                         <div className="d-flex align-items-center">
                           <span className="me-3 d-flex align-items-center justify-content-center rounded-circle" style={{ width: "42px", height: "42px", backgroundColor: "#fff3ec", flexShrink: 0 }}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#F26520" viewBox="0 0 16 16">
@@ -868,7 +947,7 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
                         </div>
                         <span style={{ fontSize: "1.2rem", color: "#f26520" }}>&rarr;</span>
                       </a>
-                      <a href="https://kiet.edu/cse-ai-assets/V1_CSE(AI)_CSE(AIML)_Final%20computing_B.Tech%202nd%20Year%20Course%20Booklet_2025-26.pdf" target="_blank" rel="noreferrer" className="d-flex align-items-center justify-content-between text-decoration-none bg-white rounded shadow-sm" style={{ padding: "14px 18px", width: "100%", border: "1px solid #e9ecef", transition: "all 0.25s ease" }}>
+                      <a href="/syllabus/B.Tech_2nd_Year_Course_Booklet_2025-26.pdf" download="B.Tech_2nd_Year_Course_Booklet_2025-26.pdf" className="d-flex align-items-center justify-content-between text-decoration-none bg-white rounded shadow-sm" style={{ padding: "14px 18px", width: "100%", border: "1px solid #e9ecef", transition: "all 0.25s ease" }}>
                         <div className="d-flex align-items-center">
                           <span className="me-3 d-flex align-items-center justify-content-center rounded-circle" style={{ width: "42px", height: "42px", backgroundColor: "#fff3ec", flexShrink: 0 }}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#F26520" viewBox="0 0 16 16">
@@ -939,6 +1018,15 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
               transform: translateY(-8px) scale(1.02);
               box-shadow: 0 20px 40px rgba(242, 101, 32, 0.18) !important;
               border-left-width: 6px;
+            }
+
+            /* Research stat cards hover */
+            .research-stat-card {
+              transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+            }
+            .research-stat-card:hover {
+              transform: translateY(-8px);
+              box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15) !important;
             }
 
             /* Alumni scroll container */

@@ -49,6 +49,13 @@ const TechIcons = {
       <circle cx="12" cy="12" r="1.5" fill="#fff"/>
     </svg>
   ),
+  genAi: (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FF9800"/>
+      <circle cx="12" cy="12" r="3" fill="#FFF" opacity="0.8"/>
+      <path d="M12 9V15M9 12H15" stroke="#FF9800" strokeWidth="1.5" strokeLinecap="round"/>
+    </svg>
+  ),
 };
 
 const roadmap = [
@@ -86,6 +93,11 @@ const roadmap = [
     label: "Quantum Computing",
     icon: "quantum",
     slideImage: "/emerging-technology/quantum-computing.png",
+  },
+  {
+    label: "Gen AI",
+    icon: "genAi",
+    slideImage: "/emerging-technology/gen_ai.png",
   },
 ];
 
@@ -342,7 +354,7 @@ export default function Roadmap() {
                 </linearGradient>
               </defs>
               <path
-                d="M 30 50 Q 45 100, 30 150 Q 15 200, 30 250 Q 45 300, 30 350 Q 15 400, 30 450 Q 45 500, 30 550 Q 15 600, 30 650"
+                d="M 30 50 Q 45 100, 30 150 Q 15 200, 30 250 Q 45 300, 30 350 Q 15 400, 30 450 Q 45 500, 30 550 Q 15 600, 30 650 Q 45 700, 30 750"
                 fill="none"
                 stroke="url(#mobileLineGradient)"
                 strokeWidth="3"
@@ -414,53 +426,76 @@ export default function Roadmap() {
             })}
           </div>
 
-          {/* Mobile slide panel */}
+          {/* Mobile slide panel - centered on screen */}
           {activeIndex !== null && (
-            <div
-              style={{
-                marginTop: "1rem",
-                padding: "16px",
-                backgroundColor: "#fff",
-                borderRadius: "12px",
-                boxShadow: "0 8px 30px rgba(0, 0, 0, 0.15)",
-                border: "3px solid #f26520",
-              }}
-            >
-              <div className="d-flex justify-content-between align-items-center mb-3">
-                <h4 className="fw-bold mb-0 fs-3" style={{ color: "#002855" }}>
-                  {roadmap[activeIndex].label}
-                </h4>
-                <button
-                  style={{
-                    width: "32px",
-                    height: "32px",
-                    borderRadius: "50%",
-                    backgroundColor: "#f26520",
-                    border: "none",
-                    color: "#fff",
-                    fontSize: "1rem",
-                    fontWeight: "bold",
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                  onClick={() => setActiveIndex(null)}
-                >
-                  ✕
-                </button>
-              </div>
-              <img
-                src={roadmap[activeIndex].slideImage}
-                alt={`${roadmap[activeIndex].label} Slide`}
+            <>
+              {/* Backdrop overlay */}
+              <div
                 style={{
-                  width: "100%",
-                  height: "auto",
-                  borderRadius: "8px",
-                  display: "block",
+                  position: "fixed",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  backgroundColor: "rgba(0, 0, 0, 0.7)",
+                  zIndex: 9998,
                 }}
+                onClick={() => setActiveIndex(null)}
               />
-            </div>
+
+              {/* Centered modal */}
+              <div
+                style={{
+                  position: "fixed",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: "90vw",
+                  maxWidth: "500px",
+                  padding: "16px",
+                  backgroundColor: "#fff",
+                  borderRadius: "12px",
+                  boxShadow: "0 8px 30px rgba(0, 0, 0, 0.15)",
+                  border: "3px solid #f26520",
+                  zIndex: 9999,
+                }}
+              >
+                <div className="d-flex justify-content-between align-items-center mb-3">
+                  <h4 className="fw-bold mb-0 fs-3" style={{ color: "#002855" }}>
+                    {roadmap[activeIndex].label}
+                  </h4>
+                  <button
+                    style={{
+                      width: "32px",
+                      height: "32px",
+                      borderRadius: "50%",
+                      backgroundColor: "#f26520",
+                      border: "none",
+                      color: "#fff",
+                      fontSize: "1rem",
+                      fontWeight: "bold",
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                    onClick={() => setActiveIndex(null)}
+                  >
+                    ✕
+                  </button>
+                </div>
+                <img
+                  src={roadmap[activeIndex].slideImage}
+                  alt={`${roadmap[activeIndex].label} Slide`}
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    borderRadius: "8px",
+                    display: "block",
+                  }}
+                />
+              </div>
+            </>
           )}
         </div>
       </div>

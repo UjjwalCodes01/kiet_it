@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import BackToTop from "./BackToTop";
 import ImportantLinks from "./ImportantLinks";
 
-import { FACULTY_MEMBERS } from "@/app/data/cse-aiml-faculty-members";
+import { IT_FACULTY_MEMBERS } from "@/app/data/it-faculty-members";
 
 type DepartmentMainPageProps = {
   bodyClass: string;
@@ -111,8 +111,8 @@ export function DepartmentMainPage({ bodyClass, stylesheets, fontPreloads }: Dep
         <Navbar />
         <ProgramSectionNav />
         <ProgramDetails
-          faculty={FACULTY_MEMBERS}
-          facultyPageHref="/programs/undergraduate-programs/cse-aiml/faculty"
+          faculty={IT_FACULTY_MEMBERS}
+          facultyPageHref="/programs/undergraduate-programs/it/faculty"
         />
         <Footer />
         <FloatingWidgets />
