@@ -637,9 +637,9 @@ export default function ProgramDetails({ faculty, facultyPageHref }) {
             <div className="faculty-marquee-wrapper">
               <div className="faculty-marquee-track">
                 {[...faculty.slice(0, 18), ...faculty.slice(0, 18)].map((member, idx) => (
-                  <div key={`${member.name}-${idx}`} className="card border-0 shadow-sm flex-shrink-0" style={{ width: "180px", borderRadius: "12px", cursor: "pointer" }}>
-                    <div className="overflow-hidden" style={{ height: "200px", borderTopLeftRadius: "12px", borderTopRightRadius: "12px", position: "relative" }}>
-                      <img alt={member.name} src={member.image} style={{ position: "absolute", height: "100%", width: "100%", left: 0, top: 0, right: 0, bottom: 0, objectFit: "cover", objectPosition: "center 15%", color: "transparent" }} />
+                  <div key={`${member.name}-${idx}`} className="card border-0 shadow-sm flex-shrink-0" style={{ width: "200px", borderRadius: "12px", cursor: "pointer" }}>
+                    <div className="overflow-hidden" style={{ height: "240px", borderTopLeftRadius: "12px", borderTopRightRadius: "12px", position: "relative", backgroundColor: "#f8f9fa" }}>
+                      <img alt={member.name} src={member.image} style={{ position: "absolute", height: "100%", width: "100%", left: 0, top: 0, right: 0, bottom: 0, objectFit: "cover", objectPosition: "center top", color: "transparent" }} />
                     </div>
                     <div className="card-body text-center p-2 p-md-3">
                       <h3 className="card-title fw-bold mb-2 fs-4" style={{ color: "#00304c", lineHeight: 1.3 }}>{member.name}</h3>

@@ -3,15 +3,15 @@ export default function FacultyCard({ member, variant = "main" }) {
     return (
       <div
         className="card border-0 shadow-sm h-100"
-        style={{ borderRadius: "12px", overflow: "hidden", cursor: "pointer" }}
+        style={{ borderRadius: "12px", overflow: "hidden", cursor: "pointer", transition: "transform 0.3s ease, box-shadow 0.3s ease" }}
       >
         <div
-          className="d-flex align-items-center justify-content-center mx-auto"
+          className="overflow-hidden"
           style={{
             position: "relative",
-            width: "70%",
-            aspectRatio: "3/4",
-            overflow: "hidden",
+            width: "100%",
+            height: "280px",
+            backgroundColor: "#f8f9fa",
           }}
         >
           <img
@@ -25,8 +25,8 @@ export default function FacultyCard({ member, variant = "main" }) {
               top: 0,
               right: 0,
               bottom: 0,
-              objectFit: "contain",
-              objectPosition: "center",
+              objectFit: "cover",
+              objectPosition: "center top",
             }}
           />
         </div>
@@ -34,7 +34,7 @@ export default function FacultyCard({ member, variant = "main" }) {
           <h2
             className="fw-bold mb-2 fs-3"
             style={{
-              fontSize: "clamp(0.85rem, 1.3vw, 1.2rem)",
+              fontSize: "clamp(0.95rem, 1.3vw, 1.2rem)",
               color: "#00304c",
               lineHeight: 1.3,
             }}
@@ -45,7 +45,7 @@ export default function FacultyCard({ member, variant = "main" }) {
             {member.role}
           </p>
           {member.qualification ? (
-            <p className="small text-muted mb-0 text-center fs-5">{member.qualification}</p>
+            <p className="small text-muted mb-0 text-center fs-6">{member.qualification}</p>
           ) : null}
         </div>
       </div>
