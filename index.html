@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information Technology | KIET University, Delhi-NCR Ghaziabad</title>
+    <meta name="description" content="Department of Information Technology at KIET University offers a comprehensive curriculum in IT, Quantum Computing, AWS Cloud, Cybersecurity, and Data Engineering. NBA Accredited 5 times with 1.78 Cr highest package.">
+    <meta name="keywords" content="Information Technology,IT Department,KIET IT,B.Tech IT,KIET University,Delhi NCR,Ghaziabad,Quantum Computing,AWS Cloud,Cybersecurity,Data Engineering,NBA Accredited">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #f26520;
+            --dark-blue: #002855;
+        }
+        * { font-family: 'Inter', sans-serif; }
+        body { background-color: #f8f9fa; }
+
+        /* Header */
+        .header-top-bar { background-color: var(--dark-blue); padding: 8px 0; }
+        .header-top-bar a { color: #fff; text-decoration: none; font-size: 13px; margin: 0 10px; }
+        .header-top-bar a:hover { color: var(--secondary-color); }
+        .main-header { background-color: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        .nav-link { color: var(--dark-blue) !important; font-weight: 500; }
+        .nav-link:hover { color: var(--secondary-color) !important; }
+        .btn-apply { background-color: var(--secondary-color); color: #fff; border: none; padding: 10px 25px; border-radius: 5px; font-weight: 600; }
+        .btn-apply:hover { background-color: #d55a1a; color: #fff; }
+
+        /* Section Nav */
+        .section-nav { background-color: #fff; border-bottom: 1px solid #e0e0e0; position: sticky; top: 70px; z-index: 999; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .section-nav-link { color: #333; text-decoration: none; font-weight: 600; font-size: 15px; padding: 15px 15px; display: inline-block; border-bottom: 3px solid transparent; transition: all 0.3s; white-space: nowrap; }
+        .section-nav-link:hover, .section-nav-link.active { color: var(--primary-color); border-bottom-color: var(--primary-color); }
+
+        /* Section Title */
+        .section-title { font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 700; color: var(--dark-blue); border-bottom: 3px solid var(--secondary-color); padding-bottom: 10px; display: inline-block; margin-bottom: 30px; }
+
+        /* Highlight Cards */
+        .highlight-card { background-color: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden; height: 100%; transition: all 0.3s ease; cursor: pointer; border-left: 4px solid transparent; }
+        .highlight-card:hover { transform: translateY(-6px); box-shadow: 0 12px 28px rgba(0,0,0,0.14); border-left-color: var(--secondary-color); }
+        .highlight-card img { width: 100%; height: 180px; object-fit: cover; }
+
+        /* Placement Stats */
+        .placement-stat-card { position: relative; overflow: hidden; border-radius: 16px; background: #fff; padding: 2rem 1.5rem; text-align: center; transition: all 0.4s ease; box-shadow: 0 8px 24px rgba(0,0,0,0.07); }
+        .placement-stat-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px; }
+        .placement-stat-card::after { content: ""; position: absolute; bottom: -40px; right: -40px; width: 120px; height: 120px; border-radius: 50%; opacity: 0.06; transition: transform 0.4s ease; }
+        .placement-stat-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
+        .placement-stat-card:hover::after { transform: scale(1.6); }
+        .placement-stat-card.orange::before { background: linear-gradient(90deg, #f26520, #ff8a50); }
+        .placement-stat-card.orange::after { background: #f26520; }
+        .placement-stat-card.navy::before { background: linear-gradient(90deg, #002855, #1a5276); }
+        .placement-stat-card.navy::after { background: #002855; }
+
+        /* Recruiters Slider */
+        .custom-slider { overflow: hidden; }
+        .slide-track { display: flex; animation: scroll 40s linear infinite; width: calc(140px * 50); }
+        .slide-track:hover { animation-play-state: paused; }
+        .slide { padding: 0 20px; }
+        .slide img { height: 80px; width: auto; object-fit: contain; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-140px * 25)); } }
+
+        /* Faculty Marquee */
+        .faculty-marquee-wrapper { overflow: hidden; width: 100%; }
+        .faculty-marquee-track { display: flex; gap: 1rem; width: fit-content; animation: faculty-scroll 60s linear infinite; }
+        .faculty-marquee-wrapper:hover .faculty-marquee-track { animation-play-state: paused; }
+        @keyframes faculty-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Achiever Cards */
+        .achiever-card { background-color: white; border-radius: 16px; padding: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: all 0.35s ease; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .achiever-card:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 16px 32px rgba(242, 101, 32, 0.15); }
+        .achievers-scroll-container { scrollbar-width: none; -ms-overflow-style: none; }
+        .achievers-scroll-container::-webkit-scrollbar { display: none; }
+
+        /* Alumni Testimonials */
+        .alumni-testimonial-card { background-color: #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.06); border: 1px solid #e9ecef; border-left: 4px solid var(--secondary-color); transition: all 0.4s ease; min-height: 320px; }
+        .alumni-testimonial-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 40px rgba(242, 101, 32, 0.18); border-left-width: 6px; }
+        .alumni-scroll-container { scrollbar-width: none; }
+        .alumni-scroll-container::-webkit-scrollbar { display: none; }
+
+        /* Clubs */
+        .clubs-stack { display: flex; justify-content: center; gap: 0; }
+        .club-card-outer { transition: all 0.4s ease; z-index: 1; flex: 0 0 55%; max-width: 55%; }
+        .club-card-outer:nth-child(2) { margin-left: -8%; }
+        .club-card-outer:hover { transform: scale(1.06) translateY(-8px); z-index: 10; }
+        .club-card-outer:hover .club-card-inner { box-shadow: 0 20px 50px rgba(0,0,0,0.18); }
+        @media (max-width: 991px) {
+            .clubs-stack { flex-direction: column; gap: 1.5rem; align-items: center; }
+            .club-card-outer { flex: 0 0 100%; max-width: 100%; }
+            .club-card-outer:nth-child(2) { margin-left: 0; }
+            .club-card-outer:hover { transform: none; }
+        }
+
+        /* Research Cards */
+        .research-stat-card { transition: all 0.4s ease; }
+        .research-stat-card:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(0,0,0,0.15) !important; }
+
+        /* Accordion */
+        .vm-accordion-btn { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.1rem 1.5rem; border: 2px solid #e2e8f0; border-left: 5px solid #002855; background: #fff; border-radius: 12px; cursor: pointer; transition: all 0.3s ease; }
+        .vm-accordion-btn:hover { border-left-color: #f26520; box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+        .vm-accordion-btn.active { border-left-color: #f26520; background: linear-gradient(135deg, #fff8f5 0%, #fff 100%); box-shadow: 0 6px 20px rgba(242, 101, 32, 0.1); }
+        .vm-accordion-panel { overflow: hidden; transition: all 0.45s ease; border-radius: 0 0 12px 12px; margin-top: -8px; border: 2px solid transparent; border-top: none; }
+        .vm-accordion-panel.open { border-color: #e2e8f0; border-left: 5px solid #f26520; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
+
+        /* Roadmap */
+        .roadmap-item { width: 85px; height: 85px; border-radius: 50%; background-color: #fff; box-shadow: 0 4px 15px rgba(0,40,85,0.3); display: flex; align-items: center; justify-content: center; padding: 18px; transition: all 0.3s ease; cursor: pointer; margin: 0 auto 0.4rem; }
+        .roadmap-item:hover, .roadmap-item.active { box-shadow: 0 8px 25px rgba(242,101,32,0.4); border: 3px solid #f26520; transform: scale(1.15); }
+        .roadmap-label { font-weight: 800; color: #002855; text-transform: uppercase; font-size: 0.85rem; text-align: center; transition: color 0.3s ease; }
+        .roadmap-item:hover + .roadmap-label, .roadmap-item.active + .roadmap-label { color: #f26520; }
+
+        /* Floating Widgets */
+        .floating-apply { position: fixed; right: -50px; top: 50%; transform: translateY(-50%) rotate(-90deg); z-index: 1000; }
+        .floating-apply a { background-color: var(--secondary-color); color: #fff; padding: 12px 25px; text-decoration: none; font-weight: 600; border-radius: 0 0 10px 10px; }
+        .whatsapp-btn { position: fixed; right: 20px; bottom: 80px; z-index: 1000; background-color: #25d366; color: #fff; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 4px 15px rgba(37,211,102,0.4); text-decoration: none; }
+        .back-to-top { position: fixed; right: 20px; bottom: 20px; z-index: 1000; background-color: var(--dark-blue); color: #fff; width: 45px; height: 45px; border-radius: 50%; display: none; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .back-to-top.show { display: flex; }
+
+        /* Footer */
+        footer { background-color: var(--dark-blue); color: #fff; padding: 50px 0 20px; }
+        footer h5 { color: var(--secondary-color); margin-bottom: 20px; }
+        footer a { color: #ccc; text-decoration: none; }
+        footer a:hover { color: var(--secondary-color); }
+
+        /* Modal */
+        .roadmap-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999; justify-content: center; align-items: center; }
+        .roadmap-modal.active { display: flex; }
+        .roadmap-modal-content { background: #fff; border-radius: 12px; padding: 16px; max-width: 600px; width: 90%; border: 4px solid #f26520; position: relative; }
+        .roadmap-modal-close { position: absolute; top: -14px; right: -14px; width: 36px; height: 36px; border-radius: 50%; background: #f26520; border: none; color: #fff; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    </style>
+</head>
+<body>
+    <!-- Header Top Bar -->
+    <div class="header-top-bar d-none d-lg-block">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-end align-items-center">
+                <a href="https://kiet.edu/announcements">ANNOUNCEMENTS</a>
+                <a href="https://kiet.edu/academics/student-grievance-redressal">GRIEVANCE REDRESSAL</a>
+                <a href="https://kiet.edu/erp">ERP</a>
+                <a href="https://www.tbi-kiet.in/">TBI</a>
+                <a href="https://kiet.edu/alumni">ALUMNI</a>
+                <a href="https://kiet.edu/library">LIBRARY</a>
+                <a href="https://kiet.edu/careers">CAREERS</a>
+                <a href="https://kiet.edu/contact-us">CONTACT US</a>
+                <div class="ms-3">
+                    <a href="https://x.com/Kiet_edu" target="_blank"><i class="bi bi-twitter-x"></i></a>
+                    <a href="https://www.facebook.com/kiet.edu/" target="_blank" class="ms-2"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.linkedin.com/school/kiet-group-of-institutions/" target="_blank" class="ms-2"><i class="bi bi-linkedin"></i></a>
+                    <a href="https://www.instagram.com/kiet_edu/" target="_blank" class="ms-2"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.youtube.com/@KietEduGzb/" target="_blank" class="ms-2"><i class="bi bi-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <nav class="navbar navbar-expand-lg py-2">
+            <div class="container-fluid px-4">
+                <a class="navbar-brand" href="https://kiet.edu/">
+                    <img src="assets/images/logo/KIET-Logo.jpg" alt="KIET Logo" height="55">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">About</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="https://kiet.edu/about/Overview/">Overview</a></li>
+                                <li><a class="dropdown-item" href="https://kiet.edu/about/vision-mission/">Vision & Mission</a></li>
+                                <li><a class="dropdown-item" href="https://kiet.edu/about/awards-rankings/">Awards & Rankings</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Academics</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="https://kiet.edu/academics/Overview/">About</a></li>
+                                <li><a class="dropdown-item" href="https://kiet.edu/academics/institutes/">Institutes</a></li>
+                                <li><a class="dropdown-item" href="https://kiet.edu/academics/curriculum-structure/">Curriculum</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Programs</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="https://kiet.edu/programs/undergraduate-programs/">Undergraduate</a></li>
+                                <li><a class="dropdown-item" href="https://kiet.edu/programs/postgraduate-programs/">Postgraduate</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Admission</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="https://kiet.edu/admissions/admission-procedure/">Admission Procedure</a></li>
+                                <li><a class="dropdown-item" href="https://kiet.edu/admissions/fee-structure/">Fee Structure</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="https://kiet.edu/placements/about/">Placements</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://kiet.edu/research/about/">Research</a></li>
+                    </ul>
+                    <a href="https://admission.kiet.edu/" target="_blank" class="btn btn-apply ms-3">Apply Now</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Section Navigation -->
+    <div class="section-nav">
+        <div class="container-fluid">
+            <div class="d-flex overflow-auto" style="scrollbar-width: none;">
+                <a href="#overview" class="section-nav-link active">Overview</a>
+                <a href="#highlights" class="section-nav-link">Highlights</a>
+                <a href="#placement" class="section-nav-link">Placement</a>
+                <a href="#roadmap" class="section-nav-link">Emerging Technology</a>
+                <a href="#coe" class="section-nav-link">COE</a>
+                <a href="#clubs" class="section-nav-link">Clubs</a>
+                <a href="#dean-message" class="section-nav-link">Dean's Message</a>
+                <a href="#faculty" class="section-nav-link">Faculty</a>
+                <a href="#achievers" class="section-nav-link">Achievers</a>
+                <a href="#research" class="section-nav-link">Publications & Research</a>
+                <a href="#syllabus" class="section-nav-link">Syllabus</a>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- Overview Section -->
+        <section id="overview" class="py-4">
+            <div class="container-fluid px-3 px-lg-5">
+                <div style="border-radius: 20px; overflow: hidden;">
+                    <div style="background: linear-gradient(135deg, #001a3a 0%, #002855 60%, #003d7a 100%); position: relative;">
+                        <div class="d-none d-lg-block" style="position: absolute; top: 0; right: 0; width: 45%; height: 100%; background: linear-gradient(135deg, transparent 0%, rgba(242, 101, 32, 0.08) 100%); clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);"></div>
+                        <div class="row g-0 align-items-center" style="position: relative; z-index: 1;">
+                            <div class="col-12 col-lg-7 p-4 p-md-5">
+                                <div class="py-3 py-lg-5 px-2 px-lg-4">
+                                    <div class="d-inline-block mb-3 px-3 py-1 rounded-pill" style="background-color: rgba(242, 101, 32, 0.15); border: 1px solid rgba(242, 101, 32, 0.3);">
+                                        <span class="fw-semibold" style="color: #ff8a50; font-size: 1.1rem;">NBA Accredited &bull; 5 Times</span>
+                                    </div>
+                                    <h1 class="fw-bold mb-4" style="color: #fff; font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.2;">
+                                        Department of <span style="color: #f26520;">Information Technology</span>
+                                    </h1>
+                                    <p class="mb-4" style="line-height: 1.8; color: rgba(255,255,255,0.8); text-align: justify; font-size: 1.1rem;">
+                                        The Information Technology department builds future-ready professionals through strong computing fundamentals and advanced domains like Quantum Computing, AWS Cloud, Cybersecurity, and Data Engineering. With an industry-aligned curriculum, experiential learning, and globally recognized certifications, students gain the skills and innovation mindset to excel in today's digital landscape.
+                                    </p>
+                                    <a href="https://admission.kiet.edu/" target="_blank" class="btn btn-apply px-5 py-3" style="font-size: 1.1rem; box-shadow: 0 4px 16px rgba(242, 101, 32, 0.4);">Apply Now</a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-5 p-4 p-lg-5">
+                                <div class="row g-3">
+                                    <div class="col-6">
+                                        <div class="text-center p-3 rounded-3" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
+                                            <h3 class="fw-bold mb-1" style="color: #f26520; font-size: clamp(1.5rem, 3vw, 2.5rem);">1.78 Cr</h3>
+                                            <p class="fw-semibold mb-0" style="color: #fff; font-size: 0.95rem;">Highest Package</p>
+                                            <p class="mb-0" style="color: rgba(255,255,255,0.5); font-size: 0.85rem;">2026 Batch</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="text-center p-3 rounded-3" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
+                                            <h3 class="fw-bold mb-1" style="color: #f26520; font-size: clamp(1.5rem, 3vw, 2.5rem);">88%</h3>
+                                            <p class="fw-semibold mb-0" style="color: #fff; font-size: 0.95rem;">Placements</p>
+                                            <p class="mb-0" style="color: rgba(255,255,255,0.5); font-size: 0.85rem;">2021-2025 Batches</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="text-center p-3 rounded-3" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
+                                            <h3 class="fw-bold mb-1" style="color: #f26520; font-size: clamp(1.5rem, 3vw, 2.5rem);">180</h3>
+                                            <p class="fw-semibold mb-0" style="color: #fff; font-size: 0.95rem;">Annual Intake</p>
+                                            <p class="mb-0" style="color: rgba(255,255,255,0.5); font-size: 0.85rem;">IT Department</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="text-center p-3 rounded-3" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
+                                            <h3 class="fw-bold mb-1" style="color: #f26520; font-size: clamp(1.5rem, 3vw, 2.5rem);">370+</h3>
+                                            <p class="fw-semibold mb-0" style="color: #fff; font-size: 0.95rem;">Globally Certified</p>
+                                            <p class="mb-0" style="color: rgba(255,255,255,0.5); font-size: 0.85rem;">Students</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Department's Highlights -->
+        <section id="highlights" class="py-5">
+            <div class="container-fluid px-3 px-lg-5">
+                <h2 class="section-title">Department's Highlights</h2>
+                <div class="row g-4">
+                    <div class="col-12 col-lg-6">
+                        <div class="highlight-card d-flex flex-column flex-md-row h-100">
+                            <div class="d-none d-md-block" style="flex: 0 0 160px; position: relative;">
+                                <img src="frontend/public/department_highlights/Emerging_it_technologies.png" alt="Emerging IT Technologies" class="w-100 h-100" style="object-fit: cover; position: absolute; top: 0; left: 0;">
+                            </div>
+                            <div class="d-md-none" style="height: 180px; overflow: hidden;">
+                                <img src="frontend/public/department_highlights/Emerging_it_technologies.png" alt="Emerging IT Technologies" class="w-100 h-100" style="object-fit: cover;">
+                            </div>
+                            <div class="p-4 flex-grow-1">
+                                <h3 class="fw-semibold mb-2" style="color: #0d3b66; font-size: 1.15rem;">Emerging IT Technologies</h3>
+                                <p class="mb-0" style="color: #666; line-height: 1.6; text-align: justify; font-size: 0.95rem;">Our curriculum is strategically designed to build strong foundations in computing and programming while introducing students to emerging technologies such as Quantum Computing, AWS Cloud, Cybersecurity, Data Engineering, Full-Stack Development, DevOps, and Software Architecture. Delivered by a highly qualified faculty team from premier institutions and reputed universities.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="highlight-card d-flex flex-column flex-md-row h-100">
+                            <div class="d-none d-md-block" style="flex: 0 0 160px; position: relative;">
+                                <img src="frontend/public/department_highlights/Experiential_Learning_with_an_AI-Driven_Approach.png" alt="Experiential Learning" class="w-100 h-100" style="object-fit: cover; position: absolute; top: 0; left: 0;">
+                            </div>
+                            <div class="d-md-none" style="height: 180px; overflow: hidden;">
+                                <img src="frontend/public/department_highlights/Experiential_Learning_with_an_AI-Driven_Approach.png" alt="Experiential Learning" class="w-100 h-100" style="object-fit: cover;">
+                            </div>
+                            <div class="p-4 flex-grow-1">
+                                <h3 class="fw-semibold mb-2" style="color: #0d3b66; font-size: 1.15rem;">Experiential Learning with Industry-Driven Approach</h3>
+                                <p class="mb-0" style="color: #666; line-height: 1.6; text-align: justify; font-size: 0.95rem;">A future-focused, experiential learning ecosystem integrating modern assessments, cloud-based labs, and industry-oriented projects. Students gain hands-on expertise in Quantum Computing, AWS Cloud, Cybersecurity, and Web Technologies through platforms like AWS Academy, GitHub, and HackerRank.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="highlight-card d-flex flex-column flex-md-row h-100">
+                            <div class="d-none d-md-block" style="flex: 0 0 160px; position: relative;">
+                                <img src="frontend/public/department_highlights/Industry-Centric_Tracks.png" alt="Industry-Centric Tracks" class="w-100 h-100" style="object-fit: cover; position: absolute; top: 0; left: 0;">
+                            </div>
+                            <div class="d-md-none" style="height: 180px; overflow: hidden;">
+                                <img src="frontend/public/department_highlights/Industry-Centric_Tracks.png" alt="Industry-Centric Tracks" class="w-100 h-100" style="object-fit: cover;">
+                            </div>
+                            <div class="p-4 flex-grow-1">
+                                <h3 class="fw-semibold mb-2" style="color: #0d3b66; font-size: 1.15rem;">Industry-Centric Tracks with Globally Recognized Certifications</h3>
+                                <p class="mb-0" style="color: #666; line-height: 1.6; text-align: justify; font-size: 0.95rem;">Our IT program integrates strong computing foundations with industry-centric specialization tracks in Quantum Computing, AWS Cloud, Cybersecurity, and Data Engineering, aligned with globally recognized certifications.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="highlight-card d-flex flex-column flex-md-row h-100">
+                            <div class="d-none d-md-block" style="flex: 0 0 160px; position: relative;">
+                                <img src="frontend/public/department_highlights/LeetCode_Sharing.png" alt="Placement Preparation" class="w-100 h-100" style="object-fit: cover; position: absolute; top: 0; left: 0;">
+                            </div>
+                            <div class="d-md-none" style="height: 180px; overflow: hidden;">
+                                <img src="frontend/public/department_highlights/LeetCode_Sharing.png" alt="Placement Preparation" class="w-100 h-100" style="object-fit: cover;">
+                            </div>
+                            <div class="p-4 flex-grow-1">
+                                <h3 class="fw-semibold mb-2" style="color: #0d3b66; font-size: 1.15rem;">Comprehensive Placement Preparation Platform</h3>
+                                <p class="mb-0" style="color: #666; line-height: 1.6; text-align: justify; font-size: 0.95rem;">The department delivers a structured placement preparation framework combining DSA mastery, competitive coding, and continuous assessments through platforms like CodeTantra, Leetcode, HackerRank, CodeChef, and IAMNeo.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="highlight-card d-flex flex-column flex-md-row h-100">
+                            <div class="d-none d-md-block" style="flex: 0 0 160px; position: relative;">
+                                <img src="frontend/public/department_highlights/Future_Technology_Quantum_Computation.png" alt="Quantum Computing" class="w-100 h-100" style="object-fit: cover; position: absolute; top: 0; left: 0;">
+                            </div>
+                            <div class="d-md-none" style="height: 180px; overflow: hidden;">
+                                <img src="frontend/public/department_highlights/Future_Technology_Quantum_Computation.png" alt="Quantum Computing" class="w-100 h-100" style="object-fit: cover;">
+                            </div>
+                            <div class="p-4 flex-grow-1">
+                                <h3 class="fw-semibold mb-2" style="color: #0d3b66; font-size: 1.15rem;">Future Technology - Quantum Computing</h3>
+                                <p class="mb-0" style="color: #666; line-height: 1.6; text-align: justify; font-size: 0.95rem;">The department pioneers next-generation learning by integrating Quantum Computing with core IT. Through hands-on experience with IBM Qiskit, quantum algorithms, and hybrid quantum-classical systems, students explore the future of computation.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="highlight-card d-flex flex-column flex-md-row h-100">
+                            <div class="d-none d-md-block" style="flex: 0 0 160px; position: relative;">
+                                <img src="frontend/public/department_highlights/Hands-on_Learning_and_Innovative_Ecosystem.png" alt="Innovation Ecosystem" class="w-100 h-100" style="object-fit: cover; position: absolute; top: 0; left: 0;">
+                            </div>
+                            <div class="d-md-none" style="height: 180px; overflow: hidden;">
+                                <img src="frontend/public/department_highlights/Hands-on_Learning_and_Innovative_Ecosystem.png" alt="Innovation Ecosystem" class="w-100 h-100" style="object-fit: cover;">
+                            </div>
+                            <div class="p-4 flex-grow-1">
+                                <h3 class="fw-semibold mb-2" style="color: #0d3b66; font-size: 1.15rem;">Hands-on Learning and Innovative Ecosystem</h3>
+                                <p class="mb-0" style="color: #666; line-height: 1.6; text-align: justify; font-size: 0.95rem;">The department fosters an experiential and innovation-driven learning environment where students engage in real-world projects, cloud-based labs, and emerging technologies. Through hackathons, research initiatives, and industry collaborations, students develop practical skills.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Placement Section -->
+        <section id="placement" class="py-5">
+            <div class="container-fluid px-3 px-lg-5">
+                <h2 class="section-title">Placement Overview</h2>
+                <p class="text-muted mb-4" style="font-size: 1.1rem;">Our students are placed across top-tier companies with exceptional packages</p>
+                <div class="row g-4 mb-5">
+                    <div class="col-6 col-lg-3">
+                        <div class="placement-stat-card orange">
+                            <div class="mb-2" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: #f26520;"><span class="counter" data-target="1.78">0</span> Cr</div>
+                            <p class="fw-bold mb-1" style="color: #1a1a2e; font-size: 1.1rem;">Highest Package</p>
+                            <p class="mb-0 text-muted d-none d-md-block">PROTON AG, Switzerland</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <div class="placement-stat-card navy">
+                            <div class="mb-2" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: #002855;"><span class="counter" data-target="16">0</span> LPA</div>
+                            <p class="fw-bold mb-1" style="color: #1a1a2e; font-size: 1.1rem;">Top 10% Average</p>
+                            <p class="mb-0 text-muted d-none d-md-block">2022-25 Batches</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <div class="placement-stat-card orange">
+                            <div class="mb-2" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: #f26520;"><span class="counter" data-target="6.5">0</span> LPA</div>
+                            <p class="fw-bold mb-1" style="color: #1a1a2e; font-size: 1.1rem;">Average Package</p>
+                            <p class="mb-0 text-muted d-none d-md-block">Overall average</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <div class="placement-stat-card navy">
+                            <div class="mb-2" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: #002855;"><span class="counter" data-target="300">0</span>+</div>
+                            <p class="fw-bold mb-1" style="color: #1a1a2e; font-size: 1.1rem;">Total Companies</p>
+                            <p class="mb-0 text-muted d-none d-md-block">Recruiting partners</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mb-4"><h4 class="fw-semibold">Our Recruiters</h4></div>
+                <div class="custom-slider p-4">
+                    <div class="slide-track" id="recruiterSlider"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emerging Technology Pathways -->
+        <section id="roadmap" class="py-5">
+            <div class="container-fluid px-3 px-lg-5">
+                <h2 class="section-title">Emerging Technology Pathways</h2>
+                <p class="text-muted mb-4 fst-italic">Click to view details</p>
+                <div class="row g-4 justify-content-center" id="roadmapGrid"></div>
+            </div>
+        </section>
+
+        <!-- COE Section -->
+        <section id="coe" class="py-5">
+            <div class="container-fluid px-3 px-lg-5">
+                <h2 class="section-title">Centre of Excellence</h2>
+
+                <!-- Quantum Computing Lab -->
+                <div class="rounded-4 overflow-hidden mb-4" style="background: linear-gradient(135deg, #f0f4f8 0%, #fff 50%, #fff8f5 100%); border: 2px solid rgba(0, 40, 85, 0.12);">
+                    <div style="height: 5px; background: linear-gradient(90deg, #002855, #f26520);"></div>
+                    <div class="p-4 p-md-5">
+                        <div class="row align-items-center">
+                            <div class="col-12 col-lg-8">
+                                <div class="d-inline-block mb-3 px-3 py-1 rounded-pill" style="background-color: rgba(242, 101, 32, 0.08); border: 1px solid rgba(242, 101, 32, 0.15);">
+                                    <span class="fw-semibold" style="color: #f26520;">Next-Gen Computing</span>
+                                </div>
+                                <h3 class="fw-bold mb-3" style="font-size: clamp(1.5rem, 3vw, 2.2rem); color: #002855;">Quantum Computing <span style="color: #f26520;">Laboratory</span></h3>
+                                <p style="line-height: 1.8; color: #444; text-align: justify; font-size: 1.05rem;">The Quantum Computing Laboratory at KIET's IT Department is a pioneering facility dedicated to exploring the frontiers of quantum technology. Equipped with access to IBM Qiskit and quantum simulation platforms, students gain hands-on experience with quantum algorithms, qubit manipulation, and hybrid quantum-classical computing.</p>
+                            </div>
+                            <div class="col-12 col-lg-4 mt-4 mt-lg-0">
+                                <img src="frontend/public/coi/quantum_computing.png" alt="Quantum Computing Lab" class="img-fluid rounded-3" style="box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tech Mahindra COE -->
+                <div class="rounded-4 overflow-hidden" style="background: linear-gradient(135deg, #fff8f5 0%, #fff 50%, #f0f4f8 100%); border: 2px solid rgba(242, 101, 32, 0.12);">
+                    <div style="height: 5px; background: linear-gradient(90deg, #f26520, #002855);"></div>
+                    <div class="p-4 p-md-5">
+                        <div class="row align-items-center">
+                            <div class="col-12 col-lg-8">
+                                <div class="d-inline-block mb-3 px-3 py-1 rounded-pill" style="background-color: rgba(0, 40, 85, 0.08); border: 1px solid rgba(0, 40, 85, 0.15);">
+                                    <span class="fw-semibold" style="color: #002855;">Industry - Academia Initiative</span>
+                                </div>
+                                <h3 class="fw-bold mb-3" style="font-size: clamp(1.5rem, 3vw, 2.2rem); color: #002855;">Tech Mahindra <span style="color: #f26520;">Centre of Excellence</span></h3>
+                                <p style="line-height: 1.8; color: #444; text-align: justify; font-size: 1.05rem;">The Tech Mahindra Centre of Excellence at KIET, established within the Department of Information Technology, is an industry-academia initiative focused on employability enhancement. It provides training to students selected by Tech Mahindra, ensuring their skills align with current industry demands.</p>
+                            </div>
+                            <div class="col-12 col-lg-4 mt-4 mt-lg-0">
+                                <img src="frontend/public/coi/tech_mahindra.png" alt="Tech Mahindra COE" class="img-fluid rounded-3" style="box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clubs Section -->
+        <section id="clubs" class="py-5">
+            <div class="container-fluid px-3 px-lg-5">
+                <h2 class="section-title">Our Clubs</h2>
+                <div class="clubs-stack">
+                    <div class="club-card-outer">
+                        <div class="club-card-inner bg-white h-100 border-0" style="border-radius: 20px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.1); min-height: 280px;">
+                            <div style="height: 6px; background: linear-gradient(90deg, #f26520 0%, #002855 100%);"></div>
+                            <div class="p-4 p-md-5 d-flex flex-column flex-md-row h-100">
+                                <div class="flex-shrink-0 mb-3 mb-md-0 me-md-4 align-self-center">
+                                    <div style="width: 110px; height: 110px; border-radius: 50%; overflow: hidden; border: 3px solid #f0f0f0; background-color: #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
+                                        <img src="frontend/public/it_club/innogeeks.png" alt="Innogeeks" style="width: 100%; height: 100%; object-fit: cover;">
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 text-center text-md-start d-flex flex-column justify-content-center">
+                                    <h3 class="fw-bold mb-2" style="color: #002855; font-size: 1.8rem;">Innogeeks</h3>
+                                    <p class="text-muted mb-4" style="line-height: 1.7; text-align: justify;">At Innogeeks, we embody our motto, 'We Learn, We Teach, We Conquer,' as a guiding principle in fostering a vibrant community of innovators, developers, and tech enthusiasts. Over the years, Innogeeks has grown into a cornerstone of technical excellence at KIET.</p>
+                                    <div><a href="https://www.innogeeks.in/" target="_blank" class="btn text-white fw-semibold px-5 py-2" style="background-color: #f26520; border-radius: 8px; box-shadow: 0 4px 12px rgba(242,101,32,0.3);">Visit Website</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="club-card-outer">
+                        <div class="club-card-inner bg-white h-100 border-0" style="border-radius: 20px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.1); min-height: 280px;">
+                            <div style="height: 6px; background: linear-gradient(90deg, #f26520 0%, #00304c 100%);"></div>
+                            <div class="p-4 p-md-5 d-flex flex-column flex-md-row h-100">
+                                <div class="flex-shrink-0 mb-3 mb-md-0 me-md-4 align-self-center">
+                                    <div style="width: 110px; height: 110px; border-radius: 50%; overflow: hidden; border: 3px solid #f0f0f0; background-color: #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
+                                        <img src="frontend/public/it_club/geekroom.png" alt="GEEK Room" style="width: 100%; height: 100%; object-fit: cover;">
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 text-center text-md-start d-flex flex-column justify-content-center">
+                                    <h3 class="fw-bold mb-2" style="color: #00304c; font-size: 1.8rem;">GEEK Room</h3>
+                                    <p class="text-muted mb-4" style="line-height: 1.7; text-align: justify;">GEEK Room is a dynamic tech community dedicated to fostering innovation, collaboration, and continuous learning. The chapter actively hosts hackathons, technical events, workshops, and engaging meetups that bring together passionate students from diverse domains.</p>
+                                    <div><a href="https://geekroom-kiet-six.vercel.app/" target="_blank" class="btn text-white fw-semibold px-5 py-2" style="background-color: #f26520; border-radius: 8px; box-shadow: 0 4px 12px rgba(242,101,32,0.3);">Visit Website</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dean's Message -->
+        <section id="dean-message" class="py-5">
+            <div class="container-fluid px-3 px-lg-5">
+                <div class="p-4 p-lg-5" style="box-shadow: 0 0 20px rgba(0,0,0,0.05); border-radius: 16px; background-color: #fff;">
+                    <h2 class="section-title">Dean's Message</h2>
+                    <div class="row g-4 align-items-start">
+                        <div class="col-12 col-lg-4 order-0 order-lg-1 text-center">
+                            <img src="frontend/public/Dean_It/dr_puneet_goswami.png" alt="Dr. Puneet Goswami" class="img-fluid rounded-3" style="max-width: 100%; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                        </div>
+                        <div class="col-12 col-lg-8 order-1 order-lg-0">
+                            <p class="mb-3" style="line-height: 1.8; color: #333; text-align: justify; font-size: 1.05rem;">The Department of Information Technology, accredited by the NBA five times and currently valid up to June 2028, is committed to excellence in teaching, learning, and research. Our industry-aligned curriculum equips students with strong technical foundations, adaptability, and problem-solving skills to thrive in a rapidly evolving technological landscape.</p>
+                            <p class="mb-3" style="line-height: 1.8; color: #333; text-align: justify; font-size: 1.05rem;">Supported by a highly qualified faculty, professor of practice (Industry), and state-of-the-art laboratories, students gain hands-on experience through cutting-edge research, internships, and industry collaborations. They are encouraged to build expertise in emerging domains such as web development, blockchain, DevOps, edge computing, quantum computing, cloud architecture, and intelligent systems development.</p>
+                            <p class="mb-3" style="line-height: 1.8; color: #333; text-align: justify; font-size: 1.05rem;">Our vision is to evolve as a centre of excellence in IT and related research, nurturing graduates who emerge as innovative leaders, tech-driven entrepreneurs, research professionals, and solution architects equipped to make meaningful contributions to the digital ecosystem and society at large.</p>
+                            <div class="mt-4">
+                                <p class="mb-1 fw-bold" style="color: #002855; font-size: 1.1rem;">Dr. Puneet Goswami</p>
+                                <p class="mb-0 text-muted">Dean, IT</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Faculty Section -->
+        <section id="faculty" class="py-5 bg-light">
+            <div class="container-fluid px-3 px-lg-5">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="section-title mb-0">Faculty</h2>
+                    <a href="programs/undergraduate-programs/it/faculty" class="btn btn-link text-decoration-none fw-semibold" style="color: #f26520; font-size: 1.1rem;">View All <span class="ms-1">→</span></a>
+                </div>
+                <div class="faculty-marquee-wrapper">
+                    <div class="faculty-marquee-track" id="facultyTrack"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievers Section -->
+        <section id="achievers" class="py-5">
+            <div class="container-fluid px-3 px-lg-5">
+                <h2 class="section-title">Our Achievers</h2>
+                <div class="d-flex overflow-auto gap-3 achievers-scroll-container pb-3" id="achieversContainer" style="scroll-behavior: smooth;"></div>
+                <div class="d-flex justify-content-center gap-2 mt-3" id="achieverDots"></div>
+            </div>
+        </section>
+
+        <!-- Research Section -->
+        <section id="research" class="py-5 bg-light">
+            <div class="container-fluid px-3 px-lg-5">
+                <h2 class="section-title">Research Statistics</h2>
+                <div class="row g-4 mb-5">
+                    <div class="col-12 col-md-6">
+                        <div class="research-stat-card h-100" style="background: linear-gradient(135deg, #fff8f5 0%, #fff 100%); border-radius: 20px; overflow: hidden; box-shadow: 0 8px 32px rgba(242, 101, 32, 0.12); border: 1px solid rgba(242, 101, 32, 0.1);">
+                            <div style="height: 5px; background: linear-gradient(90deg, #f26520, #ff8a50);"></div>
+                            <div class="d-flex flex-column flex-lg-row align-items-center p-4 gap-4">
+                                <div style="width: 140px; height: 140px; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); background: #fff;">
+                                    <img src="frontend/public/publication.png" alt="Publications" style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                                <div class="text-center text-lg-start flex-grow-1">
+                                    <div style="font-size: clamp(3rem, 6vw, 4.5rem); font-weight: 800; color: #f26520;"><span class="counter" data-target="138">0</span>+</div>
+                                    <h3 class="fw-bold mb-2" style="color: #002855; font-size: 1.5rem;">Publications</h3>
+                                    <p class="mb-0 text-muted">Research papers published in reputed journals & conferences</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="research-stat-card h-100" style="background: linear-gradient(135deg, #f0f4f8 0%, #fff 100%); border-radius: 20px; overflow: hidden; box-shadow: 0 8px 32px rgba(0, 40, 85, 0.12); border: 1px solid rgba(0, 40, 85, 0.1);">
+                            <div style="height: 5px; background: linear-gradient(90deg, #002855, #1a5276);"></div>
+                            <div class="d-flex flex-column flex-lg-row align-items-center p-4 gap-4">
+                                <div style="width: 140px; height: 140px; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); background: #fff;">
+                                    <img src="frontend/public/patent.png" alt="Patents" style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                                <div class="text-center text-lg-start flex-grow-1">
+                                    <div style="font-size: clamp(3rem, 6vw, 4.5rem); font-weight: 800; color: #002855;"><span class="counter" data-target="48">0</span>+</div>
+                                    <h3 class="fw-bold mb-2" style="color: #002855; font-size: 1.5rem;">Patents</h3>
+                                    <p class="mb-0 text-muted">Innovative patents filed & granted to faculty & students</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Industry Academia Connect -->
+                <h2 class="section-title">Industry Academia Connect</h2>
+                <div class="row g-4 mb-5">
+                    <div class="col-12 col-lg-6">
+                        <div class="h-100 rounded-4 overflow-hidden" style="box-shadow: 0 8px 24px rgba(0,0,0,0.08); border: 2px solid rgba(242, 101, 32, 0.1);">
+                            <div style="height: 5px; background: linear-gradient(90deg, #f26520, #002855);"></div>
+                            <div class="p-4">
+                                <img src="frontend/public/conclave/session1.png" alt="Digital Conclave 2025 - Session 1" class="w-100 rounded-3 mb-3" style="object-fit: cover; height: 280px;">
+                                <h3 class="fw-bold mb-3" style="color: #002855; font-size: 1.3rem;">Digital Conclave 2025 - Session 1</h3>
+                                <p class="mb-3 text-muted">Expert Talk Series on emerging technologies and industry insights</p>
+                                <div class="d-flex gap-3 flex-wrap">
+                                    <a href="frontend/app/conclave/session-1" class="btn text-white fw-semibold px-4 py-2" style="background-color: #002855; border-radius: 8px;">Read More</a>
+                                    <a href="https://youtu.be/-Agff_KdsHg" target="_blank" class="btn text-white fw-semibold px-4 py-2" style="background-color: #f26520; border-radius: 8px;">Watch Video</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="h-100 rounded-4 overflow-hidden" style="box-shadow: 0 8px 24px rgba(0,0,0,0.08); border: 2px solid rgba(242, 101, 32, 0.1);">
+                            <div style="height: 5px; background: linear-gradient(90deg, #002855, #f26520);"></div>
+                            <div class="p-4">
+                                <img src="frontend/public/conclave/session2.png" alt="Digital Conclave 2025 - Session 2" class="w-100 rounded-3 mb-3" style="object-fit: cover; height: 280px;">
+                                <h3 class="fw-bold mb-3" style="color: #002855; font-size: 1.3rem;">Digital Conclave 2025 - Session 2</h3>
+                                <p class="mb-3 text-muted">Beyond Earth, Beyond Limits: Shaping Tomorrow's Technology</p>
+                                <div class="d-flex gap-3 flex-wrap">
+                                    <a href="frontend/app/conclave/session-2" class="btn text-white fw-semibold px-4 py-2" style="background-color: #002855; border-radius: 8px;">Read More</a>
+                                    <a href="https://youtu.be/-1hIAPpNZVU" target="_blank" class="btn text-white fw-semibold px-4 py-2" style="background-color: #f26520; border-radius: 8px;">Watch Video</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alumni Testimonials -->
+                <h2 class="section-title">Alumni Testimonials</h2>
+                <div class="d-flex overflow-auto gap-4 alumni-scroll-container pb-3" id="alumniContainer" style="scroll-behavior: smooth;"></div>
+            </div>
+        </section>
+
+        <!-- Academics & Outcomes -->
+        <section id="syllabus" class="py-5">
+            <div class="container-fluid px-3 px-lg-5">
+                <h2 class="section-title">Academics & Outcomes</h2>
+                <div class="d-flex flex-column gap-3" id="accordionContainer"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container-fluid px-4 px-lg-5">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <img src="assets/images/logo/KIET-Logo.jpg" alt="KIET Logo" height="60" class="mb-3 bg-white p-2 rounded">
+                    <p class="text-light">KIET Deemed to be University<br>(Under Section 3 of UGC Act 1956)<br>13 Km Stone, Ghaziabad-Meerut Road<br>Ghaziabad, UP - 201206</p>
+                    <p><i class="bi bi-telephone me-2"></i>+91-120-2675091<br><i class="bi bi-envelope me-2"></i>info@kiet.edu</p>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="https://kiet.edu/about/Overview/">About Us</a></li>
+                        <li class="mb-2"><a href="https://kiet.edu/programs/undergraduate-programs/">Programs</a></li>
+                        <li class="mb-2"><a href="https://kiet.edu/admissions/admission-procedure/">Admissions</a></li>
+                        <li class="mb-2"><a href="https://kiet.edu/placements/about/">Placements</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5>Academics</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="https://kiet.edu/academics/institutes/">Institutes</a></li>
+                        <li class="mb-2"><a href="https://kiet.edu/academics/curriculum-structure/">Curriculum</a></li>
+                        <li class="mb-2"><a href="https://kiet.edu/library">Library</a></li>
+                        <li class="mb-2"><a href="https://kiet.edu/erp">ERP Login</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5>Campus Life</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="https://kiet.edu/campus-life/hostel/">Hostel</a></li>
+                        <li class="mb-2"><a href="https://kiet.edu/campus-life/sports/">Sports</a></li>
+                        <li class="mb-2"><a href="https://kiet.edu/campus-life/gallery/">Gallery</a></li>
+                        <li class="mb-2"><a href="https://kiet.edu/campus-life/cultural-clubs/">Clubs</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5>Connect With Us</h5>
+                    <div class="d-flex gap-3 mb-3">
+                        <a href="https://x.com/Kiet_edu" target="_blank" class="text-white fs-4"><i class="bi bi-twitter-x"></i></a>
+                        <a href="https://www.facebook.com/kiet.edu/" target="_blank" class="text-white fs-4"><i class="bi bi-facebook"></i></a>
+                        <a href="https://www.linkedin.com/school/kiet-group-of-institutions/" target="_blank" class="text-white fs-4"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://www.instagram.com/kiet_edu/" target="_blank" class="text-white fs-4"><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.youtube.com/@KietEduGzb/" target="_blank" class="text-white fs-4"><i class="bi bi-youtube"></i></a>
+                    </div>
+                    <a href="https://admission.kiet.edu/" target="_blank" class="btn btn-apply w-100">Apply Now</a>
+                </div>
+            </div>
+            <hr class="my-4 border-secondary">
+            <div class="row align-items-center">
+                <div class="col-md-6"><p class="mb-0 text-light">&copy; 2024 KIET University. All Rights Reserved.</p></div>
+                <div class="col-md-6 text-md-end">
+                    <a href="https://kiet.edu/privacy-policy" class="text-light me-3">Privacy Policy</a>
+                    <a href="https://kiet.edu/terms-conditions" class="text-light">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Widgets -->
+    <div class="floating-apply d-none d-lg-block"><a href="https://admission.kiet.edu/" target="_blank">Register for Admission 2026-27</a></div>
+    <a href="https://api.whatsapp.com/send/?phone=918588811998" target="_blank" class="whatsapp-btn"><i class="bi bi-whatsapp"></i></a>
+    <a href="#" class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></a>
+
+    <!-- Roadmap Modal -->
+    <div class="roadmap-modal" id="roadmapModal">
+        <div class="roadmap-modal-content">
+            <button class="roadmap-modal-close" onclick="closeRoadmapModal()">&times;</button>
+            <h4 class="fw-bold mb-3" style="color: #002855;" id="roadmapModalTitle"></h4>
+            <img id="roadmapModalImage" src="" alt="" class="w-100 rounded-3">
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Data
+        const achievers = [
+            { name: "Satyam Mishra", company: "Proton AG", package: "1.78 Cr", image: "frontend/public/acchievers/satyam_mishra.png" },
+            { name: "Isha Rastogi", company: "Microsoft", package: "52 LPA", image: "frontend/public/acchievers/isha_rastogi.png" },
+            { name: "Palak Mittal", company: "Amazon", package: "48.89 LPA", image: "frontend/public/acchievers/palak_mittal.png" },
+            { name: "Srishti Pawar", company: "Amazon", package: "48.89 LPA", image: "frontend/public/acchievers/Shrishti_Pawar.png" },
+            { name: "Umang Sharma", company: "Amazon", package: "48.89 LPA", image: "frontend/public/acchievers/umang_smarma.png" },
+            { name: "Riya Garg", company: "Amazon", package: "45.64 LPA", image: "frontend/public/acchievers/riya_garg.png" },
+            { name: "Shifa Rifat", company: "ServiceNow", package: "42.67 LPA", image: "frontend/public/acchievers/Shifa_Rifat.png" },
+            { name: "Divyank Goyal", company: "Morgan Stanley", package: "30.22 LPA", image: "frontend/public/acchievers/Divyank_Goyal.png" },
+            { name: "Utkarsh Jain", company: "Travclan", package: "30 LPA", image: "frontend/public/acchievers/Utkarsh_Jain.png" },
+            { name: "Anshika Sharma", company: "Walmart", package: "23 LPA", image: "frontend/public/acchievers/Anshika_Sharma.png" },
+            { name: "Siddharth Kumar Jha", company: "Turing", package: "20 LPA", image: "frontend/public/acchievers/siddharth_kumar_jha.png" },
+            { name: "Khushi Jain", company: "Healthkart", package: "12 LPA", image: "frontend/public/acchievers/Khushi_Jain.png" },
+        ];
+
+        const faculty = [
+            { name: "Dr. Puneet Goswami", role: "Dean-IT, Professor", qualification: "Ph.D., MCU Bhopal", image: "frontend/public/IT/deansir.JPG" },
+            { name: "Dr. Vikas Goel", role: "Professor", qualification: "Ph.D., UTU", image: "frontend/public/IT/Dr. Vikas Goel.JPG" },
+            { name: "Dr. Jitendra Kumar Seth", role: "Professor", qualification: "Ph.D., JIIT Noida", image: "frontend/public/IT/Dr. Jitendra Kumar Seth.JPG" },
+            { name: "Dr. Sanjeev Kumar", role: "Prog. Head, Asso. Prof.", qualification: "Ph.D., Bennett Univ.", image: "frontend/public/IT/Dr. Sanjeev Kumar Kapoor.JPG" },
+            { name: "Dr. Mukul Aggarwal", role: "Prog. Head, Asso. Prof.", qualification: "Ph.D., AKTU", image: "frontend/public/IT/Dr. Mukul Aggarwal.JPG" },
+            { name: "Dr. Sartaj Ahmad", role: "Associate Professor", qualification: "Ph.D., AKTU", image: "frontend/public/IT/Dr. Sartaj Ahmad.JPG" },
+            { name: "Dr. Urvashi Chugh", role: "Associate Professor", qualification: "Ph.D., JIIT", image: "frontend/public/IT/Dr. Urvashi Chugh.JPG" },
+            { name: "Dr. Veepin Kumar", role: "Associate Professor", qualification: "Ph.D., IKGPTU", image: "frontend/public/IT/Dr. Veepin Kumar.JPG" },
+            { name: "Dr. Analp Pathak", role: "Associate Professor", qualification: "Ph.D., AKTU", image: "frontend/public/IT/Dr. Analp Pathak.JPG" },
+            { name: "Dr. Saurabh Sharma", role: "Associate Professor", qualification: "Ph.D., Galgotias", image: "frontend/public/IT/Dr. Saurabh Sharma.JPG" },
+            { name: "Dr. Kamal Kant Sharma", role: "Associate Professor", qualification: "Ph.D., AKTU", image: "frontend/public/IT/Dr. Kamal Kant Sharma.JPG" },
+            { name: "Dr. Pavi Saraswat", role: "Assistant Professor", qualification: "Ph.D., DTU", image: "frontend/public/IT/Dr. Pavi Saraswat.JPG" },
+        ];
+
+        const roadmap = [
+            { label: "Android Development", image: "frontend/public/emerging-technology/androidDevelopment.png", icon: "bi-android2", color: "#3DDC84" },
+            { label: "Cloud Computing", image: "frontend/public/emerging-technology/cloudComputing.png", icon: "bi-cloud", color: "#2196F3" },
+            { label: "Data Engineering", image: "frontend/public/emerging-technology/dataEngineering.png", icon: "bi-database", color: "#FF6F00" },
+            { label: "Data Structures", image: "frontend/public/emerging-technology/datastructure.png", icon: "bi-diagram-3", color: "#9C27B0" },
+            { label: "OOPs in Java", image: "frontend/public/emerging-technology/oopsInjava.png", icon: "bi-braces", color: "#E76F00" },
+            { label: "Web Development", image: "frontend/public/emerging-technology/webdevelopment.png", icon: "bi-globe", color: "#E91E63" },
+            { label: "Quantum Computing", image: "frontend/public/emerging-technology/quantum-computing.png", icon: "bi-cpu", color: "#00BCD4" },
+            { label: "Cybersecurity", image: "frontend/public/emerging-technology/gen_ai.png", icon: "bi-shield-lock", color: "#4CAF50" },
+        ];
+
+        const alumniTestimonials = [
+            { name: "Shifa Rifat", designation: "Associate Software Engineer", company: "ServiceNow", batch: "IT 2024", quote: "From the quiet focus of lab benches to the energy of late-night project sprints, every experience at KIET has shaped not just my career—but my character. I am sincerely grateful to the Information Technology department.", image: "frontend/public/acchievers/Shifa_Rifat.png" },
+            { name: "Isha Rastogi", designation: "Software Engineer", company: "Microsoft", batch: "IT 2024", quote: "I feel proud and grateful for the journey at KIET that shaped my professional foundation. The academic environment, dedicated faculty, and constant support from the IT department played a vital role in preparing me for the industry.", image: "frontend/public/acchievers/isha_rastogi.png" },
+            { name: "Chinmoy Chakraborty", designation: "SDE", company: "Zomato", batch: "IT 2023", quote: "I've been fortunate to be a part of the IT department at KIET. The department has helped me establish a strong academic foundation, as well as foster personal growth. The faculty has always been supportive.", image: "frontend/public/acchievers/Chinmoy_Chakraborty.png" },
+        ];
+
+        const accordionData = [
+            { key: "vision", title: "Vision", content: "<p class='mb-0'>To achieve excellence in the field of Information Technology and create competent professionals for the benefit of the world community.</p>" },
+            { key: "mission", title: "Mission", content: "<ul class='mb-0 ps-3'><li class='mb-2'>To integrate quality education, values and skills in the field of Information Technology through outcome-based teaching and learning process.</li><li class='mb-2'>To undertake research for the development of sustainable IT solutions for real world problems of society and industry.</li><li class='mb-2'>To foster an intellectual, innovative and entrepreneurial environment to develop IT leaders.</li><li>To create a culture of collaboration and support among teachers and students for sharing of ideas and knowledge.</li></ul>" },
+            { key: "pos", title: "Program Outcomes", content: "<ul class='mb-0 ps-3'><li class='mb-2'><strong>PO1:</strong> Apply knowledge of mathematics, science, computing fundamentals to solve complex engineering problems.</li><li class='mb-2'><strong>PO2:</strong> Problem Analysis - Identify and analyze complex problems reaching substantiated conclusions.</li><li class='mb-2'><strong>PO3:</strong> Design/Development of Solutions - Design creative solutions for complex engineering problems.</li><li class='mb-2'><strong>PO4:</strong> Conduct Investigations using research-based knowledge.</li><li class='mb-2'><strong>PO5:</strong> Engineering Tool Usage - Apply appropriate techniques and modern tools.</li><li class='mb-2'><strong>PO6:</strong> Analyze societal and environmental aspects.</li><li class='mb-2'><strong>PO7:</strong> Apply ethical principles and professional ethics.</li><li class='mb-2'><strong>PO8:</strong> Function effectively in diverse teams.</li><li class='mb-2'><strong>PO9:</strong> Communicate effectively within the engineering community.</li><li class='mb-2'><strong>PO10:</strong> Apply project management principles.</li><li><strong>PO11:</strong> Recognize the need for life-long learning.</li></ul>" },
+            { key: "syllabus", title: "Syllabus", content: "<div class='d-flex flex-column gap-3'><a href='frontend/public/syllabus/B.Tech_1st_Year_Course_Booklet_2025-26.pdf' download class='d-flex align-items-center justify-content-between text-decoration-none bg-white rounded shadow-sm p-3' style='border: 1px solid #e9ecef;'><div class='d-flex align-items-center'><span class='me-3 d-flex align-items-center justify-content-center rounded-circle' style='width: 42px; height: 42px; background-color: #fff3ec;'><i class='bi bi-file-earmark-text' style='color: #f26520;'></i></span><span class='fw-semibold' style='color: #00304c;'>I YEAR</span></div><span style='color: #f26520;'>→</span></a><a href='frontend/public/syllabus/B.Tech_2nd_Year_Course_Booklet_2025-26.pdf' download class='d-flex align-items-center justify-content-between text-decoration-none bg-white rounded shadow-sm p-3' style='border: 1px solid #e9ecef;'><div class='d-flex align-items-center'><span class='me-3 d-flex align-items-center justify-content-center rounded-circle' style='width: 42px; height: 42px; background-color: #fff3ec;'><i class='bi bi-file-earmark-text' style='color: #f26520;'></i></span><span class='fw-semibold' style='color: #00304c;'>II YEAR</span></div><span style='color: #f26520;'>→</span></a></div>" }
+        ];
+
+        // Render Functions
+        function renderRecruiters() {
+            const container = document.getElementById('recruiterSlider');
+            const logos = [];
+            for (let i = 1; i <= 49; i++) {
+                const ext = [3,5,10,14,15,17,20,27,32,37,45,48,49].includes(i) ? 'jpg' : 'png';
+                logos.push(`frontend/public/assets/images/kiet/placement/recruiters/${i}.${ext}`);
+            }
+            const allLogos = [...logos, ...logos];
+            container.innerHTML = allLogos.map(logo => `<div class="slide"><img src="${logo}" alt="Recruiter" loading="lazy"></div>`).join('');
+        }
+
+        function renderAchievers() {
+            const container = document.getElementById('achieversContainer');
+            container.innerHTML = achievers.map(a => `
+                <div style="flex: 0 0 180px;">
+                    <div class="achiever-card">
+                        <div style="width: 100px; height: 100px; border-radius: 50%; overflow: hidden; border: 3px solid #f26520; margin-bottom: 0.75rem;">
+                            <img src="${a.image}" alt="${a.name}" style="width: 100%; height: 100%; object-fit: cover; object-position: center 20%;">
+                        </div>
+                        <h4 class="fw-bold text-dark mb-1" style="font-size: 1rem;">${a.name}</h4>
+                        <p class="fw-semibold mb-1" style="color: #f26520; font-size: 1.1rem;">${a.package}</p>
+                        <p class="text-muted mb-0" style="font-size: 0.9rem;">${a.company}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderFaculty() {
+            const container = document.getElementById('facultyTrack');
+            const allFaculty = [...faculty, ...faculty];
+            container.innerHTML = allFaculty.map(f => `
+                <div class="card border-0 shadow-sm flex-shrink-0" style="width: 200px; border-radius: 12px;">
+                    <div style="height: 240px; border-radius: 12px 12px 0 0; overflow: hidden; background: #f8f9fa;">
+                        <img src="${f.image}" alt="${f.name}" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;">
+                    </div>
+                    <div class="card-body text-center p-3">
+                        <h5 class="fw-bold mb-2" style="color: #00304c; font-size: 0.95rem;">${f.name}</h5>
+                        <p class="mb-2" style="color: #666; font-size: 0.85rem;">${f.role}</p>
+                        <p class="small text-muted mb-0">${f.qualification}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderRoadmap() {
+            const container = document.getElementById('roadmapGrid');
+            container.innerHTML = roadmap.map((r, i) => `
+                <div class="col-6 col-md-4 col-lg-3 text-center">
+                    <div class="roadmap-item" onclick="openRoadmapModal(${i})" style="background: linear-gradient(135deg, #fff, ${r.color}15);">
+                        <i class="bi ${r.icon}" style="font-size: 2.5rem; color: ${r.color};"></i>
+                    </div>
+                    <div class="roadmap-label mt-2">${r.label}</div>
+                </div>
+            `).join('');
+        }
+
+        function renderAlumni() {
+            const container = document.getElementById('alumniContainer');
+            container.innerHTML = alumniTestimonials.map(a => `
+                <div style="flex: 0 0 calc(50% - 0.75rem); min-width: 300px;">
+                    <div class="alumni-testimonial-card h-100 p-4 rounded-4">
+                        <div class="d-flex gap-3 align-items-start mb-3">
+                            <div style="width: 70px; height: 70px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 2px solid #f26520;">
+                                <img src="${a.image}" alt="${a.name}" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <div>
+                                <h4 class="fw-bold mb-1" style="color: #002855; font-size: 1.1rem;">${a.name}</h4>
+                                <p class="mb-0" style="color: #f26520; font-size: 0.9rem;">${a.designation} at ${a.company}</p>
+                                <p class="mb-0 text-muted" style="font-size: 0.85rem;">${a.batch}</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start gap-2 flex-grow-1">
+                            <span class="fw-bold" style="color: #f26520; font-size: 1.5rem;">"</span>
+                            <p class="mb-0 fst-italic" style="color: #555; line-height: 1.7; text-align: justify;">${a.quote}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderAccordion() {
+            const container = document.getElementById('accordionContainer');
+            container.innerHTML = accordionData.map((item, i) => `
+                <div class="accordion-item-custom">
+                    <button class="vm-accordion-btn${i === 0 ? ' active' : ''}" onclick="toggleAccordion(this)">
+                        <span class="fw-semibold" style="font-size: 1.2rem; color: ${i === 0 ? '#f26520' : '#002855'};">${item.title}</span>
+                        <span style="color: ${i === 0 ? '#f26520' : '#999'}; transform: rotate(${i === 0 ? '180' : '0'}deg); transition: all 0.3s;">▼</span>
+                    </button>
+                    <div class="vm-accordion-panel${i === 0 ? ' open' : ''}" style="max-height: ${i === 0 ? '2000px' : '0'}; opacity: ${i === 0 ? '1' : '0'}; padding: ${i === 0 ? '1.25rem 1.5rem' : '0 1.5rem'};">
+                        <div style="color: #444; line-height: 1.6; font-size: 1rem;">${item.content}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleAccordion(btn) {
+            const isActive = btn.classList.contains('active');
+            document.querySelectorAll('.vm-accordion-btn').forEach(b => {
+                b.classList.remove('active');
+                b.querySelector('span:first-child').style.color = '#002855';
+                b.querySelector('span:last-child').style.color = '#999';
+                b.querySelector('span:last-child').style.transform = 'rotate(0deg)';
+            });
+            document.querySelectorAll('.vm-accordion-panel').forEach(p => {
+                p.classList.remove('open');
+                p.style.maxHeight = '0';
+                p.style.opacity = '0';
+                p.style.padding = '0 1.5rem';
+            });
+            if (!isActive) {
+                btn.classList.add('active');
+                btn.querySelector('span:first-child').style.color = '#f26520';
+                btn.querySelector('span:last-child').style.color = '#f26520';
+                btn.querySelector('span:last-child').style.transform = 'rotate(180deg)';
+                const panel = btn.nextElementSibling;
+                panel.classList.add('open');
+                panel.style.maxHeight = '2000px';
+                panel.style.opacity = '1';
+                panel.style.padding = '1.25rem 1.5rem';
+            }
+        }
+
+        function openRoadmapModal(index) {
+            const item = roadmap[index];
+            document.getElementById('roadmapModalTitle').textContent = item.label;
+            document.getElementById('roadmapModalImage').src = item.image;
+            document.getElementById('roadmapModal').classList.add('active');
+        }
+
+        function closeRoadmapModal() {
+            document.getElementById('roadmapModal').classList.remove('active');
+        }
+
+        // Counter Animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = parseFloat(counter.getAttribute('data-target'));
+                        const duration = 1500;
+                        const start = performance.now();
+                        const decimals = String(target).includes('.') ? String(target).split('.')[1].length : 0;
+                        const step = (now) => {
+                            const elapsed = now - start;
+                            const progress = Math.min(elapsed / duration, 1);
+                            const eased = 1 - Math.pow(1 - progress, 3);
+                            const value = (eased * target).toFixed(decimals);
+                            counter.textContent = decimals > 0 ? value : Math.round(value);
+                            if (progress < 1) requestAnimationFrame(step);
+                        };
+                        requestAnimationFrame(step);
+                        observer.unobserve(counter);
+                    }
+                });
+            }, { threshold: 0.3 });
+            counters.forEach(c => observer.observe(c));
+        }
+
+        // Back to Top
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            backToTop.classList.toggle('show', window.scrollY > 300);
+        });
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Section Nav Active State
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.section-nav-link');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                if (window.scrollY >= section.offsetTop - 200) current = section.getAttribute('id');
+            });
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+            });
+        });
+
+        // Smooth Scroll
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({ top: target.offsetTop - 150, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Modal Close on Outside Click
+        document.getElementById('roadmapModal').addEventListener('click', (e) => {
+            if (e.target.id === 'roadmapModal') closeRoadmapModal();
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderRecruiters();
+            renderAchievers();
+            renderFaculty();
+            renderRoadmap();
+            renderAlumni();
+            renderAccordion();
+            animateCounters();
+        });
+    </script>
+</body>
+</html>
