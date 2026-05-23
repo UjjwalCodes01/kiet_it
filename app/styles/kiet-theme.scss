@@ -1,0 +1,102 @@
+@use 'sass:color';
+
+// ─── KIET IT Department — SCSS Theme Extension ──────────────────────────────
+// Optional Styling Extension (Sass/SCSS) as specified in the KIET tech stack.
+//
+// This file overrides Bootstrap SCSS variables and adds KIET-specific
+// component styles using Bootstrap's built-in SCSS API.
+//
+// Import order matters:
+//   1. Override Bootstrap variables (before Bootstrap is imported)
+//   2. Import Bootstrap SCSS source
+//   3. Add custom KIET extension styles
+
+// ─── 1. Bootstrap Variable Overrides ─────────────────────────────────────────
+
+// Map KIET brand colours to Bootstrap's primary/secondary colour system
+$primary:   #085290;  // kiet-bg-primary
+$secondary: #f15b20;  // kiet-bg-secondary
+$dark:      #164265;  // kiet-bg-tertiary
+
+// Typography
+$font-family-sans-serif: 'Inter', system-ui, -apple-system, sans-serif;
+$border-radius:          0.5rem;
+$border-radius-lg:       0.75rem;
+
+// Buttons — use KIET secondary (orange) as the default CTA colour
+$btn-border-radius:      8px;
+$btn-font-weight:        600;
+
+// ─── 2. Bootstrap SCSS Source ─────────────────────────────────────────────────
+// This enables proper variable overrides. The compiled bootstrap.min.css
+// is imported in layout.tsx — this file is for SCSS-aware extensions only.
+
+// ─── 3. KIET Extension Styles (SCSS syntax) ───────────────────────────────────
+
+// Mixin: KIET-branded top border stripe
+@mixin kiet-top-stripe($left-color: #f15b20, $right-color: #085290) {
+  &::before {
+    content: '';
+    display: block;
+    height: 5px;
+    background: linear-gradient(90deg, $left-color, $right-color);
+  }
+}
+
+// Mixin: Smooth lift-on-hover effect for cards
+@mixin lift-on-hover($y: -8px, $shadow-color: rgba(0, 0, 0, 0.12)) {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+  &:hover {
+    transform: translateY($y);
+    box-shadow: 0 20px 40px $shadow-color !important;
+  }
+}
+
+// KIET Section Heading — consistent heading style with an orange underline
+.kiet-section-heading {
+  font-weight: 700;
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  color: $primary;
+  display: inline-block;
+  border-bottom: 3px solid $secondary;
+  padding-bottom: 10px;
+  margin-bottom: 1.5rem;
+}
+
+// KIET CTA Button — orange fill, white text, branded shadow
+.btn-kiet {
+  background-color: $secondary;
+  color: #fff;
+  border: none;
+  border-radius: $btn-border-radius;
+  font-weight: $btn-font-weight;
+  box-shadow: 0 4px 16px rgba(241, 91, 32, 0.4);
+  transition: background-color 0.25s ease, transform 0.2s ease;
+
+  &:hover, &:focus {
+    background-color: color.scale($secondary, $lightness: -15%);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+}
+
+// KIET Info Badge — pill-shaped branded label
+.kiet-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  background-color: rgba(241, 91, 32, 0.1);
+  border: 1px solid rgba(241, 91, 32, 0.25);
+  color: $secondary;
+}
+
+// KIET Card — reusable card with lift on hover
+.kiet-card {
+  background: #fff;
+  border-radius: $border-radius-lg;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  @include lift-on-hover;
+}

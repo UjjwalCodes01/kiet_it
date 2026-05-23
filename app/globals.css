@@ -1,0 +1,384 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+/* ─── KIET Color Token System ───────────────────────────────────────────────
+   Official KIET department color palette.
+   Usage: <h2 className="kiet-text-primary">Heading</h2>
+         <div className="kiet-bg-secondary">Banner</div>
+──────────────────────────────────────────────────────────────────────────── */
+:root {
+  --kiet-primary:   #085290;
+  --kiet-secondary: #f15b20;
+  --kiet-tertiary:  #164265;
+}
+
+/* Background utilities */
+.kiet-bg-primary   { background-color: var(--kiet-primary)   !important; }
+.kiet-bg-secondary { background-color: var(--kiet-secondary) !important; }
+.kiet-bg-tertiary  { background-color: var(--kiet-tertiary)  !important; }
+
+/* Text utilities */
+.kiet-text-primary   { color: var(--kiet-primary)   !important; }
+.kiet-text-secondary { color: var(--kiet-secondary) !important; }
+.kiet-text-tertiary  { color: var(--kiet-tertiary)  !important; }
+
+html {
+	font-size: 15px;
+}
+
+
+/* Mobile Menu Styles */
+.popup-mobile-menu {
+	position: fixed;
+	top: 0;
+	right: -400px;
+	width: 360px;
+	max-width: 90vw;
+	height: 100vh;
+	background: #ffffff;
+	z-index: 9999;
+	transition: right 0.4s ease-in-out;
+	overflow-y: auto;
+	box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.popup-mobile-menu.active {
+	right: 0;
+}
+
+.popup-mobile-menu .inner {
+	padding: 20px 25px;
+}
+
+.popup-mobile-menu .header-top {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #e5e5e5;
+	margin-bottom: 15px;
+}
+
+.popup-mobile-menu .header-top .logo img {
+	max-width: 150px;
+	height: auto;
+}
+
+.popup-mobile-menu .close-button {
+	background: none;
+	border: none;
+	font-size: 28px;
+	cursor: pointer;
+	color: #333;
+	padding: 5px;
+	line-height: 1;
+}
+
+.popup-mobile-menu .close-button:hover {
+	color: #0056b3;
+}
+
+.popup-mobile-menu .mainmenu {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.popup-mobile-menu .mainmenu > li {
+	border-bottom: 1px solid #f0f0f0;
+}
+
+.popup-mobile-menu .mainmenu > li > a {
+	display: block;
+	padding: 12px 0;
+	color: #333;
+	text-decoration: none;
+	font-size: 16px;
+	font-weight: 500;
+	transition: color 0.3s;
+}
+
+.popup-mobile-menu .mainmenu > li > a:hover {
+	color: #0056b3;
+}
+
+.popup-mobile-menu .mainmenu .submenu {
+	list-style: none;
+	padding: 0 0 10px 15px;
+	margin: 0;
+	display: none;
+}
+
+.popup-mobile-menu .mainmenu .has-droupdown.open > .submenu {
+	display: block;
+}
+
+.popup-mobile-menu .mainmenu .submenu li a {
+	display: block;
+	padding: 8px 0;
+	color: #666;
+	text-decoration: none;
+	font-size: 14px;
+	transition: color 0.3s;
+}
+
+.popup-mobile-menu .mainmenu .submenu li a:hover {
+	color: #0056b3;
+}
+
+.popup-mobile-menu .mainmenu > li.has-droupdown > a {
+	position: relative;
+}
+
+.popup-mobile-menu .mainmenu > li.has-droupdown > a::after {
+	content: '+';
+	position: absolute;
+	right: 0;
+	font-size: 20px;
+	font-weight: 300;
+	transition: transform 0.3s;
+}
+
+.popup-mobile-menu .mainmenu > li.has-droupdown.open > a::after {
+	content: '-';
+}
+
+.popup-mobile-menu-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 9998;
+}
+
+@media (min-width: 992px) {
+	.edu-header .header-top .header-info {
+		white-space: nowrap;
+	}
+
+	.edu-header .header-top .header-info > li {
+		padding-left: 18px;
+		padding-right: 18px;
+	}
+
+	.edu-header .header-top .header-info > li > a {
+		font-size: 12px;
+	}
+
+	.edu-header .header-top .header-info > li.desktop-apply-btn {
+		padding-right: 18px !important;
+	}
+
+	.edu-header .header-top .header-info > li.desktop-apply-btn .edu-btn.btn-small {
+		font-size: 13px;
+	}
+}
+
+.kiet-program-section-link {
+	display: inline-flex;
+	align-items: center;
+	font-size: 17px;
+	font-weight: 600;
+	color: #333;
+	text-decoration: none;
+	padding: 0 8px 4px 8px;
+	border-bottom: 3px solid transparent;
+	transition: color 0.3s, border-bottom-color 0.3s;
+	flex-shrink: 0;
+	white-space: nowrap;
+}
+
+.kiet-program-section-link:hover,
+.kiet-program-section-link.active {
+	color: #0056b3;
+	border-bottom-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+	html {
+		font-size: 14px;
+	}
+
+	.kiet-program-section-link {
+		font-size: 14px;
+		padding: 0 6px 4px 6px;
+	}
+}
+
+/* ─── Achiever Cards ─────────────────────────────────────────────────────── */
+.achievers-scroll-container {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.achievers-scroll-container::-webkit-scrollbar { display: none; }
+
+@media (max-width: 768px) {
+  .achiever-card-wrapper { flex: 0 0 140px !important; }
+}
+
+.achiever-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 16px 32px rgba(241, 91, 32, 0.15) !important;
+}
+
+/* ─── Department Highlights ──────────────────────────────────────────────── */
+.highlight-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14) !important;
+  border-left-color: #f15b20 !important;
+}
+
+/* ─── Alumni Testimonials ────────────────────────────────────────────────── */
+.alumni-scroll-container {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.alumni-scroll-container::-webkit-scrollbar { display: none; }
+
+@media (max-width: 768px) {
+  .alumni-card-wrapper { flex: 0 0 85vw !important; }
+}
+
+.alumni-testimonial-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(241, 91, 32, 0.18) !important;
+  border-left-width: 6px;
+}
+
+/* ─── Research Stat Cards ────────────────────────────────────────────────── */
+.research-stat-card {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+}
+.research-stat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* ─── Clubs — Overlapping Hover Stack ───────────────────────────────────── */
+.clubs-stack {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 0;
+  position: relative;
+}
+.club-card-outer {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  z-index: 1;
+  flex: 0 0 55%;
+  max-width: 55%;
+}
+.club-card-outer:nth-child(2) { margin-left: -8%; }
+.club-card-outer:hover {
+  transform: scale(1.06) translateY(-8px);
+  z-index: 10;
+}
+.club-card-outer:hover .club-card-inner {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+}
+.club-card-inner { transition: box-shadow 0.4s ease; }
+
+@media (max-width: 991px) {
+  .clubs-stack {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  .club-card-outer {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .club-card-outer:nth-child(2) { margin-left: 0; }
+  .club-card-outer:hover { transform: none; }
+}
+
+/* ─── Faculty Auto-Scroll Marquee ────────────────────────────────────────── */
+@keyframes faculty-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.faculty-marquee-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+.faculty-marquee-track {
+  display: flex;
+  gap: 1rem;
+  width: fit-content;
+  animation: faculty-scroll 60s linear infinite;
+}
+.faculty-marquee-wrapper:hover .faculty-marquee-track {
+  animation-play-state: paused;
+}
+
+/* ─── Placement Stat Cards ───────────────────────────────────────────────── */
+.placement-stat-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #fff;
+  border: none;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+}
+.placement-stat-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+}
+.placement-stat-card::after {
+  content: "";
+  position: absolute;
+  bottom: -40px; right: -40px;
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  opacity: 0.06;
+  transition: transform 0.4s ease;
+}
+.placement-stat-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
+.placement-stat-card:hover::after { transform: scale(1.6); }
+.placement-stat-card.orange::before { background: linear-gradient(90deg, #f15b20, #ff8a50); }
+.placement-stat-card.orange::after  { background: #f15b20; }
+.placement-stat-card.navy::before   { background: linear-gradient(90deg, #085290, #1a5276); }
+.placement-stat-card.navy::after    { background: #085290; }
+
+/* ─── Accordion (Vision / Mission / Syllabus) ────────────────────────────── */
+.vm-accordion-btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1rem 1.5rem;
+  border: 2px solid #e2e8f0;
+  border-left: 5px solid #085290;
+  background: #fff;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.vm-accordion-btn:hover {
+  border-left-color: #f15b20;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+.vm-accordion-btn.active {
+  border-left-color: #f15b20;
+  background: linear-gradient(135deg, #fff8f5 0%, #fff 100%);
+  box-shadow: 0 6px 20px rgba(241, 91, 32, 0.1);
+}
+.vm-accordion-panel {
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease, padding 0.35s ease;
+  border-radius: 0 0 12px 12px;
+  margin-top: -8px;
+  border: 2px solid transparent;
+  border-top: none;
+}
+.vm-accordion-panel.open {
+  border-color: #e2e8f0;
+  border-left: 5px solid #f15b20;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
