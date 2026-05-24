@@ -21,13 +21,13 @@ export default function sitemap() {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/programs/undergraduate-programs/it/conclave/session-1`,
+      url: `${baseUrl}/conclave/session-1`,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.6,
     },
     {
-      url: `${baseUrl}/programs/undergraduate-programs/it/conclave/session-2`,
+      url: `${baseUrl}/conclave/session-2`,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.6,
