@@ -7,6 +7,13 @@ export const IT_FACULTY_MEMBERS = [
     image: "/IT/deansir.webp",
     university: "MCU, Bhopal"
   },
+  {
+    name: "Mr. Aadesh Pandey",
+    role: "Director Academics, Sr. Professor IT",
+    qualification: "Ph.D.",
+    image: "/IT/aadesh_pandey.webp",
+    university: ""
+  },
   // Professors
   {
     name: "Dr. Vikas Goel",
