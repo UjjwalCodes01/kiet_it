@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /* Recruiter logo paths — 49 logos, all converted to .webp */
 const recruiterLogos = Array.from(
@@ -52,16 +52,16 @@ function useCountUp(target, duration = 1500) {
  * PlacementSection — Animated stat counters + infinite recruiter logo marquee.
  */
 export default function PlacementSection() {
-  const placementHighest  = useCountUp(1.78);
-  const placementTop10    = useCountUp(16);
-  const placementAverage  = useCountUp(6.5);
-  const placementCompanies = useCountUp(300);
+  const { ref: highestRef, value: highestVal }   = useCountUp(1.78);
+  const { ref: top10Ref, value: top10Val }       = useCountUp(16);
+  const { ref: averageRef, value: averageVal }   = useCountUp(6.5);
+  const { ref: companiesRef, value: companiesVal } = useCountUp(300);
 
   const stats = [
-    { counter: placementHighest,   suffix: " Cr",   label: "Highest Package",          variant: "orange", note: "PROTON AG, Switzerland" },
-    { counter: placementTop10,     suffix: " LPA",  label: "Top 10% Average(2022-25)", variant: "navy",   note: "Average of top 10% placed students" },
-    { counter: placementAverage,   suffix: " LPA",  label: "Average Package(2022-25)", variant: "orange", note: "Overall average placement package" },
-    { counter: placementCompanies, suffix: "+",     label: "Total Companies",          variant: "navy",   note: "Recruiting partners across industries" },
+    { ref: highestRef,   value: highestVal,   suffix: " Cr",   label: "Highest Package",          variant: "orange", note: "PROTON AG, Switzerland" },
+    { ref: top10Ref,     value: top10Val,     suffix: " LPA",  label: "Top 10% Average(2022-25)", variant: "navy",   note: "Average of top 10% placed students" },
+    { ref: averageRef,   value: averageVal,   suffix: " LPA",  label: "Average Package(2022-25)", variant: "orange", note: "Overall average placement package" },
+    { ref: companiesRef, value: companiesVal, suffix: "+",     label: "Total Companies",          variant: "navy",   note: "Recruiting partners across industries" },
   ];
 
   return (
@@ -81,7 +81,7 @@ export default function PlacementSection() {
             {stats.map((item) => (
               <div key={item.label} className="col-6 col-lg-3">
                 <div
-                  ref={item.counter.ref}
+                  ref={item.ref}
                   className={`placement-stat-card ${item.variant} h-100`}
                   style={{ boxShadow: "0 8px 24px rgba(0,0,0,0.07)" }}
                 >
@@ -94,7 +94,7 @@ export default function PlacementSection() {
                       color: item.variant === "orange" ? "var(--kiet-secondary)" : "var(--kiet-primary)",
                     }}
                   >
-                    {item.counter.value}{item.suffix}
+                    {item.value}{item.suffix}
                   </div>
                   <p className="fw-bold mb-1 fs-3" style={{ color: "#1a1a2e" }}>{item.label}</p>
                   <p className="mb-0 fs-5 text-muted d-none d-md-block">{item.note}</p>
@@ -122,6 +122,7 @@ export default function PlacementSection() {
                     className="img-fluid"
                     height="140"
                     width="140"
+                    style={{ height: "auto" }}
                   />
                 </div>
               ))}

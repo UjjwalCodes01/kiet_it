@@ -42,8 +42,8 @@ function useCountUp(target, duration = 1500) {
  * followed by the Industry Academia Connect (Digital Conclave) session cards.
  */
 export default function ResearchSection() {
-  const researchPubs    = useCountUp(138);
-  const researchPatents = useCountUp(48);
+  const { ref: pubsRef, value: pubsValue } = useCountUp(138);
+  const { ref: patentsRef, value: patentsValue } = useCountUp(48);
 
   return (
     <div id="research">
@@ -60,7 +60,7 @@ export default function ResearchSection() {
             {/* Publications card */}
             <div className="col-12 col-md-6">
               <div
-                ref={researchPubs.ref}
+                ref={pubsRef}
                 className="research-stat-card h-100"
                 style={{
                   background: "linear-gradient(135deg, #fff8f5 0%, #fff 100%)",
@@ -83,7 +83,7 @@ export default function ResearchSection() {
                       className="kiet-text-secondary"
                       style={{ fontSize: "clamp(3rem, 6vw, 4.5rem)", fontWeight: 800, lineHeight: 1 }}
                     >
-                      {researchPubs.value}+
+                      {pubsValue}+
                     </div>
                     <h3 className="fw-bold mb-2 fs-1 kiet-text-primary">Publications</h3>
                     <p className="mb-0 fs-4 text-muted">Research papers published in reputed journals &amp; conferences</p>
@@ -96,7 +96,7 @@ export default function ResearchSection() {
             {/* Patents card */}
             <div className="col-12 col-md-6">
               <div
-                ref={researchPatents.ref}
+                ref={patentsRef}
                 className="research-stat-card h-100"
                 style={{
                   background: "linear-gradient(135deg, #f0f4f8 0%, #fff 100%)",
@@ -119,7 +119,7 @@ export default function ResearchSection() {
                       className="kiet-text-primary"
                       style={{ fontSize: "clamp(3rem, 6vw, 4.5rem)", fontWeight: 800, lineHeight: 1 }}
                     >
-                      {researchPatents.value}+
+                      {patentsValue}+
                     </div>
                     <h3 className="fw-bold mb-2 fs-1 kiet-text-primary">Patents</h3>
                     <p className="mb-0 fs-4 text-muted">Innovative patents filed &amp; granted to faculty &amp; students</p>

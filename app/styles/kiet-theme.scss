@@ -27,9 +27,12 @@ $border-radius-lg:       0.75rem;
 $btn-border-radius:      8px;
 $btn-font-weight:        600;
 
-// ─── 2. Bootstrap SCSS Source ─────────────────────────────────────────────────
-// This enables proper variable overrides. The compiled bootstrap.min.css
-// is imported in layout.tsx — this file is for SCSS-aware extensions only.
+// ─── 2. Note on Bootstrap Integration ────────────────────────────────────────
+// The compiled bootstrap.min.css is imported in layout.jsx.
+// The variables above ($primary, $secondary, etc.) are used within this
+// SCSS file's own utility classes below — they do not override Bootstrap's
+// compiled output. This is intentional: SCSS is used for KIET-specific
+// extensions, not Bootstrap source recompilation.
 
 // ─── 3. KIET Extension Styles (SCSS syntax) ───────────────────────────────────
 
