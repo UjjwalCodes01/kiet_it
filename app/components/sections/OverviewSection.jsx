@@ -20,38 +20,28 @@ export default function OverviewSection() {
   return (
     <div id="overview">
       <section className="mx-2 mx-md-4 mx-lg-5 px-0 px-md-3 px-lg-4 py-3 py-md-4">
-        <div style={{ borderRadius: "20px", overflow: "hidden", position: "relative" }}>
+        <div className="kiet-overview-banner">
           {/* Dark gradient background */}
-          <div style={{ background: "linear-gradient(135deg, #001a3a 0%, #002855 60%, #003d7a 100%)", position: "relative" }}>
+          <div className="kiet-overview-bg">
             {/* Decorative diagonal stripe */}
-            <div
-              className="d-none d-lg-block"
-              style={{
-                position: "absolute", top: 0, right: 0, width: "45%", height: "100%",
-                background: "linear-gradient(135deg, transparent 0%, rgba(242, 101, 32, 0.08) 100%)",
-                clipPath: "polygon(20% 0, 100% 0, 100% 100%, 0% 100%)",
-              }}
-            />
+            <div className="d-none d-lg-block kiet-overview-stripe" />
 
-            <div className="row g-0 align-items-center" style={{ position: "relative", zIndex: 1 }}>
+            <div className="row g-0 align-items-center kiet-overview-zindex">
               {/* Left column — text + CTA */}
               <div className="col-12 col-lg-7 p-4 p-md-5">
                 <div className="py-3 py-lg-5 px-2 px-lg-4">
-                  <div
-                    className="d-inline-block mb-3 px-3 py-1 rounded-pill"
-                    style={{ backgroundColor: "rgba(242, 101, 32, 0.15)", border: "1px solid rgba(242, 101, 32, 0.3)" }}
-                  >
-                    <span className="fw-semibold fs-5" style={{ color: "#ff8a50" }}>
+                  <div className="d-inline-block mb-3 px-3 py-1 rounded-pill kiet-overview-badge">
+                    <span className="fw-semibold fs-5 kiet-overview-badge-text">
                       NBA Accredited &bull; 5 Times
                     </span>
                   </div>
 
-                  <h1 className="fw-bold mb-4" style={{ color: "#fff", fontSize: "clamp(1.8rem, 4vw, 2.8rem)", lineHeight: 1.2 }}>
+                  <h1 className="fw-bold mb-4 kiet-overview-h1">
                     Department of{" "}
                     <span className="kiet-text-secondary">Information Technology</span>
                   </h1>
 
-                  <p className="mb-4 fs-3" style={{ lineHeight: 1.8, color: "rgba(255,255,255,0.8)", textAlign: "justify" }}>
+                  <p className="mb-4 fs-3 kiet-overview-desc">
                     The Information Technology department builds future-ready professionals through strong computing
                     fundamentals and advanced domains like Quantum Computing, AWS Cloud, AI, ML, and Data Engineering.
                     With an industry-aligned curriculum, experiential learning, and globally recognized certifications,
@@ -62,8 +52,7 @@ export default function OverviewSection() {
                     href="https://admission.kiet.edu/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn px-5 py-3 text-white fw-semibold fs-3 kiet-bg-secondary"
-                    style={{ borderRadius: "8px", border: "none", textDecoration: "none", boxShadow: "0 4px 16px rgba(242, 101, 32, 0.4)" }}
+                    className="btn px-5 py-3 text-white fw-semibold fs-3 kiet-bg-secondary kiet-overview-cta"
                   >
                     Apply Now
                   </a>
@@ -77,13 +66,10 @@ export default function OverviewSection() {
                   <div className="row g-3">
                     {stats.map((item) => (
                       <div key={item.value} className="col-6">
-                        <div
-                          className="text-center p-3 rounded-3"
-                          style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}
-                        >
+                        <div className="text-center p-3 rounded-3 kiet-stats-card">
                           <h3 className="fw-bold mb-1 fs-1 kiet-text-secondary">{item.value}</h3>
-                          <p className="fw-semibold mb-0 fs-4" style={{ color: "#fff" }}>{item.label}</p>
-                          <p className="mb-0 fs-5" style={{ color: "rgba(255,255,255,0.5)" }}>{item.sub}</p>
+                          <p className="fw-semibold mb-0 fs-4 kiet-stats-label">{item.label}</p>
+                          <p className="mb-0 fs-5 kiet-stats-sub-desktop">{item.sub}</p>
                         </div>
                       </div>
                     ))}
@@ -95,12 +81,9 @@ export default function OverviewSection() {
                   <div className="row g-2">
                     {mobileStats.map((item) => (
                       <div key={item.value} className="col-6">
-                        <div
-                          className="text-center py-3 rounded-3"
-                          style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}
-                        >
+                        <div className="text-center py-3 rounded-3 kiet-stats-card">
                           <h3 className="fw-bold mb-0 fs-2 kiet-text-secondary">{item.value}</h3>
-                          <p className="mb-0 fs-5" style={{ color: "rgba(255,255,255,0.7)" }}>{item.label}</p>
+                          <p className="mb-0 fs-5 kiet-stats-sub-mobile">{item.label}</p>
                         </div>
                       </div>
                     ))}

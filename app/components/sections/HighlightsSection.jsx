@@ -19,7 +19,7 @@ const HIGHLIGHTS = [
     image: "/department_highlights/Industry-Centric_Tracks.webp",
     title: "Industry-Centric Tracks with Globally Recognized Certifications",
     description:
-      "Our Information Technology program integrates strong computing foundations with industry-centric specialization tracks in Quantum Computing, AWS Cloud, AI & ML, and Data Engineering, aligned with globally recognized certifications. Enriched through expert-led sessions and hands-on learning, it prepares students to be certification-ready, technically proficient, and highly employable in the evolving digital and quantum-driven landscape.",
+      "Our Information Technology program integrates strong computing foundations with industry-centric specialization tracks in Quantum Computing, AWS Cloud, AI &amp; ML, and Data Engineering, aligned with globally recognized certifications. Enriched through expert-led sessions and hands-on learning, it prepares students to be certification-ready, technically proficient, and highly employable in the evolving digital and quantum-driven landscape.",
   },
   {
     image: "/department_highlights/LeetCode_Sharing.webp",
@@ -46,41 +46,32 @@ export default function HighlightsSection() {
     <div id="infrastructure">
       <section className="mx-2 mx-md-4 mx-lg-5 px-0 px-md-3 px-lg-5 py-3 py-md-4">
         <div className="p-3 p-md-4 p-lg-5">
-          <h2
-            className="fw-bold mb-4 mb-md-5 kiet-text-primary"
-            style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", borderBottom: "3px solid var(--kiet-secondary)", paddingBottom: "10px", display: "inline-block" }}
-          >
+          <h2 className="fw-bold mb-4 mb-md-5 kiet-text-primary kiet-section-heading">
             Department&apos;s Highlights
           </h2>
 
           <div className="row g-4">
             {HIGHLIGHTS.map((item) => (
               <div key={item.title} className="col-12 col-lg-6">
-                {/* Desktop card: image left, text right */}
-                <div
-                  className="d-none d-md-flex bg-white rounded-3 overflow-hidden h-100 highlight-card"
-                  style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.08)", transition: "transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease", cursor: "pointer", borderLeft: "4px solid transparent" }}
-                >
-                  <div style={{ flex: "0 0 160px", position: "relative" }}>
-                    <img src={item.image} alt={item.title} className="w-100 h-100" style={{ objectFit: "cover", position: "absolute", top: 0, left: 0 }} />
+                {/* Desktop card */}
+                <div className="d-none d-md-flex bg-white rounded-3 overflow-hidden h-100 highlight-card kiet-highlight-desktop-card">
+                  <div className="kiet-highlight-img-col">
+                    <img src={item.image} alt={item.title} className="w-100 h-100" />
                   </div>
                   <div className="p-5 m-2 flex-grow-1">
-                    <h3 className="fw-semibold mb-2 fs-2 kiet-text-primary" style={{ lineHeight: 1.4 }}>{item.title}</h3>
-                    <p className="mb-0 fs-4" style={{ color: "#666", lineHeight: 1.5, textAlign: "justify" }}>{item.description}</p>
+                    <h3 className="fw-semibold mb-2 fs-2 kiet-text-primary kiet-line-height-14">{item.title}</h3>
+                    <p className="mb-0 fs-4 kiet-text-light-muted kiet-text-justify-15">{item.description}</p>
                   </div>
                 </div>
 
-                {/* Mobile card: image on top, text below */}
-                <div
-                  className="d-md-none bg-white rounded-3 overflow-hidden"
-                  style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.08)", border: "1px solid rgba(241, 91, 32, 0.12)" }}
-                >
-                  <div style={{ height: "180px", overflow: "hidden" }}>
-                    <img src={item.image} alt={item.title} className="w-100 h-100" style={{ objectFit: "cover" }} />
+                {/* Mobile card */}
+                <div className="d-md-none bg-white rounded-3 overflow-hidden kiet-highlight-mobile-card">
+                  <div className="kiet-highlight-mobile-img">
+                    <img src={item.image} alt={item.title} className="w-100 h-100 object-fit-cover" />
                   </div>
                   <div className="p-3">
-                    <h3 className="fw-semibold mb-2 fs-2 kiet-text-primary" style={{ lineHeight: 1.4 }}>{item.title}</h3>
-                    <p className="mb-0 fs-4" style={{ color: "#666", lineHeight: 1.5, textAlign: "justify" }}>{item.description}</p>
+                    <h3 className="fw-semibold mb-2 fs-2 kiet-text-primary kiet-line-height-14">{item.title}</h3>
+                    <p className="mb-0 fs-4 kiet-text-light-muted kiet-text-justify-15">{item.description}</p>
                   </div>
                 </div>
               </div>
@@ -91,5 +82,3 @@ export default function HighlightsSection() {
     </div>
   );
 }
-
-

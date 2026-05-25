@@ -115,8 +115,8 @@ export default function Roadmap() {
           <h2
             className="fw-bold mb-3 fs-1"
             style={{
-              color: "#002855",
-              borderBottom: "3px solid #f26520",
+              color: "var(--kiet-primary)",
+              borderBottom: "3px solid var(--kiet-secondary)",
               paddingBottom: "10px",
               display: "inline-block",
             }}
@@ -197,7 +197,7 @@ export default function Roadmap() {
                         boxShadow: isActive
                           ? "0 8px 25px rgba(242, 101, 32, 0.4)"
                           : "0 4px 15px rgba(0, 40, 85, 0.3)",
-                        border: isActive ? "3px solid #f26520" : "none",
+                        border: isActive ? "3px solid var(--kiet-secondary)" : "none",
                         overflow: "hidden",
                         transition: "all 0.3s ease",
                         transform: isActive ? "scale(1.15)" : "scale(1)",
@@ -213,7 +213,7 @@ export default function Roadmap() {
                       className="fs-5"
                       style={{
                         fontWeight: 800,
-                        color: isActive ? "#f26520" : "#002855",
+                        color: isActive ? "var(--kiet-secondary)" : "var(--kiet-primary)",
                         textTransform: "uppercase",
                         margin: 0,
                         lineHeight: 1.2,
@@ -235,7 +235,7 @@ export default function Roadmap() {
                         backgroundColor: "#fff",
                         borderRadius: "12px",
                         boxShadow: "0 25px 80px rgba(0, 0, 0, 0.35)",
-                        border: "4px solid #f26520",
+                        border: "4px solid var(--kiet-secondary)",
                         padding: "16px",
                       }}
                     >
@@ -247,7 +247,7 @@ export default function Roadmap() {
                           width: "36px",
                           height: "36px",
                           borderRadius: "50%",
-                          backgroundColor: "#f26520",
+                          backgroundColor: "var(--kiet-secondary)",
                           border: "none",
                           color: "#fff",
                           fontSize: "1.1rem",
@@ -304,9 +304,9 @@ export default function Roadmap() {
                 >
                   <defs>
                     <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#f26520" />
-                      <stop offset="50%" stopColor="#002855" />
-                      <stop offset="100%" stopColor="#f26520" />
+                      <stop offset="0%" stopColor="var(--kiet-secondary)" />
+                      <stop offset="50%" stopColor="var(--kiet-primary)" />
+                      <stop offset="100%" stopColor="var(--kiet-secondary)" />
                     </linearGradient>
                   </defs>
                   <path
@@ -348,9 +348,9 @@ export default function Roadmap() {
             >
               <defs>
                 <linearGradient id="mobileLineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#f26520" />
-                  <stop offset="50%" stopColor="#002855" />
-                  <stop offset="100%" stopColor="#f26520" />
+                  <stop offset="0%" stopColor="var(--kiet-secondary)" />
+                  <stop offset="50%" stopColor="var(--kiet-primary)" />
+                  <stop offset="100%" stopColor="var(--kiet-secondary)" />
                 </linearGradient>
               </defs>
               <path
@@ -392,7 +392,7 @@ export default function Roadmap() {
                       height: "60px",
                       borderRadius: "50%",
                       backgroundColor: "#fff",
-                      border: isActive ? "3px solid #f26520" : "2px solid #e0e0e0",
+                      border: isActive ? "3px solid var(--kiet-secondary)" : "2px solid #e0e0e0",
                       boxShadow: isActive
                         ? "0 6px 18px rgba(242, 101, 32, 0.35)"
                         : "0 3px 10px rgba(0, 40, 85, 0.3)",
@@ -411,7 +411,7 @@ export default function Roadmap() {
                     style={{
                       fontSize: "0.95rem",
                       fontWeight: 800,
-                      color: isActive ? "#f26520" : "#002855",
+                      color: isActive ? "var(--kiet-secondary)" : "var(--kiet-primary)",
                       textTransform: "uppercase",
                       margin: 0,
                       marginLeft: "75px",
@@ -456,12 +456,12 @@ export default function Roadmap() {
                   backgroundColor: "#fff",
                   borderRadius: "12px",
                   boxShadow: "0 8px 30px rgba(0, 0, 0, 0.15)",
-                  border: "3px solid #f26520",
+                  border: "3px solid var(--kiet-secondary)",
                   zIndex: 9999,
                 }}
               >
                 <div className="d-flex justify-content-between align-items-center mb-3">
-                  <h4 className="fw-bold mb-0 fs-3" style={{ color: "#002855" }}>
+                  <h4 className="fw-bold mb-0 fs-3" style={{ color: "var(--kiet-primary)" }}>
                     {roadmap[activeIndex].label}
                   </h4>
                   <button
@@ -469,7 +469,7 @@ export default function Roadmap() {
                       width: "32px",
                       height: "32px",
                       borderRadius: "50%",
-                      backgroundColor: "#f26520",
+                      backgroundColor: "var(--kiet-secondary)",
                       border: "none",
                       color: "#fff",
                       fontSize: "1rem",

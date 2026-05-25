@@ -5,36 +5,19 @@ export default function Hero({
   backLabel = "Back to Home",
 }) {
   return (
-    <section
-      style={{
-        backgroundColor: "white",
-        borderBottom: "1px solid #e5e7eb",
-        padding: "2rem 0 2.5rem 0",
-      }}
-    >
+    <section className="kiet-hero-section">
       <div className="container px-3 px-md-4">
         <a
-          className="text-decoration-none d-inline-flex align-items-center mb-4 fs-5"
-          style={{ color: "#6b7280", fontWeight: 500 }}
+          className="text-decoration-none d-inline-flex align-items-center mb-4 fs-5 kiet-hero-back"
           href={backHref}
         >
-          <span style={{ fontSize: "1.3rem", marginRight: "0.6rem" }}>←</span>
+          <span className="kiet-hero-back-arrow">←</span>
           {backLabel}
         </a>
-        <h1
-          className="fw-bold mb-3"
-          style={{
-            fontSize: "clamp(2rem, 5vw, 3.5rem)",
-            color: "#111827",
-            letterSpacing: "-0.02em",
-          }}
-        >
+        <h1 className="fw-bold mb-3 kiet-hero-title">
           {title}
         </h1>
-        <p
-          className="mb-0 fs-4"
-          style={{ color: "#6b7280", maxWidth: "700px", lineHeight: 1.6 }}
-        >
+        <p className="mb-0 fs-4 kiet-hero-subtitle">
           {subtitle}
         </p>
       </div>

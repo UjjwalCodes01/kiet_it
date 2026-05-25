@@ -96,7 +96,7 @@ export default function PlacementSection() {
                   >
                     {item.value}{item.suffix}
                   </div>
-                  <p className="fw-bold mb-1 fs-3" style={{ color: "#1a1a2e" }}>{item.label}</p>
+                  <p className="fw-bold mb-1 fs-3" style={{ color: "var(--kiet-tertiary)" }}>{item.label}</p>
                   <p className="mb-0 fs-5 text-muted d-none d-md-block">{item.note}</p>
                 </div>
               </div>

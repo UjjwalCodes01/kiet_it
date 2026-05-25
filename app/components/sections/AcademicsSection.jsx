@@ -6,7 +6,6 @@ import AlumniTestimonialsSection from "./AlumniTestimonialsSection";
 /**
  * AcademicsSection — Accordion for Vision, Mission, Program Outcomes, and Syllabus,
  * followed by the Alumni Testimonials carousel.
- * id="syllabus" is kept for anchor navigation compatibility.
  */
 export default function AcademicsSection() {
   const [openSection, setOpenSection] = useState("vision");
@@ -16,7 +15,7 @@ export default function AcademicsSection() {
       key: "vision",
       title: "Vision",
       content: (
-        <p className="mb-0" style={{ textAlign: "justify" }}>
+        <p className="mb-0 kiet-text-justify">
           To achieve excellence in the field of Information Technology and create competent professionals for
           the benefit of the world community.
         </p>
@@ -66,14 +65,10 @@ export default function AcademicsSection() {
               key={year}
               href={file}
               download
-              className="d-flex align-items-center justify-content-between text-decoration-none bg-white rounded shadow-sm"
-              style={{ padding: "14px 18px", width: "100%", border: "1px solid #e9ecef", transition: "all 0.25s ease" }}
+              className="d-flex align-items-center justify-content-between text-decoration-none bg-white rounded shadow-sm kiet-syllabus-link"
             >
               <div className="d-flex align-items-center">
-                <span
-                  className="me-3 d-flex align-items-center justify-content-center rounded-circle"
-                  style={{ width: "42px", height: "42px", backgroundColor: "#fff3ec", flexShrink: 0 }}
-                >
+                <span className="me-3 d-flex align-items-center justify-content-center rounded-circle kiet-syllabus-icon-wrap">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="var(--kiet-secondary)" viewBox="0 0 16 16">
                     <path d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z" />
                     <path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
@@ -81,7 +76,7 @@ export default function AcademicsSection() {
                 </span>
                 <span className="fw-semibold fs-4 kiet-text-primary">{year}</span>
               </div>
-              <span className="kiet-text-secondary" style={{ fontSize: "1.2rem" }}>&rarr;</span>
+              <span className="kiet-text-secondary kiet-syllabus-arrow">&rarr;</span>
             </a>
           ))}
         </div>
@@ -91,10 +86,7 @@ export default function AcademicsSection() {
 
   return (
     <div id="syllabus" className="mt-5">
-      <h2
-        className="fw-bold mb-4 kiet-text-primary"
-        style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", borderBottom: "3px solid var(--kiet-secondary)", paddingBottom: "10px", display: "inline-block" }}
-      >
+      <h2 className="fw-bold mb-4 kiet-text-primary kiet-section-heading">
         Academics &amp; Outcomes
       </h2>
 
@@ -141,7 +133,7 @@ export default function AcademicsSection() {
                   padding: isOpen ? "1.25rem 1.5rem" : "0 1.5rem",
                 }}
               >
-                <div className="fs-2" style={{ color: "#444", lineHeight: 1.6 }}>
+                <div className="fs-2 kiet-accordion-content">
                   {section.content}
                 </div>
               </div>
@@ -150,9 +142,7 @@ export default function AcademicsSection() {
         })}
       </div>
 
-      {/* Alumni testimonials follow the academics accordion */}
       <AlumniTestimonialsSection />
     </div>
   );
 }
-

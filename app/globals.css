@@ -4,9 +4,9 @@
          <div className="kiet-bg-secondary">Banner</div>
 ──────────────────────────────────────────────────────────────────────────── */
 :root {
-  --kiet-primary:   #085290;
-  --kiet-secondary: #f15b20;
-  --kiet-tertiary:  #164265;
+  --kiet-primary:   #002855;
+  --kiet-secondary: #f26520;
+  --kiet-tertiary:  #1a1a2e;
 }
 
 /* Background utilities */
@@ -380,3 +380,147 @@ html {
   background: #fff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.04);
 }
+
+
+/* ─── KIET Component Utility Classes ────────────────────────────────────────
+   These replace inline style={{}} across all section components.
+──────────────────────────────────────────────────────────────────────────── */
+
+/* Section headings */
+.kiet-section-heading { font-size: clamp(1.8rem, 3.5vw, 2.5rem); border-bottom: 3px solid var(--kiet-secondary); padding-bottom: 10px; display: inline-block; }
+.kiet-sub-heading { font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.3; }
+.kiet-stat-number { font-size: clamp(3rem, 6vw, 4.5rem); font-weight: 800; line-height: 1; }
+.kiet-hero-title { font-size: clamp(2rem, 5vw, 3.5rem); color: #111827; letter-spacing: -0.02em; }
+
+/* Overview */
+.kiet-overview-banner { border-radius: 20px; overflow: hidden; position: relative; }
+.kiet-overview-bg { background: linear-gradient(135deg, #001a3a 0%, var(--kiet-primary) 60%, #003d7a 100%); position: relative; }
+.kiet-overview-stripe { position: absolute; top: 0; right: 0; width: 45%; height: 100%; background: linear-gradient(135deg, transparent 0%, rgba(242,101,32,0.08) 100%); clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%); }
+.kiet-overview-zindex { position: relative; z-index: 1; }
+.kiet-overview-badge { background-color: rgba(242,101,32,0.15); border: 1px solid rgba(242,101,32,0.3); }
+.kiet-overview-badge-text { color: #ff8a50; }
+.kiet-overview-h1 { color: #fff; font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.2; }
+.kiet-overview-desc { line-height: 1.8; color: rgba(255,255,255,0.8); text-align: justify; }
+.kiet-overview-cta { border-radius: 8px !important; border: none !important; box-shadow: 0 4px 16px rgba(242,101,32,0.4); }
+.kiet-stats-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); }
+.kiet-stats-label { color: #fff; }
+.kiet-stats-sub-desktop { color: rgba(255,255,255,0.5); }
+.kiet-stats-sub-mobile  { color: rgba(255,255,255,0.7); }
+
+/* Research */
+.kiet-research-card-warm { background: linear-gradient(135deg, #fff8f5 0%, #fff 100%); border-radius: 20px; overflow: hidden; box-shadow: 0 8px 32px rgba(241,91,32,0.12); border: 1px solid rgba(241,91,32,0.1); position: relative; }
+.kiet-research-card-cool { background: linear-gradient(135deg, #f0f4f8 0%, #fff 100%); border-radius: 20px; overflow: hidden; box-shadow: 0 8px 32px rgba(8,82,144,0.12); border: 1px solid rgba(8,82,144,0.1); position: relative; }
+.kiet-research-topbar-warm { height: 5px; background: linear-gradient(90deg, var(--kiet-secondary), #ff8a50); }
+.kiet-research-topbar-cool { height: 5px; background: linear-gradient(90deg, var(--kiet-primary), #1a5276); }
+.kiet-research-img-wrapper { width: 140px; height: 140px; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); background: #fff; flex-shrink: 0; }
+.kiet-research-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+.kiet-decor-circle { position: absolute; bottom: -30px; right: -30px; width: 120px; height: 120px; border-radius: 50%; }
+.kiet-decor-circle-warm { background: rgba(241,91,32,0.05); }
+.kiet-decor-circle-cool { background: rgba(8,82,144,0.05); }
+.kiet-conclave-card { box-shadow: 0 8px 24px rgba(0,0,0,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; border: 2px solid rgba(241,91,32,0.1); }
+.kiet-conclave-topbar-warm { height: 5px; background: linear-gradient(90deg, var(--kiet-secondary), var(--kiet-primary)); }
+.kiet-conclave-topbar-cool { height: 5px; background: linear-gradient(90deg, var(--kiet-primary), var(--kiet-secondary)); }
+.kiet-conclave-img { object-fit: cover; height: 300px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+.kiet-btn-primary-shadow  { border-radius: 8px !important; border: none !important; box-shadow: 0 4px 12px rgba(8,82,144,0.3); }
+.kiet-btn-secondary-shadow { border-radius: 8px !important; border: none !important; box-shadow: 0 4px 12px rgba(241,91,32,0.3); }
+
+/* Dean */
+.kiet-dean-card { box-shadow: 0 0 20px rgba(0,0,0,0.05); border-radius: 16px; background-color: #fff; }
+.kiet-dean-photo { max-width: 100%; height: auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1); object-fit: cover; }
+.kiet-text-dark-muted { color: #333; }
+.kiet-text-mid-muted  { color: #444; }
+.kiet-text-soft-muted { color: #555; }
+.kiet-text-light-muted { color: #666; }
+.kiet-text-justify-18 { text-align: justify; line-height: 1.8; }
+.kiet-text-justify-17 { text-align: justify; line-height: 1.7; }
+.kiet-text-justify-15 { text-align: justify; line-height: 1.5; }
+.kiet-line-height-12 { line-height: 1.2; }
+.kiet-line-height-13 { line-height: 1.3; }
+.kiet-line-height-14 { line-height: 1.4; }
+.kiet-line-height-16 { line-height: 1.6; }
+
+/* Carousel controls */
+.kiet-carousel-nav-btn { width: 32px !important; height: 32px !important; border: 1px solid var(--kiet-secondary) !important; background-color: transparent !important; color: var(--kiet-secondary) !important; }
+.kiet-carousel-nav-icon { font-size: 1.2rem; line-height: 0; padding-bottom: 4px; }
+
+/* Alumni */
+.kiet-alumni-scroll { scroll-behavior: smooth; scroll-snap-type: x mandatory; padding-bottom: 1rem; }
+.kiet-alumni-card-wrapper { flex: 0 0 calc(50% - 0.75rem); scroll-snap-align: start; }
+.kiet-alumni-card { background-color: #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.06); border: 1px solid #e9ecef; border-left: 4px solid var(--kiet-secondary); transition: all 0.4s cubic-bezier(0.22,1,0.36,1); cursor: pointer; min-height: 320px; display: flex; flex-direction: column; }
+.kiet-alumni-avatar { width: 70px; height: 70px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 2px solid var(--kiet-secondary); }
+.kiet-alumni-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+.kiet-alumni-quote-icon { font-size: 1.5rem; line-height: 1; }
+
+/* Achievers */
+.kiet-achiever-scroll { scroll-behavior: smooth; scroll-snap-type: x mandatory; }
+.kiet-achiever-card-wrapper { flex: 0 0 180px; scroll-snap-align: start; }
+.kiet-achiever-card { background-color: white; border-radius: 16px; padding: 1rem; height: 100%; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease; cursor: default; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.kiet-achiever-avatar { width: 100px; height: 100px; border-radius: 50%; overflow: hidden; position: relative; background-color: #e5e7eb; border: 3px solid var(--kiet-secondary); margin-bottom: 0.75rem; }
+.kiet-achiever-avatar img { position: absolute; height: 100%; width: 100%; left: 0; top: 0; object-fit: cover; object-position: center 20%; }
+.kiet-section-bottom-pad { padding-bottom: 5rem; }
+
+/* Highlights */
+.kiet-highlight-desktop-card { box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; cursor: pointer; border-left: 4px solid transparent; }
+.kiet-highlight-img-col { flex: 0 0 160px; position: relative; }
+.kiet-highlight-img-col img { object-fit: cover; position: absolute; top: 0; left: 0; }
+.kiet-highlight-mobile-card { box-shadow: 0 2px 8px rgba(0,0,0,0.08); border: 1px solid rgba(241,91,32,0.12); }
+.kiet-highlight-mobile-img { height: 180px; overflow: hidden; }
+
+/* COE */
+.kiet-coe-card-primary  { background: linear-gradient(135deg, #f0f4f8 0%, #fff 50%, #fff8f5 100%); border: 2px solid rgba(0,40,85,0.12); }
+.kiet-coe-card-secondary { background: linear-gradient(135deg, #fff8f5 0%, #fff 50%, #f0f4f8 100%); border: 2px solid rgba(241,91,32,0.12); }
+.kiet-coe-topbar-ps { height: 5px; background: linear-gradient(90deg, var(--kiet-primary), var(--kiet-secondary)); }
+.kiet-coe-topbar-sp { height: 5px; background: linear-gradient(90deg, var(--kiet-secondary), var(--kiet-primary)); }
+.kiet-coe-badge-primary   { background-color: rgba(8,82,144,0.08); border: 1px solid rgba(8,82,144,0.15); }
+.kiet-coe-badge-secondary { background-color: rgba(241,91,32,0.08); border: 1px solid rgba(241,91,32,0.15); }
+.kiet-coe-img  { width: 100%; box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+.kiet-coe-text { line-height: 1.8; color: #444; text-align: justify; max-width: 900px; }
+
+/* Clubs */
+.kiet-clubs-card { border-radius: 20px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.1); min-height: 280px; }
+.kiet-clubs-logo-wrapper { width: 110px; height: 110px; border-radius: 50%; overflow: hidden; position: relative; border: 3px solid #f0f0f0; background-color: #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+.kiet-clubs-logo-wrapper img { position: absolute; height: 100%; width: 100%; left: 0; top: 0; object-fit: cover; }
+.kiet-clubs-btn { border-radius: 8px !important; border: none !important; box-shadow: 0 4px 12px rgba(241,91,32,0.3); }
+.kiet-clubs-desc { line-height: 1.7; text-align: justify; }
+
+/* Academics */
+.kiet-accordion-content { color: #444; line-height: 1.6; }
+.kiet-syllabus-link { padding: 14px 18px; width: 100%; border: 1px solid #e9ecef !important; transition: all 0.25s ease; }
+.kiet-syllabus-icon-wrap { width: 42px; height: 42px; background-color: #fff3ec; flex-shrink: 0; }
+.kiet-text-justify { text-align: justify; }
+
+/* Faculty */
+.kiet-faculty-spacer { width: 200px; flex-shrink: 0; }
+.kiet-faculty-mini-card { width: 200px; border-radius: 12px; cursor: pointer; }
+.kiet-faculty-img-bg { background-color: #f8f9fa; }
+.kiet-faculty-track-img-wrap { height: 240px; border-top-left-radius: 12px; border-top-right-radius: 12px; position: relative; }
+.kiet-faculty-track-img-wrap img { position: absolute; height: 100%; width: 100%; left: 0; top: 0; object-fit: cover; object-position: center top; }
+.kiet-faculty-card-img-wrap { position: relative; width: 100%; height: 280px; }
+.kiet-faculty-card-img-wrap img { position: absolute; height: 100%; width: 100%; left: 0; top: 0; right: 0; bottom: 0; object-fit: cover; object-position: center top; }
+.kiet-faculty-mini-img-wrap { position: relative; width: 100%; height: 180px; overflow: hidden; }
+.kiet-faculty-mini-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.kiet-faculty-role { color: #666; }
+.kiet-faculty-card-border { border-radius: 12px; }
+.kiet-faculty-uni { font-size: 0.85rem; font-style: italic; }
+.kiet-faculty-name-clamp { font-size: clamp(0.95rem, 1.3vw, 1.2rem); line-height: 1.3; }
+
+/* Important Links */
+.kiet-imp-links-panel { position: fixed; top: 0; right: 0; width: 320px; max-width: 90vw; height: 100vh; background-color: #fff; z-index: 1050; box-shadow: -4px 0 20px rgba(0,0,0,0.15); display: flex; flex-direction: column; overflow-y: auto; }
+.kiet-imp-links-overlay { position: fixed; inset: 0; background-color: rgba(0,0,0,0.3); z-index: 1049; }
+.kiet-imp-links-link { color: #333; border-bottom: 1px solid #f0f0f0; transition: background-color 0.2s; }
+.kiet-imp-links-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666; }
+
+/* Hero page */
+.kiet-hero-section { background-color: white; border-bottom: 1px solid #e5e7eb; padding: 2rem 0 2.5rem 0; }
+.kiet-hero-back { color: #6b7280; font-weight: 500; }
+.kiet-hero-subtitle { color: #6b7280; max-width: 700px; line-height: 1.6; }
+
+/* BackToTop */
+.kiet-backtotop-svg { position: absolute; top: 0; left: 0; }
+.kiet-backtotop-svg path { transition: stroke-dashoffset 0.1s; }
+.kiet-backtotop-arrow { position: relative; z-index: 1; }
+.kiet-hero-back-arrow { font-size: 1.3rem; margin-right: 0.6rem; }
+.kiet-faculty-card-hover { cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.kiet-cursor-pointer { cursor: pointer; }
+.kiet-imp-links-header-border { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1.5rem; border-bottom: 2px solid var(--kiet-secondary); }
+.kiet-syllabus-arrow { font-size: 1.2rem; }

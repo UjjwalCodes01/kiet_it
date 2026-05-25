@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ALUMNI_TESTIMONIALS } from "@/app/data/it-alumni";
 
-/** Computes carousel pagination metrics for a scroll container. */
 function getCarouselMetrics(container, itemSelector, totalItems) {
   if (!container) return { cardsPerView: 1, stepSize: 0, pageCount: 1 };
   const firstCard = container.querySelector(itemSelector);
@@ -16,10 +15,6 @@ function getCarouselMetrics(container, itemSelector, totalItems) {
   return { cardsPerView, stepSize: cardStride * cardsPerView, pageCount };
 }
 
-/**
- * AlumniTestimonialsSection — Horizontally scrollable alumni testimonial card carousel
- * with dot pagination, prev/next buttons, and 6-second auto-play.
- */
 export default function AlumniTestimonialsSection() {
   const containerRef = useRef(null);
   const hoveredRef = useRef(false);
@@ -59,7 +54,6 @@ export default function AlumniTestimonialsSection() {
     };
   }, []);
 
-  /* Auto-play: advance one page every 6 s, pause on hover */
   useEffect(() => {
     autoplayRef.current = setInterval(() => {
       if (hoveredRef.current) return;
@@ -77,43 +71,22 @@ export default function AlumniTestimonialsSection() {
 
   return (
     <div className="mt-5">
-      <h2
-        className="fw-bold mb-4 kiet-text-primary"
-        style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", borderBottom: "3px solid var(--kiet-secondary)", paddingBottom: "10px", display: "inline-block" }}
-      >
+      <h2 className="fw-bold mb-4 kiet-text-primary kiet-section-heading">
         Alumni Testimonials
       </h2>
 
       <div
         ref={containerRef}
-        className="d-flex overflow-auto gap-4 alumni-scroll-container"
-        style={{ scrollBehavior: "smooth", scrollSnapType: "x mandatory", paddingBottom: "1rem" }}
+        className="d-flex overflow-auto gap-4 alumni-scroll-container kiet-alumni-scroll"
         onMouseEnter={() => { hoveredRef.current = true; }}
         onMouseLeave={() => { hoveredRef.current = false; }}
       >
         {ALUMNI_TESTIMONIALS.map((alumni) => (
-          <div
-            key={alumni.name}
-            className="alumni-card-wrapper"
-            style={{ flex: "0 0 calc(50% - 0.75rem)", scrollSnapAlign: "start" }}
-          >
-            <div
-              className="h-100 p-4 rounded-4 alumni-testimonial-card"
-              style={{
-                backgroundColor: "#fff",
-                boxShadow: "0 4px 16px rgba(0,0,0,0.06)",
-                border: "1px solid #e9ecef",
-                borderLeft: "4px solid var(--kiet-secondary)",
-                transition: "all 0.4s cubic-bezier(0.22, 1, 0.36, 1)",
-                cursor: "pointer",
-                minHeight: "320px",
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
+          <div key={alumni.name} className="alumni-card-wrapper kiet-alumni-card-wrapper">
+            <div className="h-100 p-4 rounded-4 alumni-testimonial-card kiet-alumni-card">
               <div className="d-flex gap-3 align-items-start mb-3">
-                <div style={{ width: "70px", height: "70px", borderRadius: "50%", overflow: "hidden", flexShrink: 0, border: "2px solid var(--kiet-secondary)" }}>
-                  <img src={alumni.image} alt={alumni.name} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%" }} />
+                <div className="kiet-alumni-avatar">
+                  <img src={alumni.image} alt={alumni.name} />
                 </div>
                 <div>
                   <h4 className="fw-bold mb-1 fs-3 kiet-text-primary">{alumni.name}</h4>
@@ -122,34 +95,31 @@ export default function AlumniTestimonialsSection() {
                 </div>
               </div>
               <div className="d-flex align-items-start gap-2 flex-grow-1">
-                <span className="fw-bold kiet-text-secondary" style={{ fontSize: "1.5rem", lineHeight: 1 }}>&ldquo;</span>
-                <p className="mb-0 fs-4 fst-italic" style={{ color: "#555", lineHeight: 1.7, textAlign: "justify" }}>{alumni.quote}</p>
+                <span className="fw-bold kiet-text-secondary kiet-alumni-quote-icon">&ldquo;</span>
+                <p className="mb-0 fs-4 fst-italic kiet-text-soft-muted kiet-text-justify-17">{alumni.quote}</p>
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Controls: prev/next + dot pagination */}
       <div className="d-flex justify-content-between align-items-center mt-3">
         <div className="d-flex gap-2">
           <button
-            className="btn rounded-circle d-flex align-items-center justify-content-center p-0"
-            style={{ width: "32px", height: "32px", border: "1px solid var(--kiet-secondary)", backgroundColor: "transparent", color: "var(--kiet-secondary)" }}
+            className="btn rounded-circle d-flex align-items-center justify-content-center p-0 kiet-carousel-nav-btn"
             aria-label="Previous testimonial"
             onClick={() => scrollToPage(page - 1)}
             disabled={page === 0}
           >
-            <span style={{ fontSize: "1.2rem", lineHeight: 0, paddingBottom: "4px" }}>‹</span>
+            <span className="kiet-carousel-nav-icon">‹</span>
           </button>
           <button
-            className="btn rounded-circle d-flex align-items-center justify-content-center p-0"
-            style={{ width: "32px", height: "32px", border: "1px solid var(--kiet-secondary)", backgroundColor: "transparent", color: "var(--kiet-secondary)" }}
+            className="btn rounded-circle d-flex align-items-center justify-content-center p-0 kiet-carousel-nav-btn"
             aria-label="Next testimonial"
             onClick={() => scrollToPage(page + 1)}
             disabled={page >= pageCount - 1}
           >
-            <span style={{ fontSize: "1.2rem", lineHeight: 0, paddingBottom: "4px" }}>›</span>
+            <span className="kiet-carousel-nav-icon">›</span>
           </button>
         </div>
         <div className="d-flex gap-2">
@@ -171,4 +141,3 @@ export default function AlumniTestimonialsSection() {
     </div>
   );
 }
-
